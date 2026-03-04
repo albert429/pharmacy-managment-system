@@ -1,0 +1,99 @@
+import { createClient } from 'https://esm.sh/@supabase/supabase-js';
+
+app.service('PharmacyService', function($http) {
+    var baseLink = "https://mzrwptstmsewkwucwvlt.supabase.co/rest/v1";
+    var apiKey =  'sb_publishable_3eyaMNOWfe9xnmLf08SHNg_WUQOfmBc'; 
+     
+    const supabase = createClient(baseLink, apiKey);
+    var headers = {
+        'apikey': apiKey,
+        'Authorization': 'Bearer ' + apiKey,
+        'Content-Type': 'application/json'
+    };
+
+    // users management
+
+    this.signup = function(email, password, role) {
+    return supabase.auth.signUp({ email, password })
+        .then(({ data, error }) => {
+            if (error) return Promise.reject(error);
+
+            return supabase
+                .from('users_metadata')
+                .insert([{
+                    id: data.user.id,
+                    role: role,
+                    name: email.split('@')[0],
+                    email: email
+                }])
+                .then(({ error: insertError }) => {
+                    if (insertError) return Promise.reject(insertError);
+                    return {user: data.user, role: role, message: "Signup successful"};
+                });
+        });
+};
+
+
+    this.login = function(email, password) {
+        return supabase.auth.signInWithPassword({ email, password });
+    };
+
+   
+    this.getUsers = function() {
+        return $http.get(baseLink + "/users_metadata", { headers: headers });
+    };
+
+    // customers management
+    this.getCustomers = function() {
+        return $http.get(baseLink + "/customers", { headers: headers });
+    };
+
+    this.addCustomer = function(customerData) {
+        return $http.post(baseLink + "/customers", customerData, { headers: headers });
+    };
+
+    // medicines management
+    this.getMedicines = function() {
+        return $http.get(baseLink + "/medicines", { headers: headers });
+    };
+
+    this.addMedicine = function(medicineData) {
+        return $http.post(baseLink + "/medicines", medicineData, { headers: headers });
+    };
+    this.editMedicine = function(medicineId, medicineData) {
+        return $http.patch(baseLink + "/medicines?id=eq." + medicineId, medicineData, { headers: headers });
+    };
+
+    // invoices management
+    this.getInvoices = function() {
+        return $http.get(baseLink + "/invoices", { headers: headers });
+    };
+
+    this.addInvoice = function(invoiceData) {
+        return $http.post(baseLink + "/invoices", invoiceData, { headers: headers });
+    };
+  this.editInvoice = function(invoiceId, invoiceData) {
+        return $http.patch(baseLink + "/invoices?id=eq." + invoiceId, invoiceData, { headers: headers });
+    };
+
+    // invoice items   
+    this.addInvoiceItems = function(itemsData) {
+        return $http.post(baseLink + "/invoice_items", itemsData, { headers: headers });
+    };
+
+    this.editInvoiceItem = function(itemId, itemData) {
+        return $http.patch(baseLink + "/invoice_items?id=eq." + itemId, itemData, { headers: headers });
+    };
+
+    // get invoices with items and medicines for a specific customer
+    this.getCustomerInvoicesItems = function(customerId) {
+        var query = "?select=*,invoice_items(*,medicines(*))&customer_id=eq." + customerId;
+        return $http.get(baseLink + "/invoices" + query, { headers: headers });
+    };
+
+    // get invoices created by specific user
+    this.getUserInvoices = function(userId) {
+        var query = "?select=*,invoice_items(*,medicines(*))&created_by=eq." + userId;
+        return $http.get(baseLink + "/invoices" + query, { headers: headers });
+    };
+});
