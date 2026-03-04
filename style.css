@@ -1,0 +1,86 @@
+:root {
+  --teal: #0da5a6;
+  --navy: #1c2b33;
+  --bg: #eef4f6;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background: var(--bg);
+}
+
+.offcanvas {
+  width: 240px !important;
+  background: var(--navy);
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  color: rgba(184, 230, 240, 0.72);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-left: 3px solid transparent;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+.sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: white;
+}
+.sidebar-link.active {
+  background: rgba(255, 255, 255, 0.09);
+  color: white;
+  border-left-color: var(--teal);
+  font-weight: 650;
+}
+
+.btn-logout {
+  display: block;
+  border: 1px solid rgba(184, 230, 240, 0.25);
+  color: rgba(184, 230, 240, 0.72);
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 0.85rem;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+.btn-logout:hover {
+  background: #c0392b;
+  border-color: #c0392b;
+  color: white;
+}
+
+.navbar {
+  background-color: var(--navy);
+}
+
+.stat-card {
+  border-left: 4px solid var(--teal) !important;
+}
+
+.table thead th {
+  background: var(--navy);
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge-units {
+  background: rgba(14, 110, 135, 0.12);
+  color: #0e6e87;
+  border: 2px solid rgba(14, 110, 135, 0.35);
+  border-radius: 50px;
+  padding: 3px 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
