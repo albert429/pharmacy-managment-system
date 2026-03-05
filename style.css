@@ -28,10 +28,12 @@ body {
     background 0.2s,
     color 0.2s;
 }
+
 .sidebar-link:hover {
   background: rgba(255, 255, 255, 0.06);
   color: white;
 }
+
 .sidebar-link.active {
   background: rgba(255, 255, 255, 0.09);
   color: white;
@@ -53,6 +55,7 @@ body {
     color 0.2s,
     border-color 0.2s;
 }
+
 .btn-logout:hover {
   background: #c0392b;
   border-color: #c0392b;
