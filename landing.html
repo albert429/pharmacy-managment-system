@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en" ng-app="pharmacyApp">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CureVia — Landing Page</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Lora:ital,wght@0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+    <script src="Service/authService.js"></script>
+    <script src="Service/dataService.js"></script>
+    <script src="controller/medicineController.js"></script>
+
+    <link href="style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div>
+      <div class="hero">
+        <div class="hero-content">
+          <img src="assets/logo.png" alt="CureVia" class="hero-logo" />
+          <h1 class="hero-title">
+            Pharmacy Management,<br /><em style="color: var(--brand-tint)"
+              >done right.</em
+            >
+          </h1>
+          <p class="hero-subtitle">
+            CureVia is an internal system built for pharmacy staff to manage
+            medicines, customers, and sales — all in one place.
+          </p>
+          <a href="#!/login" class="btn hero-btn">
+            <i class="bi bi-box-arrow-in-right me-2"></i>Login to System
+          </a>
+        </div>
+      </div>
+
+      <div class="features-section">
+        <h2 class="features-section-title">Everything you need</h2>
+        <p class="features-section-sub">
+          Built for pharmacists and staff to handle daily operations with ease.
+        </p>
+
+        <div class="row g-3 mt-2">
+          <div class="col-sm-6 col-lg-4">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-capsule"></i>
+              </div>
+              <h5 class="feature-title">Medicine Inventory</h5>
+              <p class="feature-desc">
+                Add, update, and track medicines with automatic expiry date
+                alerts and low-stock warnings.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-4">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-people"></i>
+              </div>
+              <h5 class="feature-title">Customer Management</h5>
+              <p class="feature-desc">
+                Manage customer profiles and view full purchase history linked
+                to their invoices.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-4">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-receipt"></i>
+              </div>
+              <h5 class="feature-title">Sales & Invoices</h5>
+              <p class="feature-desc">
+                Issue invoices with automatic stock deduction, discounts, and
+                tax calculations.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-4">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-speedometer2"></i>
+              </div>
+              <h5 class="feature-title">Dashboard Overview</h5>
+              <p class="feature-desc">
+                A quick snapshot of inventory levels, expiring stock, and
+                top-selling medicines.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-4">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-search"></i>
+              </div>
+              <h5 class="feature-title">Search & Filter</h5>
+              <p class="feature-desc">
+                Find medicines, customers, and invoices instantly using
+                real-time search and filters.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-lg-4">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="bi bi-shield-check"></i>
+              </div>
+              <h5 class="feature-title">Role-Based Access</h5>
+              <p class="feature-desc">
+                Admin and cashier roles with separate permissions to keep your
+                operations secure.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p class="mb-1">CureVia Pharmacy Management System</p>
+        <p class="mb-0">&copy; 2026 CureVia &mdash; All rights reserved.</p>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

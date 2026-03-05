@@ -1,0 +1,522 @@
+{
+  "info": {
+    "_postman_id": "e464b27a-a239-4311-912e-1a55d6a06d29",
+    "name": "Curevia",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "46653937",
+    "_collection_link": "https://go.postman.co/collection/46653937-e464b27a-a239-4311-912e-1a55d6a06d29?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get User",
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "value",
+              "value": "{{apikey}}",
+              "type": "string"
+            },
+            {
+              "key": "in",
+              "value": "query",
+              "type": "string"
+            },
+            {
+              "key": "key",
+              "value": "apikey",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://mzrwptstmsewkwucwvlt.supabase.co/rest/v1/users_metadata",
+          "protocol": "https",
+          "host": [
+            "mzrwptstmsewkwucwvlt",
+            "supabase",
+            "co"
+          ],
+          "path": [
+            "rest",
+            "v1",
+            "users_metadata"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "add customer",
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "value",
+              "value": "{{apikey}}",
+              "type": "string"
+            },
+            {
+              "key": "in",
+              "value": "query",
+              "type": "string"
+            },
+            {
+              "key": "key",
+              "value": "apikey",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Makrina\",\r\n  \"phone\": \"01012345678\",\r\n  \"email\": \"makrina@test.com\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://mzrwptstmsewkwucwvlt.supabase.co/rest/v1/customers",
+          "protocol": "https",
+          "host": [
+            "mzrwptstmsewkwucwvlt",
+            "supabase",
+            "co"
+          ],
+          "path": [
+            "rest",
+            "v1",
+            "customers"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get customers",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "add medicines",
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "value",
+              "value": "{{apikey}}",
+              "type": "string"
+            },
+            {
+              "key": "in",
+              "value": "query",
+              "type": "string"
+            },
+            {
+              "key": "key",
+              "value": "apikey",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Panadol\",\r\n  \"description\": \"Pain killer\",\r\n  \"form\": \"Tablet\",\r\n  \"quantity\": 100,\r\n  \"strip_price\": 25,\r\n  \"box_price\": 100,\r\n  \"expiry_date\": \"2026-12-01\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://mzrwptstmsewkwucwvlt.supabase.co/rest/v1/medicines",
+          "protocol": "https",
+          "host": [
+            "mzrwptstmsewkwucwvlt",
+            "supabase",
+            "co"
+          ],
+          "path": [
+            "rest",
+            "v1",
+            "medicines"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get medicines",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "value",
+              "value": "{{apikey}}",
+              "type": "string"
+            },
+            {
+              "key": "in",
+              "value": "query",
+              "type": "string"
+            },
+            {
+              "key": "key",
+              "value": "apikey",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Panadol\",\r\n  \"description\": \"Pain killer\",\r\n  \"form\": \"Tablet\",\r\n  \"quantity\": 100,\r\n  \"strip_price\": 25,\r\n  \"box_price\": 100,\r\n  \"expiry_date\": \"2026-12-01\"\r\n}"
+        },
+        "url": {
+          "raw": "https://mzrwptstmsewkwucwvlt.supabase.co/rest/v1/medicines",
+          "protocol": "https",
+          "host": [
+            "mzrwptstmsewkwucwvlt",
+            "supabase",
+            "co"
+          ],
+          "path": [
+            "rest",
+            "v1",
+            "medicines"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "add user invoice",
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "value",
+              "value": "{{apikey}}",
+              "type": "string"
+            },
+            {
+              "key": "in",
+              "value": "query",
+              "type": "string"
+            },
+            {
+              "key": "key",
+              "value": "apikey",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"customer_id\": 1,\r\n  \"created_by\": \"USER_UUID_FROM_AUTH\",\r\n  \"discount\": 10,\r\n  \"payment_status\": \"paid\",\r\n  \"total_amount\": 100\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://mzrwptstmsewkwucwvlt.supabase.co/rest/v1/invoices",
+          "protocol": "https",
+          "host": [
+            "mzrwptstmsewkwucwvlt",
+            "supabase",
+            "co"
+          ],
+          "path": [
+            "rest",
+            "v1",
+            "invoices"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get invoices",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "value",
+              "value": "{{apikey}}",
+              "type": "string"
+            },
+            {
+              "key": "in",
+              "value": "query",
+              "type": "string"
+            },
+            {
+              "key": "key",
+              "value": "apikey",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"customer_id\": 1,\r\n  \"created_by\": \"USER_UUID_FROM_AUTH\",\r\n  \"discount\": 10,\r\n  \"payment_status\": \"paid\",\r\n  \"total_amount\": 100\r\n}"
+        },
+        "url": {
+          "raw": "https://mzrwptstmsewkwucwvlt.supabase.co/rest/v1/invoices",
+          "protocol": "https",
+          "host": [
+            "mzrwptstmsewkwucwvlt",
+            "supabase",
+            "co"
+          ],
+          "path": [
+            "rest",
+            "v1",
+            "invoices"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "add invoice items",
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "value",
+              "value": "{{apikey}}",
+              "type": "string"
+            },
+            {
+              "key": "in",
+              "value": "query",
+              "type": "string"
+            },
+            {
+              "key": "key",
+              "value": "apikey",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "[\r\n  {\r\n    \"invoice_id\": 1,\r\n    \"medicine_id\": 1,\r\n    \"quantity\": 2,\r\n    \"unit_price\": 25\r\n  },\r\n  {\r\n    \"invoice_id\": 1,\r\n    \"medicine_id\": 2,\r\n    \"quantity\": 1,\r\n    \"unit_price\": 50\r\n  }\r\n]",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://mzrwptstmsewkwucwvlt.supabase.co/rest/v1/invoice_items",
+          "protocol": "https",
+          "host": [
+            "mzrwptstmsewkwucwvlt",
+            "supabase",
+            "co"
+          ],
+          "path": [
+            "rest",
+            "v1",
+            "invoice_items"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "edit invoice items",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "  {\r\n    \"unit_price\": 20\r\n  }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://mzrwptstmsewkwucwvlt.supabase.co/rest/v1/invoice_items?id=eq.4",
+          "protocol": "https",
+          "host": [
+            "mzrwptstmsewkwucwvlt",
+            "supabase",
+            "co"
+          ],
+          "path": [
+            "rest",
+            "v1",
+            "invoice_items"
+          ],
+          "query": [
+            {
+              "key": "id",
+              "value": "eq.4"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get customers-invoices-items",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "value",
+              "value": "{{apikey}}",
+              "type": "string"
+            },
+            {
+              "key": "in",
+              "value": "query",
+              "type": "string"
+            },
+            {
+              "key": "key",
+              "value": "apikey",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "[\r\n  {\r\n    \"invoice_id\": 1,\r\n    \"medicine_id\": 1,\r\n    \"quantity\": 2,\r\n    \"unit_price\": 25\r\n  },\r\n  {\r\n    \"invoice_id\": 1,\r\n    \"medicine_id\": 2,\r\n    \"quantity\": 1,\r\n    \"unit_price\": 50\r\n  }\r\n]"
+        },
+        "url": {
+          "raw": "https://mzrwptstmsewkwucwvlt.supabase.co/rest/v1/invoices?select=*,invoice_items(*,medicines(*))?customer_id=eq.2",
+          "protocol": "https",
+          "host": [
+            "mzrwptstmsewkwucwvlt",
+            "supabase",
+            "co"
+          ],
+          "path": [
+            "rest",
+            "v1",
+            "invoices"
+          ],
+          "query": [
+            {
+              "key": "select",
+              "value": "*,invoice_items(*,medicines(*))?customer_id=eq.2"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "customer-invoices",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "users_invoices",
+      "request": {
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "value",
+              "value": "{{apikey}}",
+              "type": "string"
+            },
+            {
+              "key": "in",
+              "value": "query",
+              "type": "string"
+            },
+            {
+              "key": "key",
+              "value": "apikey",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://mzrwptstmsewkwucwvlt.supabase.co/rest/v1/invoices?select=*,invoice_items(*,medicines(*))&created_by=eq.23f5da5f-b036-4635-b669-8ab77c93ceaf",
+          "protocol": "https",
+          "host": [
+            "mzrwptstmsewkwucwvlt",
+            "supabase",
+            "co"
+          ],
+          "path": [
+            "rest",
+            "v1",
+            "invoices"
+          ],
+          "query": [
+            {
+              "key": "select",
+              "value": "*,invoice_items(*,medicines(*))"
+            },
+            {
+              "key": "created_by",
+              "value": "eq.23f5da5f-b036-4635-b669-8ab77c93ceaf"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "apikey",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}
