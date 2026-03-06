@@ -12,7 +12,7 @@ app.config(function ($routeProvider) {
       templateUrl: "views/contact.html",
       controller: "ContactController",
     })
-    .when("/", {
+    .when("/dashboard", {
       templateUrl: "views/dashboard.html",
     })
     .when("/medicines", {
