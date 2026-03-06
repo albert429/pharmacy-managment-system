@@ -1,4 +1,4 @@
-app.controller('MedicineController', function ($scope, PharmacyService) {
+app.controller("MedicineController", function ($scope, PharmacyService) {
   $scope.medicines = [];
   $scope.newMedicine = {};
 
@@ -8,8 +8,8 @@ app.controller('MedicineController', function ($scope, PharmacyService) {
         $scope.medicines = response.data;
       },
       function (error) {
-        console.error('Error fetching medicines:', error);
-      }
+        console.error("Error fetching medicines:", error);
+      },
     );
   };
 
@@ -20,8 +20,8 @@ app.controller('MedicineController', function ($scope, PharmacyService) {
         $scope.newMedicine = {};
       },
       function (error) {
-        console.error('Error adding medicine:', error);
-      }
+        console.error("Error adding medicine:", error);
+      },
     );
   };
 
