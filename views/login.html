@@ -1,0 +1,46 @@
+<div class="container">
+
+  <div class="card signup-card p-4" style="max-width: 400px; margin: 50px auto;">
+
+    <div class="text-center mb-4">
+      <div class="logo">Login</div>
+      <p class="text-muted">Enter your credentials</p>
+    </div>
+
+    <form name="loginForm" ng-submit="login()" novalidate>
+
+      <div class="mb-3">
+        <label class="form-label">Email Address</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+          <input type="email" name="email" class="form-control" placeholder="Enter your email"
+                 ng-model="user.email" required>
+        </div>
+        <div class="text-danger" ng-show="loginForm.email.$touched && loginForm.email.$invalid">
+          Valid email is required.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-lock"></i></span>
+          <input type="password" name="password" class="form-control" placeholder="Enter password"
+                 ng-model="user.password" required>
+        </div>
+        <div class="text-danger" ng-show="loginForm.password.$touched && loginForm.password.$invalid">
+          Password is required.
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-custom w-100 mt-2"
+              ng-disabled="loginForm.$invalid">
+        Login
+      </button>
+
+
+    </form>
+
+  </div>
+
+</div>

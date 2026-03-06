@@ -1,0 +1,85 @@
+
+<div class="container">
+
+<div class="card signup-card p-4">
+
+<div class="text-center mb-4">
+<div class="logo">Add New User</div>
+<p class="text-muted">Admin Or Cashier</p>
+</div>
+
+<form name="addUserForm" ng-submit="addUser()" novalidate>
+
+  <div class="mb-3">
+    <label class="form-label">Full Name</label>
+    <div class="input-group">
+      <span class="input-group-text"><i class="bi bi-person"></i></span>
+      <input type="text" name="fullName" class="form-control" placeholder="Enter your name" 
+             ng-model="user.fullName" required>
+    </div>
+    <div class="text-danger" ng-show="addUserForm.fullName.$touched && addUserForm.fullName.$invalid">
+      Full name is required.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Email Address</label>
+    <div class="input-group">
+      <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+      <input type="email" name="email" class="form-control" placeholder="Enter your email"
+             ng-model="user.email" required>
+    </div>
+    <div class="text-danger" ng-show="addUserForm.email.$touched && addUserForm.email.$invalid">
+      Valid email is required.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Password</label>
+    <div class="input-group">
+      <span class="input-group-text"><i class="bi bi-lock"></i></span>
+      <input type="password" name="password" class="form-control" placeholder="Create password"
+             ng-model="user.password" required>
+    </div>
+    <div class="text-danger" ng-show="addUserForm.password.$touched && addUserForm.password.$invalid">
+      Password is required.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Phone Number</label>
+    <div class="input-group">
+      <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+      <input type="tel" name="phone" class="form-control" placeholder="Enter phone number"
+             ng-model="user.phone" required>
+    </div>
+    <div class="text-danger" ng-show="addUserForm.phone.$touched && addUserForm.phone.$invalid">
+      Phone number is required.
+    </div>
+  </div>
+
+<div class="mb-3">
+  <label class="form-label">Role</label>
+  <div class="input-group">
+    <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
+    <select name="role" class="form-select" ng-model="user.role" required>
+      <option value="" disabled>Select role</option>
+      <option value="admin">Admin</option>
+      <option value="cashier">Cashier</option>
+    </select>
+  </div>
+  <div class="text-danger" ng-show="addUserForm.role.$touched && !user.role">
+    Role is required.
+  </div>
+</div>
+
+  <button type="submit" class="btn btn-custom w-100 mt-2" 
+          ng-disabled="addUserForm.$invalid || !user.role">
+    Add User
+  </button>
+
+</form>
+</div>
+
+</div>
+

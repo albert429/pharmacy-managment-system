@@ -6,7 +6,7 @@ app.service('PharmacyService', function ($http) {
     Authorization: 'Bearer ' + apiKey,
     'Content-Type': 'application/json',
   };
-
+   // users management
   this.getUsers = function () {
     return $http.get(baseLink + '/users_metadata', { headers: headers });
   };

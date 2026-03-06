@@ -11,18 +11,19 @@ app.service('AuthService', function ($http) {
     'Content-Type': 'application/json',
   };
 
-  this.signup = function (email, password, role) {
+  this.signup = function (email, password, meta) {
     return client.auth.signUp({ email: email, password: password }).then(function (result) {
       if (result.error) return Promise.reject(result.error);
 
       var user = result.data.user;
       return $http.post(restBase + '/users_metadata', {
         id: user.id,
-        role: role,
-        name: email.split('@')[0],
+        role: meta.role,
+        name: meta.name || email.split('@')[0],
         email: email,
+        phone: meta.phone || null,
       }, { headers: headers }).then(function () {
-        return { user: user, role: role, message: 'Signup successful' };
+        return { user: user, role: meta.role, message: 'Signup successful' };
       });
     });
   };
