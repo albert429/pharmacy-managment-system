@@ -17,7 +17,9 @@ app.controller('MedicineController', function ($scope, PharmacyService) {
     PharmacyService.addMedicine($scope.newMedicine).then(function () {
       $scope.newMedicine = {};
       $scope.getMedicines();
-      bootstrap.Modal.getInstance(document.getElementById('medicineModal')).hide();
+      bootstrap.Modal.getInstance(
+        document.getElementById('medicineModal')
+      ).hide();
     });
   };
 
@@ -43,7 +45,9 @@ app.controller('MedicineController', function ($scope, PharmacyService) {
 
     PharmacyService.editMedicine(id, data).then(function () {
       $scope.getMedicines();
-      bootstrap.Modal.getInstance(document.getElementById('medicineModal')).hide();
+      bootstrap.Modal.getInstance(
+        document.getElementById('medicineModal')
+      ).hide();
     });
   };
 
