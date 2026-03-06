@@ -111,3 +111,5 @@ erDiagram
 - Client-side form validation on all inputs.
 - Loading indicators for async operations.
 - Toasts / alerts for success and error feedback.
+
+---
