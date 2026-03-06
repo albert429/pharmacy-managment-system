@@ -1,99 +1,189 @@
+<!-- ── Welcome ────────────────────────────────────── -->
+<div class="welcome-section animate-in">
+  <h1 class="welcome-title">Welcome back, <span>Ziyad</span></h1>
+  <p class="welcome-subtitle">Here's what's happening with your pharmacy today.</p>
+</div>
+
+<!-- ── Stat Cards ─────────────────────────────────── -->
 <div class="row g-3 mb-4">
-  <div class="col-6 col-xl-3">
-    <div class="card border-0 shadow stat-card h-100">
-      <div class="card-body py-3">
-        <p class="text-muted mb-2" style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">
-          Total Medicines
-        </p>
-        <h3 class="fw-bold mb-0 fs-2" style="color: var(--teal)">773</h3>
+  <div class="col-6 col-lg-3">
+    <div class="stat-card teal animate-in delay-1">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <span class="stat-label">Medicines</span>
+        <div class="stat-icon teal"><i class="bi bi-capsule"></i></div>
       </div>
+      <div class="stat-value">{{ stats.medicines }}</div>
+      <span class="stat-change up"><i class="bi bi-arrow-up-short"></i> Active catalog</span>
     </div>
   </div>
 
-  <div class="col-6 col-xl-3">
-    <div class="card border-0 shadow stat-card h-100" style="border-left-color: #d97706 !important">
-      <div class="card-body py-3">
-        <p class="text-muted mb-2" style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">
-          Low Stock Items
-        </p>
-        <h3 class="fw-bold mb-0 fs-2" style="color: #d97706">21</h3>
+  <div class="col-6 col-lg-3">
+    <div class="stat-card deep animate-in delay-2">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <span class="stat-label">Customers</span>
+        <div class="stat-icon deep"><i class="bi bi-people-fill"></i></div>
       </div>
+      <div class="stat-value">{{ stats.customers }}</div>
+      <span class="stat-change up"><i class="bi bi-arrow-up-short"></i> Registered</span>
     </div>
   </div>
 
-  <div class="col-6 col-xl-3">
-    <div class="card border-0 shadow stat-card h-100" style="border-left-color: #c0392b !important">
-      <div class="card-body py-3">
-        <p class="text-muted mb-2" style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">
-          Expiring Soon
-        </p>
-        <h3 class="fw-bold mb-0 fs-2" style="color: #c0392b">9</h3>
+  <div class="col-6 col-lg-3">
+    <div class="stat-card sage animate-in delay-3">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <span class="stat-label">Invoices</span>
+        <div class="stat-icon sage"><i class="bi bi-receipt"></i></div>
       </div>
+      <div class="stat-value">{{ stats.invoices }}</div>
+      <span class="stat-change up"><i class="bi bi-arrow-up-short"></i> Total</span>
     </div>
   </div>
 
-  <div class="col-6 col-xl-3">
-    <div class="card border-0 shadow stat-card h-100" style="border-left-color: #3d8b6e !important">
-      <div class="card-body py-3">
-        <p class="text-muted mb-2" style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">
-          Total Customers
-        </p>
-        <h3 class="fw-bold mb-0 fs-2" style="color: #3d8b6e">340</h3>
+  <div class="col-6 col-lg-3">
+    <div class="stat-card amber animate-in delay-4">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <span class="stat-label">Revenue</span>
+        <div class="stat-icon amber"><i class="bi bi-currency-dollar"></i></div>
       </div>
+      <div class="stat-value">{{ stats.revenue | number:0 }}<small style="font-size:.55em; font-weight:500; color:var(--text-muted)"> EGP</small></div>
+      <span class="stat-change up"><i class="bi bi-arrow-up-short"></i> Lifetime</span>
     </div>
   </div>
 </div>
 
-<div class="card border-0 shadow mt-5">
-  <div class="card-body">
-    <h5 class="card-title fw-bold mb-4">
-      <i class="bi bi-graph-up-arrow text-warning me-3"></i>Top Selling
-      Medicines
-    </h5>
+<!-- ── Quick Actions ─────────────────────────────── -->
+<div class="row g-3 mb-4">
+  <div class="col-6 col-sm-3">
+    <a href="#!/medicines" class="quick-action animate-in delay-3">
+      <div class="quick-action-icon"><i class="bi bi-plus-lg"></i></div>
+      <span class="quick-action-label">Add Medicine</span>
+    </a>
+  </div>
+  <div class="col-6 col-sm-3">
+    <a href="#" class="quick-action animate-in delay-4">
+      <div class="quick-action-icon"><i class="bi bi-person-plus"></i></div>
+      <span class="quick-action-label">New Customer</span>
+    </a>
+  </div>
+  <div class="col-6 col-sm-3">
+    <a href="#" class="quick-action animate-in delay-5">
+      <div class="quick-action-icon"><i class="bi bi-file-earmark-plus"></i></div>
+      <span class="quick-action-label">Create Invoice</span>
+    </a>
+  </div>
+  <div class="col-6 col-sm-3">
+    <a href="#" class="quick-action animate-in delay-6">
+      <div class="quick-action-icon"><i class="bi bi-bar-chart-line"></i></div>
+      <span class="quick-action-label">View Reports</span>
+    </a>
+  </div>
+</div>
 
-    <div class="table-responsive">
-      <table class="table table-hover align-middle mb-0">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Medicine Name</th>
-            <th class="d-none d-sm-table-cell">Brand</th>
-            <th>Units Sold</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="text-muted fw-semibold">1</td>
-            <td class="fw-medium">Drug Name</td>
-            <td class="text-muted d-none d-sm-table-cell">Drug Brand</td>
-            <td><span class="badge-units">999 units</span></td>
-          </tr>
-          <tr>
-            <td class="text-muted fw-semibold">2</td>
-            <td class="fw-medium">Drug Name</td>
-            <td class="text-muted d-none d-sm-table-cell">Drug Brand</td>
-            <td><span class="badge-units">999 units</span></td>
-          </tr>
-          <tr>
-            <td class="text-muted fw-semibold">3</td>
-            <td class="fw-medium">Drug Name</td>
-            <td class="text-muted d-none d-sm-table-cell">Drug Brand</td>
-            <td><span class="badge-units">999 units</span></td>
-          </tr>
-          <tr>
-            <td class="text-muted fw-semibold">4</td>
-            <td class="fw-medium">Drug Name</td>
-            <td class="text-muted d-none d-sm-table-cell">Drug Brand</td>
-            <td><span class="badge-units">999 units</span></td>
-          </tr>
-          <tr>
-            <td class="text-muted fw-semibold">5</td>
-            <td class="fw-medium">Drug Name</td>
-            <td class="text-muted d-none d-sm-table-cell">Drug Brand</td>
-            <td><span class="badge-units">999 units</span></td>
-          </tr>
-        </tbody>
-      </table>
+<!-- ── Main Content Row ──────────────────────────── -->
+<div class="row g-3">
+  <!-- Recent Invoices -->
+  <div class="col-lg-7">
+    <div class="panel animate-in delay-5">
+      <div class="panel-header">
+        <h3 class="panel-title"><i class="bi bi-clock-history me-2" style="color:var(--soft-teal)"></i>Recent Invoices</h3>
+        <a href="#" class="panel-link">View all <i class="bi bi-arrow-right"></i></a>
+      </div>
+      <div class="panel-body p-0">
+        <div ng-if="loading" class="text-center py-4">
+          <div class="spinner-border spinner-border-sm" style="color:var(--soft-teal)" role="status"></div>
+          <span class="ms-2" style="color:var(--text-muted); font-size:.85rem">Loading...</span>
+        </div>
+
+        <table class="cv-table" ng-if="!loading && recentInvoices.length > 0">
+          <thead>
+            <tr>
+              <th>Invoice #</th>
+              <th>Date</th>
+              <th class="d-none d-sm-table-cell">Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="inv in recentInvoices">
+              <td style="font-weight:600; color:var(--teal)">#{{ inv.id }}</td>
+              <td>{{ inv.created_at | date:'MMM d, yyyy' }}</td>
+              <td class="d-none d-sm-table-cell" style="font-weight:600">{{ inv.total_amount | number:2 }} EGP</td>
+              <td>
+                <span class="badge-status" ng-class="inv.status === 'paid' ? 'paid' : 'pending'">
+                  {{ inv.status || 'Completed' }}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div ng-if="!loading && recentInvoices.length === 0" class="text-center py-4" style="color:var(--text-muted); font-size:.85rem">
+          <i class="bi bi-inbox d-block mb-2" style="font-size:2rem; opacity:.4"></i>
+          No invoices yet
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Medicine Stock Overview -->
+  <div class="col-lg-5">
+    <div class="panel animate-in delay-6">
+      <div class="panel-header">
+        <h3 class="panel-title"><i class="bi bi-capsule me-2" style="color:var(--soft-teal)"></i>Medicine Stock</h3>
+        <a href="#!/medicines" class="panel-link">Manage <i class="bi bi-arrow-right"></i></a>
+      </div>
+      <div class="panel-body">
+        <div ng-if="allMedicines.length === 0 && !loading" class="text-center py-3" style="color:var(--text-muted); font-size:.85rem">
+          <i class="bi bi-capsule d-block mb-2" style="font-size:2rem; opacity:.4"></i>
+          No medicines found
+        </div>
+
+        <div ng-repeat="med in allMedicines | limitTo:6" style="margin-bottom:14px;">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <span style="font-size:.84rem; font-weight:600; color:var(--text-primary)">{{ med.name }}</span>
+            <span style="font-size:.72rem; font-weight:600;"
+              ng-style="{'color': (med.quantity > 50 ? '#3DB866' : med.quantity > 15 ? '#C09706' : '#C03928')}">
+              {{ med.quantity || '--' }} units
+            </span>
+          </div>
+          <div class="stock-bar-bg">
+            <div class="stock-bar"
+              ng-class="{'good': med.quantity > 50, 'low': med.quantity <= 50 && med.quantity > 15, 'danger': med.quantity <= 15}"
+              ng-style="{'width': (med.quantity ? (med.quantity > 200 ? 100 : (med.quantity / 200 * 100)) : 5) + '%'}">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="panel mt-3 animate-in delay-7">
+      <div class="panel-header">
+        <h3 class="panel-title"><i class="bi bi-lightning-fill me-2" style="color:var(--amber)"></i>Activity</h3>
+      </div>
+      <div class="panel-body">
+        <div class="activity-item">
+          <div class="activity-dot teal"></div>
+          <div>
+            <div class="activity-text"><strong>New medicine</strong> added to catalog</div>
+            <div class="activity-time">Just now</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot sage"></div>
+          <div>
+            <div class="activity-text"><strong>Invoice #{{ stats.invoices }}</strong> completed</div>
+            <div class="activity-time">2 hours ago</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot amber"></div>
+          <div>
+            <div class="activity-text"><strong>Stock alert:</strong> Low inventory detected</div>
+            <div class="activity-time">5 hours ago</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
