@@ -3,7 +3,8 @@ var app = angular.module('pharmacyApp', ['ngRoute']);
 app.config(function ($routeProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: 'views/admin_dashboard.html',
+      templateUrl: 'views/dashboard.html',
+      controller: 'DashboardController',
     })
     .when('/medicines', {
       templateUrl: 'views/medicine.html',
@@ -25,11 +26,11 @@ app.config(function ($routeProvider) {
       templateUrl: 'views/login.html',
       controller: 'AuthController',
     })
-    
+
     .when('/admin_dashboard', {
       templateUrl: 'views/admin_dashboard.html',
     })
-        .when('/cashier_dashboard', {
+    .when('/cashier_dashboard', {
       templateUrl: 'views/cashier_dashboard.html',
     })
     .otherwise({

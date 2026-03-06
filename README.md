@@ -20,13 +20,17 @@ A Single Page Application (SPA) built with **AngularJS** and backed by **Supabas
 
 ## 4. Pages & Features
 
-| Page                               | Key Features                                                                                                                                                  |
-| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Dashboard**                      | Summary cards (total medicines, customers, recent invoices, low-stock alerts).                                                                                |
-| **Medicines**                      | Add / edit / delete medicines; track quantity, pricing (strip / ampoule / box), form, and expiry date.                                                        |
-| **Customers**                      | Add / edit / delete customers (name, phone, email); view registration date.                                                                                   |
-| **Invoices**                       | Create invoices linked to a customer; add line items (medicine, qty, unit price); apply invoice-level discount; set payment status (paid / unpaid / partial). |
-| **User Management** _(Admin only)_ | Add / edit / delete users; assign roles.                                                                                                                      |
+| Page                               | Route             | Key Features                                                                                                                               |
+| ---------------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Landing**                        | `#!/`             | Public welcome page; feature highlights (inventory, customers, invoicing); links to Login and About.                                       |
+| **About / Contact Us**             | `#!/about`        | Company info, mission statement, and contact form / details (phone, email, address).                                                       |
+| **Login**                          | `#!/login`        | Email & password sign-in and sign-up forms; Supabase Auth; redirects to Dashboard on success.                                              |
+| **Dashboard**                      | `#!/dashboard`    | Summary cards (total medicines, customers, recent invoices, low-stock alerts).                                                             |
+| **Medicines**                      | `#!/medicines`    | Add / edit / delete medicines; track quantity, pricing (strip / ampoule / box), form, and expiry date.                                     |
+| **Customers**                      | `#!/customers`    | Add / edit / delete customers (name, phone, email); view registration date.                                                                |
+| **Invoices**                       | `#!/invoices`     | List all invoices; filter by payment status (paid / unpaid / partial).                                                                     |
+| **Create Invoice**                 | `#!/invoices/new` | Select a customer; add line items (medicine, qty, unit price); apply invoice-level discount; set payment status. Total is auto-calculated. |
+| **User Management** _(Admin only)_ | `#!/users`        | Add / edit / delete users; assign roles.                                                                                                   |
 
 ## 5. Core Functional Requirements
 
@@ -111,3 +115,5 @@ erDiagram
 - Client-side form validation on all inputs.
 - Loading indicators for async operations.
 - Toasts / alerts for success and error feedback.
+
+---

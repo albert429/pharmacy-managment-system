@@ -1,12 +1,11 @@
-app.directive('userTable', function() {
-    return {
-        
-        scope: {
-            data: '=',
-            title: '@',
-            customer: '=',
-        },
-        template: `
+app.directive('userTable', function () {
+  return {
+    scope: {
+      data: '=',
+      title: '@',
+      customer: '=',
+    },
+    template: `
   <div class="card border-0 shadow mt-5">
   <div class="card-body">
     <h5 class="card-title fw-bold mb-4">
@@ -53,6 +52,6 @@ app.directive('userTable', function() {
     </div>
   </div>
 </div>
-        `
-    };
+        `,
+  };
 });

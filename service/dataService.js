@@ -34,7 +34,7 @@ app.service('PharmacyService', function ($http) {
   };
   this.editMedicine = function (medicineId, medicineData) {
     return $http.patch(
-      baseLink + '/medicines?id=eq.' + medicineId,
+      baseLink + '/medicines?medicine_id=eq.' + medicineId,
       medicineData,
       { headers: headers }
     );
@@ -51,7 +51,7 @@ app.service('PharmacyService', function ($http) {
     });
   };
   this.editInvoice = function (invoiceId, invoiceData) {
-    return $http.patch(baseLink + '/invoices?id=eq.' + invoiceId, invoiceData, {
+    return $http.patch(baseLink + '/invoices?invoice_id=eq.' + invoiceId, invoiceData, {
       headers: headers,
     });
   };
