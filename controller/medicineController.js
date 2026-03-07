@@ -1,14 +1,17 @@
-app.controller('MedicineController', function ($scope, PharmacyService) {
+app.controller('MedicineController', function ($scope, $rootScope, PharmacyService) {
   $scope.medicines = [];
   $scope.newMedicine = {};
   $scope.editingMedicine = {};
   $scope.isEditing = false;
   $scope.search = '';
+  $scope.loading = true;
 
   // Load all medicines
   $scope.getMedicines = function () {
+    $scope.loading = true;
     PharmacyService.getMedicines().then(function (response) {
       $scope.medicines = response.data;
+      $scope.loading = false;
     });
   };
 
@@ -20,6 +23,7 @@ app.controller('MedicineController', function ($scope, PharmacyService) {
       bootstrap.Modal.getInstance(
         document.getElementById('medicineModal')
       ).hide();
+      $rootScope.showToast('Medicine added successfully');
     });
   };
 
@@ -48,6 +52,7 @@ app.controller('MedicineController', function ($scope, PharmacyService) {
       bootstrap.Modal.getInstance(
         document.getElementById('medicineModal')
       ).hide();
+      $rootScope.showToast('Medicine updated');
     });
   };
 

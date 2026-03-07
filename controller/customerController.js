@@ -5,11 +5,13 @@ app.controller('CustomerController', function ($scope, PharmacyService) {
    $scope.allCustomers = 0;
    $scope.newCustomersThisMonth = 0;
    $scope.unpaidCustomers = 0;
+   $scope.loading = true;
 
    // Fetch customers and calculate statistics for all customers, new customers this month and unpaid customers.
     PharmacyService.getCustomers().then(
         function (response) {
             $scope.customers = response.data;
+            $scope.loading = false;
             $scope.allCustomers = $scope.customers.length;
             let currentMonth = new Date().getMonth();
             let currentYear = new Date().getFullYear();

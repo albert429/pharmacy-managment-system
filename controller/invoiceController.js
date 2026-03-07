@@ -1,4 +1,4 @@
-app.controller('InvoiceController', function ($scope, $q, PharmacyService, AuthService) {
+app.controller('InvoiceController', function ($scope, $q, $rootScope, PharmacyService, AuthService) {
   $scope.invoices   = [];
   $scope.customers  = [];
   $scope.medicines  = [];
@@ -6,6 +6,7 @@ app.controller('InvoiceController', function ($scope, $q, PharmacyService, AuthS
   $scope.customersMap  = {};
   $scope.search     = '';
   $scope.filterStatus = '';
+  $scope.loading    = true;
   $scope.submitting = false;
   $scope.submitError = null;
 
@@ -19,6 +20,7 @@ app.controller('InvoiceController', function ($scope, $q, PharmacyService, AuthS
       $scope.invoices = (res.data || []).sort(function (a, b) {
         return new Date(b.invoice_date) - new Date(a.invoice_date);
       });
+      $scope.loading = false;
     });
   };
 
@@ -147,6 +149,7 @@ app.controller('InvoiceController', function ($scope, $q, PharmacyService, AuthS
         $scope.resetForm();
         bootstrap.Modal.getInstance(document.getElementById('invoiceModal')).hide();
         $scope.loadInvoices();
+        $rootScope.showToast('Invoice created successfully');
       })
       .catch(function (err) {
         $scope.submitting  = false;
@@ -159,6 +162,7 @@ app.controller('InvoiceController', function ($scope, $q, PharmacyService, AuthS
   $scope.markPaid = function (inv) {
     PharmacyService.editInvoice(inv.invoice_id, { payment_status: 'paid' }).then(function () {
       inv.payment_status = 'paid';
+      $rootScope.showToast('Marked as paid');
     });
   };
 

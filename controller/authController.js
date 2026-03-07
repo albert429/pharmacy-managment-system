@@ -1,4 +1,4 @@
-app.controller('AuthController', function ($scope, $location, AuthService, PharmacyService) {
+app.controller('AuthController', function ($scope, $location, $rootScope, AuthService, PharmacyService) {
 
   // Redirect already-authenticated users away from login
   AuthService.getSession().then(function (session) {
@@ -34,6 +34,7 @@ app.controller('AuthController', function ($scope, $location, AuthService, Pharm
 
   $scope.addUser = function () {
     $scope.addUserError = null;
+    $scope.addUserSuccess = false;
 
     var meta = {
       role: $scope.user.role,
@@ -43,7 +44,8 @@ app.controller('AuthController', function ($scope, $location, AuthService, Pharm
 
     AuthService.signup($scope.user.email, $scope.user.password, meta).then(
       function (result) {
-        alert('User created successfully!');
+        $scope.addUserSuccess = true;
+        $rootScope.showToast('User created successfully!');
         console.log('User Added:', result.user);
       },
       function (error) {

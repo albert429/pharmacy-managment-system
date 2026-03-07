@@ -5,31 +5,31 @@
         <p class="text-muted mb-2" style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">
           Total Customers
         </p>
-        <h3 class="fw-bold mb-0 fs-2" style="color: var(--teal)">{{allCustomers}}</h3>
+        <h3 class="fw-bold mb-0 fs-2" style="color: var(--brand-primary)">{{allCustomers}}</h3>
       </div>
     </div>
   </div>
 
 
     <div class="col-6 col-xl-4">
-    <div class="card border-0 shadow stat-card h-100" style="border-left-color: #3d8b6e !important">
+    <div class="card border-0 shadow stat-card h-100" style="border-left-color: var(--success) !important">
       <div class="card-body py-3">
         <p class="text-muted mb-2" style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">
             New Customers This Month
         </p>
-        <h3 class="fw-bold mb-0 fs-2" style="color: #3d8b6e">{{newCustomersThisMonth}}</h3>
+        <h3 class="fw-bold mb-0 fs-2" style="color: var(--success)">{{newCustomersThisMonth}}</h3>
       </div>
     </div>
   </div>
 
 
   <div class="col-6 col-xl-4">
-    <div class="card border-0 shadow stat-card h-100" style="border-left-color: #c0392b !important">
+    <div class="card border-0 shadow stat-card h-100" style="border-left-color: var(--error) !important">
       <div class="card-body py-3">
         <p class="text-muted mb-2" style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">
               Unpaid Customers
         </p>
-        <h3 class="fw-bold mb-0 fs-2" style="color: #c0392b">{{unpaidCustomers}}</h3>
+        <h3 class="fw-bold mb-0 fs-2" style="color: var(--error)">{{unpaidCustomers}}</h3>
       </div>
     </div>
   </div>
@@ -37,6 +37,12 @@
 
 </div>
 
-<user-table data="customers" title="Customers" customer="true"></user-table>
+<div class="text-center py-4" ng-if="loading">
+  <div class="spinner-border text-secondary" role="status">
+    <span class="visually-hidden">Loading…</span>
+  </div>
+</div>
+
+<user-table data="customers" title="Customers" customer="true" ng-if="!loading"></user-table>
 
 

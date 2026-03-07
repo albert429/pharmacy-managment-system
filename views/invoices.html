@@ -21,8 +21,15 @@
   </div>
 </div>
 
+<!-- Loading Spinner -->
+<div class="text-center py-5" ng-if="loading">
+  <div class="spinner-border text-secondary" role="status">
+    <span class="visually-hidden">Loading…</span>
+  </div>
+</div>
+
 <!-- Invoices Table -->
-<div class="card border-0 shadow-sm">
+<div class="card border-0 shadow-sm" ng-if="!loading">
   <div class="table-responsive">
     <table class="table table-hover align-middle mb-0">
       <thead>
@@ -62,7 +69,15 @@
           </td>
         </tr>
         <tr ng-if="invoices.length === 0">
-          <td colspan="7" class="text-center text-muted py-4">No invoices yet.</td>
+          <td colspan="7">
+            <div class="empty-state">
+              <i class="bi bi-receipt"></i>
+              <p>No invoices yet</p>
+              <button class="btn btn-sm text-white" style="background: var(--brand-primary)" ng-click="openCreate()">
+                Create your first invoice
+              </button>
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>

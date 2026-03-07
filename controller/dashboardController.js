@@ -74,6 +74,8 @@ app.controller('DashboardController', function ($scope, $q, PharmacyService) {
       .sort(function (a, b) { return b.unitsSold - a.unitsSold; })
       .slice(0, 5);
 
+    $scope.maxSold = $scope.topMedicines.length > 0 ? $scope.topMedicines[0].unitsSold : 1;
+
     $scope.loading = false;
   }).catch(function () {
     $scope.loading = false;
