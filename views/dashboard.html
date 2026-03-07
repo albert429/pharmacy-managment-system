@@ -1,140 +1,128 @@
-<div>
+<div ng-if="loading" class="text-center py-5 text-muted">
+  <div class="spinner-border spinner-border-sm me-2"></div> Loading dashboard...
+</div>
+
+<div ng-if="!loading">
+  <!-- Stat Cards -->
   <div class="row g-3 mb-4">
-    <div class="col-6 col-xl-3">
+    <div class="col-6 col-xl-4">
       <div class="card border-0 shadow stat-card h-100">
         <div class="card-body py-3">
-          <p
-            class="text-muted mb-2"
-            style="
-              font-size: 0.8rem;
-              font-weight: 700;
-              text-transform: uppercase;
-            "
-          >
-            Total Medicines
-          </p>
-          <h3 class="fw-bold mb-0 fs-2" style="color: var(--brand-primary)">
-            773
-          </h3>
+          <p class="stat-label">Total Medicines</p>
+          <h3 class="stat-value" style="color: var(--brand-primary)">{{ stats.totalMedicines }}</h3>
         </div>
       </div>
     </div>
 
-    <div class="col-6 col-xl-3">
-      <div
-        class="card border-0 shadow stat-card h-100"
-        style="border-left-color: #d97706 !important"
-      >
+    <div class="col-6 col-xl-4">
+      <div class="card border-0 shadow stat-card h-100" style="border-left-color: var(--warning) !important">
         <div class="card-body py-3">
-          <p
-            class="text-muted mb-2"
-            style="
-              font-size: 0.8rem;
-              font-weight: 700;
-              text-transform: uppercase;
-            "
-          >
-            Low Stock Items
-          </p>
-          <h3 class="fw-bold mb-0 fs-2" style="color: #d97706">21</h3>
+          <p class="stat-label">Low Stock Items</p>
+          <h3 class="stat-value" style="color: var(--warning)">{{ stats.lowStock }}</h3>
         </div>
       </div>
     </div>
 
-    <div class="col-6 col-xl-3">
-      <div
-        class="card border-0 shadow stat-card h-100"
-        style="border-left-color: #c0392b !important"
-      >
+    <div class="col-6 col-xl-4">
+      <div class="card border-0 shadow stat-card h-100" style="border-left-color: var(--error) !important">
         <div class="card-body py-3">
-          <p
-            class="text-muted mb-2"
-            style="
-              font-size: 0.8rem;
-              font-weight: 700;
-              text-transform: uppercase;
-            "
-          >
-            Expiring Soon
-          </p>
-          <h3 class="fw-bold mb-0 fs-2" style="color: #c0392b">9</h3>
+          <p class="stat-label">Expiring Soon <span class="stat-sublabel">(30 days)</span></p>
+          <h3 class="stat-value" style="color: var(--error)">{{ stats.expiringSoon }}</h3>
         </div>
       </div>
     </div>
 
-    <div class="col-6 col-xl-3">
-      <div
-        class="card border-0 shadow stat-card h-100"
-        style="border-left-color: #3d8b6e !important"
-      >
+    <div class="col-6 col-xl-4">
+      <div class="card border-0 shadow stat-card h-100" style="border-left-color: var(--success) !important">
         <div class="card-body py-3">
-          <p
-            class="text-muted mb-2"
-            style="
-              font-size: 0.8rem;
-              font-weight: 700;
-              text-transform: uppercase;
-            "
-          >
-            Total Customers
-          </p>
-          <h3 class="fw-bold mb-0 fs-2" style="color: #3d8b6e">340</h3>
+          <p class="stat-label">Total Customers</p>
+          <h3 class="stat-value" style="color: var(--success)">{{ stats.totalCustomers }}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 col-xl-4">
+      <div class="card border-0 shadow stat-card h-100" style="border-left-color: var(--brand-accent) !important">
+        <div class="card-body py-3">
+          <p class="stat-label">Total Revenue</p>
+          <h3 class="stat-value" style="color: var(--brand-accent)">{{ stats.totalRevenue | number:2 }} <small style="font-size:0.8rem">EGP</small></h3>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="card border-0 shadow mt-5">
-    <div class="card-body">
-      <h5 class="card-title fw-bold mb-4">
-        <i class="bi bi-graph-up-arrow text-warning me-3"></i>Top Selling
-        Medicines
-      </h5>
+  <!-- Bottom row: Top Selling + Recent Invoices -->
+  <div class="row g-4">
 
-      <div class="table-responsive">
-        <table class="table table-hover align-middle mb-0">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Medicine Name</th>
-              <th class="d-none d-sm-table-cell">Brand</th>
-              <th>Units Sold</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="text-muted fw-semibold">1</td>
-              <td class="fw-medium">Drug Name</td>
-              <td class="text-muted d-none d-sm-table-cell">Drug Brand</td>
-              <td><span class="badge-units">999 units</span></td>
-            </tr>
-            <tr>
-              <td class="text-muted fw-semibold">2</td>
-              <td class="fw-medium">Drug Name</td>
-              <td class="text-muted d-none d-sm-table-cell">Drug Brand</td>
-              <td><span class="badge-units">999 units</span></td>
-            </tr>
-            <tr>
-              <td class="text-muted fw-semibold">3</td>
-              <td class="fw-medium">Drug Name</td>
-              <td class="text-muted d-none d-sm-table-cell">Drug Brand</td>
-              <td><span class="badge-units">999 units</span></td>
-            </tr>
-            <tr>
-              <td class="text-muted fw-semibold">4</td>
-              <td class="fw-medium">Drug Name</td>
-              <td class="text-muted d-none d-sm-table-cell">Drug Brand</td>
-              <td><span class="badge-units">999 units</span></td>
-            </tr>
-            <tr>
-              <td class="text-muted fw-semibold">5</td>
-              <td class="fw-medium">Drug Name</td>
-              <td class="text-muted d-none d-sm-table-cell">Drug Brand</td>
-              <td><span class="badge-units">999 units</span></td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- Top Selling Medicines -->
+    <div class="col-lg-6">
+      <div class="card border-0 shadow h-100">
+        <div class="card-body">
+          <h5 class="card-title fw-bold mb-4">
+            <i class="bi bi-graph-up-arrow text-warning me-2"></i>Top Selling Medicines
+          </h5>
+
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Medicine</th>
+                  <th class="d-none d-sm-table-cell">Type</th>
+                  <th>Units Sold</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="item in topMedicines">
+                  <td class="text-muted fw-semibold">{{ $index + 1 }}</td>
+                  <td class="fw-medium">{{ item.medicine.name }}</td>
+                  <td class="text-muted d-none d-sm-table-cell">{{ item.medicine.type }}</td>
+                  <td><span class="badge-units">{{ item.unitsSold }} units</span></td>
+                </tr>
+                <tr ng-if="topMedicines.length === 0">
+                  <td colspan="4" class="text-center text-muted py-4">No sales data yet.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
+
+    <!-- Recent Invoices -->
+    <div class="col-lg-6">
+      <div class="card border-0 shadow h-100">
+        <div class="card-body">
+          <h5 class="card-title fw-bold mb-4">
+            <i class="bi bi-receipt me-2" style="color: var(--brand-primary)"></i>Recent Invoices
+          </h5>
+
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Customer</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="inv in recentInvoices">
+                  <td class="text-muted fw-semibold">{{ inv.invoice_id }}</td>
+                  <td class="fw-medium">{{ customersMap[inv.customer_id].name || '—' }}</td>
+                  <td>{{ inv.total_amount | number:2 }} EGP</td>
+                  <td><span class="inv-status-badge inv-status-{{ inv.payment_status }}">{{ inv.payment_status }}</span></td>
+                </tr>
+                <tr ng-if="recentInvoices.length === 0">
+                  <td colspan="4" class="text-center text-muted py-4">No invoices yet.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>

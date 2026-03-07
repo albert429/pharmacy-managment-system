@@ -26,6 +26,7 @@
   <script src="Directives/userTableDirective.js"></script>
   <script src="controller/userController.js"></script>
   <script src="controller/authController.js"></script>
+  <script src="controller/invoiceController.js"></script>
   <script src="controller/contactController.js"></script>
 
   <link href="style.css" rel="stylesheet" />
@@ -49,8 +50,7 @@
       </div>
 
       <div class="sidebar-user">
-        <span class="sidebar-user-name">{{ currentUserName }}</span>
-        <span class="sidebar-user-role">Admin</span>
+        <span class="sidebar-user-name">Current User: {{ currentUserName }}</span>
       </div>
 
       <nav class="flex-grow-1 py-2">
@@ -59,7 +59,8 @@
         <a href="#!/customers" class="sidebar-link"><i class="bi bi-people"></i> Customers</a>
         <a href="#!/invoices" class="sidebar-link"><i class="bi bi-receipt"></i> Invoices</a>
         <a href="#!/users" class="sidebar-link" ng-if="currentRole === 'admin'"><i class="bi bi-gear"></i> Users</a>
-        <a href="#!/admin_panel" class="sidebar-link" ng-if="currentRole === 'admin'"><i class="bi bi-shield-lock"></i> Admin Panel</a>
+        <a href="#!/admin_panel" class="sidebar-link" ng-if="currentRole === 'admin'"><i class="bi bi-shield-lock"></i>
+          Admin Panel</a>
       </nav>
 
       <div class="p-3">
