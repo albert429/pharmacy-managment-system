@@ -59,6 +59,7 @@ app.config(function ($routeProvider) {
     })
     .when('/invoices', {
       templateUrl: 'views/invoices.html',
+      controller: 'InvoiceController',
       resolve: { auth: function (AuthGuard) { return AuthGuard(); } },
     })
 

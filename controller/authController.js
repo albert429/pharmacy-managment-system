@@ -1,11 +1,11 @@
 app.controller('AuthController', function ($scope, $location, AuthService, PharmacyService) {
 
   // Redirect already-authenticated users away from login
-  AuthService.getSession().then(function (session) {
-    if (session) {
-      $location.path('/dashboard').replace();
-    }
-  });
+  // AuthService.getSession().then(function (session) {
+  //   if (session) {
+  //     $location.path('/dashboard');
+  //   }
+  // });
   $scope.logout = function () {
     AuthService.logout().then(function () {
       $location.path('/login').replace();
@@ -38,23 +38,22 @@ app.controller('AuthController', function ($scope, $location, AuthService, Pharm
   };
 
   $scope.addUser = function () {
-    $scope.addUserError = null;
-
-    var meta = {
-      role: $scope.user.role,
-      name: $scope.user.fullName,
-      phone: $scope.user.phone,
+        var meta = {
+            role: $scope.user.role,
+            name: $scope.user.fullName,
+            phone: $scope.user.phone
+        };
+        console.log('Signup data:', $scope.user, meta);
+        AuthService.signup($scope.user.email, $scope.user.password, meta).then(
+            function (result) {
+                alert('User created successfully!');
+                console.log('User Added:', result.user);
+            },
+            function (error) {
+                alert('Failed!' + error.message);
+                console.log('Error:', error);
+            }
+        );
     };
-
-    AuthService.signup($scope.user.email, $scope.user.password, meta).then(
-      function (result) {
-        alert('User created successfully!');
-        console.log('User Added:', result.user);
-      },
-      function (error) {
-        $scope.addUserError = error.message;
-      }
-    );
-  };
  
 });

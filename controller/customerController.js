@@ -23,14 +23,28 @@ app.controller('CustomerController', function ($scope, PharmacyService,$routePar
                   PharmacyService.getInvoices().then(function (response) {
                 let invoices = response.data;
 
-                //unpaid customers
-                $scope.unpaidCustomers = invoices.filter(invoice => invoice.payment_status === 'unpaid').length;
+           // unpaid + partial customers count
+$scope.unpaidCustomers =
+  invoices.filter(invoice => invoice.payment_status === 'unpaid').length +
+  invoices.filter(invoice => invoice.payment_status === 'partial').length;
 
-                // state property
-                $scope.customers.forEach(customer => {
-                    let customerInvoices = invoices.filter(inv => inv.customer_id === customer.customer_id);
-                    customer.state = customerInvoices.some(inv => inv.payment_status === 'unpaid') ? 'Unpaid' : 'Paid';
-                });
+
+// set state property
+$scope.customers.forEach(customer => {
+
+  let customerInvoices = invoices.filter(inv => inv.customer_id === customer.customer_id);
+
+  if (customerInvoices.some(inv => inv.payment_status === 'unpaid')) {
+    customer.state = 'Unpaid';
+  } 
+  else if (customerInvoices.some(inv => inv.payment_status === 'partial')) {
+    customer.state = 'Partial';
+  } 
+  else {
+    customer.state = 'Paid';
+  }
+
+});
 
             }, function (error) {
                 console.error('Error fetching invoices:', error);

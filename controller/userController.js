@@ -2,6 +2,7 @@ app.controller('UserController', function ($scope, PharmacyService, AuthService)
     $scope.users = [];
     $scope.loading=true;
 
+    
     // Fetch users and separate them into admins and regular users
     $scope.render = function () {
     PharmacyService.getUsers().then(

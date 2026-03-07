@@ -84,7 +84,7 @@ app.directive('userTable',function ($location, PharmacyService) {
             <td >{{user.name}}</td>
             <td >{{user.email}}</td>
             <td>{{user.phone}}</td>
-            <td ng-class="{'text-danger': user.state === 'Unpaid', 'text-success': user.state === 'Paid'}" ng-if="customer===true">{{user.state}}</td>
+            <td ng-class="{'text-danger': user.state === 'Unpaid', 'text-success': user.state === 'Paid','text-secondary': user.state === 'Partial'}" ng-if="customer===true">{{user.state}}</td>
             <td ng-if="customer===false">{{user.role}}</td>
             <td>{{user.date_registered | date:'yyyy-MM-dd'}}</td>
          <td ng-if="customer === true">
@@ -123,6 +123,11 @@ link: function(scope) {
   scope.addPage = function() {
     if (scope.customer) {
       $location.path('/add-customer');
+    }
+    else{
+       
+      $location.path('/add-user');
+    
     }
   };
 
