@@ -88,6 +88,11 @@
       <span class="navbar-wordmark">Cure<span class="navbar-wordmark-via">Via</span></span>
     </a>
 
+    <!-- Date — absolutely centered in the navbar (app only) -->
+    <span class="navbar-date-center d-none d-md-flex align-items-center" ng-if="!islandingPage()">
+      <i class="bi bi-calendar3 me-2"></i><span id="navbar-date"></span>
+    </span>
+
     <!-- Right side -->
     <div class="ms-auto d-flex align-items-center gap-2">
 
@@ -106,11 +111,8 @@
         <i class="bi bi-list fs-5"></i>
       </button>
 
-      <!-- App: date + links + logout (desktop) -->
+      <!-- App: links + logout (desktop) -->
       <div class="d-none d-md-flex align-items-center gap-2" ng-if="!islandingPage()">
-        <span class="text-white small d-flex align-items-center me-2">
-          <i class="bi bi-calendar3 me-2"></i><span id="navbar-date"></span>
-        </span>
         <a href="#!/about" class="landing-nav-link">About</a>
         <a href="#!/contact" class="landing-nav-link">Contact</a>
         <a ng-click="logout()" class="landing-nav-login" style="cursor: pointer;">
