@@ -57,10 +57,6 @@ body {
   background-color: var(--brand-secondary);
 }
 
-.navbar {
-  background-color: var(--brand-secondary);
-}
-
 /* Sidebar */
 .offcanvas {
   width: 240px !important;
@@ -110,14 +106,9 @@ body {
   color: white;
 }
 
-/* Navbar */
-.navbar {
-  background-color: var(--navy);
-}
-
 /* Stat Cards */
 .stat-card {
-  border-left: 4px solid var(--teal) !important;
+  border-left: 4px solid var(--brand-primary) !important;
 }
 
 /* Table Header */
@@ -138,10 +129,6 @@ body {
   padding: 3px 8px;
   font-size: 0.7rem;
   font-weight: 600;
-}
-
-.stat-card {
-  border-left: 4px solid var(--brand-primary) !important;
 }
 
 .landing-nav {

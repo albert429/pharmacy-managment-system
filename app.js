@@ -2,6 +2,9 @@ var app = angular.module('pharmacyApp', ['ngRoute']);
 
 app.config(function ($routeProvider) {
   $routeProvider
+    .when('/', {
+      redirectTo: '/landing',
+    })
     .when('/landing', {
       templateUrl: 'views/landing.html',
     })
@@ -36,35 +39,8 @@ app.config(function ($routeProvider) {
       templateUrl: 'views/login.html',
       controller: 'AuthController',
     })
-
-    .when('/admin_dashboard', {
-      templateUrl: 'views/admin_dashboard.html',
-    })
-    .when('/cashier_dashboard', {
-      templateUrl: 'views/cashier_dashboard.html',
-    })
-    .when('/customers', {
-      templateUrl: 'views/customers.html',
-      controller: 'CustomerController',
-    })
-    .when('/users', {
-      templateUrl: 'views/users.html',
-      controller: 'UserController',
-    })
-    .when('/add-user', {
-      templateUrl: 'views/addUser.html',
-      controller: 'AuthController',
-    })
-    .when('/login', {
-      templateUrl: 'views/login.html',
-      controller: 'AuthController',
-    })
-
-    .when('/admin_dashboard', {
-      templateUrl: 'views/admin_dashboard.html',
-    })
-    .when('/cashier_dashboard', {
-      templateUrl: 'views/cashier_dashboard.html',
+    .when('/admin_panel', {
+      templateUrl: 'views/admin_panel.html',
     })
     .otherwise({
       redirectTo: '/landing',
