@@ -1,126 +1,133 @@
 <div>
   <div class="about-hero">
-    <nav class="landing-nav">
-      <div class="landing-nav-content">
-        <a href="#!/landing" class="landing-nav-brand">
-          <img src="assets/Transparent-logo.png" alt="CureVia" height="46" />
-        </a>
-
-        <div class="landing-nav-links d-none d-md-flex">
-          <a href="#!/about" class="landing-nav-link">About Us</a>
-          <a href="#!/contact" class="landing-nav-link">Contact Us</a>
-          <a href="#!/login" class="landing-nav-login">
-            <i class="bi bi-box-arrow-in-right me-1"></i>Login
-          </a>
-        </div>
-
-        <button
-          class="landing-nav-toggle d-md-none"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#landingNavMenu"
-        >
-          <i class="bi bi-list fs-5"></i>
-        </button>
-      </div>
-
-      <div class="collapse" id="landingNavMenu">
-        <div class="landing-nav-mobile">
-          <a href="#!/about" class="landing-nav-mobile-link">About Us</a>
-          <a href="#!/contact" class="landing-nav-mobile-link">Contact Us</a>
-          <a
-            href="#!/login"
-            class="landing-nav-mobile-link landing-nav-mobile-login"
-            >Login</a
-          >
-        </div>
-      </div>
-    </nav>
-    <div class="about-hero-content">
+    <landing-nav></landing-nav>
+    <div class="about-hero-content slideUp">
+      <div class="hero-badge">Get in Touch</div>
       <h1 class="about-hero-title">Contact Us</h1>
       <p class="about-hero-sub">
-        Have a question or need support? <br />Send us a message and our team
-        will get back to you.
+        Have a question, facing an issue, or want to suggest something?
+        <br />We're listening — reach out and we'll get back to you as soon as
+        we can.
       </p>
     </div>
   </div>
 
-  <div class="contact-body">
-    <div class="alert contact-success-alert" ng-if="submitted">
-      <i class="bi bi-check-circle-fill me-2"></i>
-      Your message has been sent. We will get back to you shortly.
-    </div>
+  <div class="contact-section">
+    <div class="row g-5">
+      <div class="col-md-5 slideUp">
+        <p class="section-label">Support</p>
+        <h3 class="contact-info-title">We're here to help</h3>
+        <p class="contact-info-text">
+          Whether you're dealing with a technical issue, need help navigating
+          the system, or want to request a new feature — just send us a message.
+          Our team reviews every submission and responds during working hours.
+        </p>
 
-    <div class="card shadow contact-card" ng-if="!submitted">
-      <form name="contactForm" ng-submit="submitForm()" novalidate>
-        <div class="mb-4">
-          <label class="contact-label">Full Name</label>
-          <input
-            type="text"
-            class="form-control contact-input"
-            ng-model="formData.name"
-            name="name"
-            placeholder="Enter your name"
-            required
-          />
-          <div
-            class="contact-error"
-            ng-if="contactForm.name.$touched && contactForm.name.$invalid"
-          >
-            Name is required.
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon">
+            <i class="bi bi-envelope"></i>
           </div>
+          <span class="contact-detail-text">support@curevia.internal</span>
         </div>
 
-        <div class="mb-4">
-          <label class="contact-label">Email Address</label>
-          <input
-            type="email"
-            class="form-control contact-input"
-            ng-model="formData.email"
-            name="email"
-            placeholder="Enter your email"
-            required
-          />
-          <div
-            class="contact-error"
-            ng-if="contactForm.email.$touched && contactForm.email.$error.required"
-          >
-            Email is required.
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon">
+            <i class="bi bi-clock"></i>
           </div>
-          <div
-            class="contact-error"
-            ng-if="contactForm.email.$touched && contactForm.email.$error.email"
+          <span class="contact-detail-text"
+            >Sunday – Thursday, 9:00 am – 5:00 pm</span
           >
-            Please enter a valid email address.
-          </div>
         </div>
 
-        <div class="mb-4">
-          <label class="contact-label">Message</label>
-          <textarea
-            class="form-control contact-input"
-            ng-model="formData.message"
-            name="message"
-            placeholder="Write your message here..."
-            rows="5"
-            required
-          ></textarea>
-          <div
-            class="contact-error"
-            ng-if="contactForm.message.$touched && contactForm.message.$invalid"
-          >
-            Message is required.
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon">
+            <i class="bi bi-building"></i>
           </div>
+          <span class="contact-detail-text"
+            >Internal system — for pharmacy staff only</span
+          >
+        </div>
+      </div>
+
+      <div class="col-md-7">
+        <div class="alert contact-success-alert" ng-if="submitted">
+          <i class="bi bi-check-circle-fill me-2"></i>
+          Your message has been sent successfully. We'll review it and get back
+          to you within one business day.
         </div>
 
-        <button
-          type="submit"
-          class="btn contact-submit-btn"
-          ng-disabled="contactForm.$invalid"
-        >
-          <i class="bi bi-send me-2"></i>Send Message
-        </button>
-      </form>
+        <div class="contact-card" ng-if="!submitted">
+          <form name="contactForm" ng-submit="submitForm()" novalidate>
+            <div class="mb-4">
+              <label class="contact-label">Full Name</label>
+              <input
+                type="text"
+                class="form-control contact-input"
+                ng-model="formData.name"
+                name="name"
+                placeholder="Enter your name"
+                required
+              />
+              <div
+                class="contact-error"
+                ng-if="contactForm.name.$touched && contactForm.name.$invalid"
+              >
+                Name is required.
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label class="contact-label">Email Address</label>
+              <input
+                type="email"
+                class="form-control contact-input"
+                ng-model="formData.email"
+                name="email"
+                placeholder="Enter your email"
+                required
+              />
+              <div
+                class="contact-error"
+                ng-if="contactForm.email.$touched && contactForm.email.$error.required"
+              >
+                Email is required.
+              </div>
+              <div
+                class="contact-error"
+                ng-if="contactForm.email.$touched && contactForm.email.$error.email"
+              >
+                Please enter a valid email address.
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label class="contact-label">Message</label>
+              <textarea
+                class="form-control contact-input"
+                ng-model="formData.message"
+                name="message"
+                placeholder="Write your message here..."
+                rows="5"
+                required
+              ></textarea>
+              <div
+                class="contact-error"
+                ng-if="contactForm.message.$touched && contactForm.message.$invalid"
+              >
+                Message is required.
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="btn contact-submit-btn"
+              ng-disabled="contactForm.$invalid"
+            >
+              <i class="bi bi-send me-2"></i>Send Message
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 

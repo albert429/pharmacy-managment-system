@@ -1,9 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Lora:ital,wght@0,600;1,400&display=swap");
 
-/* ======================================
-   GLOBAL STYLES
-   ================================= */
-
 :root {
   /* Brand */
   --brand-primary: #0da5a6;
@@ -49,24 +45,21 @@
 }
 
 body {
-  font-family: "DM Sans", sans-serif;
+  font-family: "DM Sans";
   background: var(--bg);
 }
 
-/* ======================================
-   NAVBAR
-   ================================= */
+/* Internal System Top Navbar */
 
 .navbar {
   background-color: var(--brand-secondary);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
 }
 
-/* Logo + wordmark group in the top navbar */
 .navbar-brand-group {
   display: flex;
   align-items: center;
-  gap: 10px;
+  margin-left: -14px;
 }
 
 .navbar-logo {
@@ -74,24 +67,22 @@ body {
   filter: drop-shadow(0 2px 8px rgba(13, 165, 166, 0.45));
 }
 
-/* "CureVia" text in the top navbar */
 .navbar-wordmark {
-  font-family: "Lora", serif;
+  font-family: "Lora";
   font-size: 1.3rem;
   font-weight: 600;
   font-style: italic;
   color: white;
   letter-spacing: 0.01em;
   text-shadow: 0 1px 10px rgba(13, 165, 166, 0.5);
+  margin-left: -6px;
 }
 
 .navbar-wordmark-via {
   color: var(--brand-tint);
 }
 
-/* ======================================
-   SIDEBAR
-   ================================= */
+/* Internal System Sidebar (OffCanvas) */
 
 .offcanvas {
   width: 240px !important;
@@ -99,19 +90,17 @@ body {
   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.35);
 }
 
-/* Sidebar header: logo + wordmark + close button */
 .sidebar-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 16px 12px;
+  padding: 16px 16px 12px 8px;
   border-bottom: 1px solid rgba(184, 230, 240, 0.08);
 }
 
 .sidebar-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
 }
 
 .sidebar-brand-logo {
@@ -119,21 +108,6 @@ body {
   filter: drop-shadow(0 2px 10px rgba(13, 165, 166, 0.5));
 }
 
-.sidebar-brand-name {
-  font-family: "Lora", serif;
-  font-size: 1.2rem;
-  font-weight: 600;
-  font-style: italic;
-  color: white;
-  letter-spacing: 0.01em;
-  text-shadow: 0 1px 8px rgba(13, 165, 166, 0.4);
-}
-
-.sidebar-brand-via {
-  color: var(--brand-tint);
-}
-
-/* Sidebar user info */
 .sidebar-user {
   padding: 14px 20px 10px;
 }
@@ -164,7 +138,9 @@ body {
   font-size: 0.9rem;
   font-weight: 500;
   border-left: 3px solid transparent;
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 
 .sidebar-link:hover {
@@ -188,7 +164,11 @@ body {
   font-size: 0.85rem;
   text-align: center;
   text-decoration: none;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
 }
 
 .btn-logout:hover {
@@ -197,66 +177,18 @@ body {
   color: white;
 }
 
-/* ======================================
-   LANDING NAV LOGO
-   ================================= */
-
-.landing-nav-brand img {
-  filter: drop-shadow(0 2px 8px rgba(13, 165, 166, 0.4));
-  transition: filter 0.25s, transform 0.25s;
-}
-
-.landing-nav-brand:hover img {
-  filter: drop-shadow(0 4px 14px rgba(13, 165, 166, 0.65));
-  transform: scale(1.05);
-}
-
-/* ======================================
-   STAT CARDS
-   ================================= */
-
-.stat-card {
-  border-left: 4px solid var(--brand-primary) !important;
-}
-
-/* ======================================
-   TABLE
-   ================================= */
-
-.table thead th {
-  background: var(--brand-secondary);
-  color: white;
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-/* ======================================
-   BADGES
-   ================================= */
-
-.badge-units {
-  background: var(--info-bg);
-  color: var(--info);
-  border: 2px solid var(--info-border);
-  border-radius: 50px;
-  padding: 3px 8px;
-  font-size: 0.7rem;
-  font-weight: 600;
-}
-
-/* ======================================
-   LANDING — NAV
-   ================================= */
+/* Landing Pages Navbar */
 
 .landing-nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: linear-gradient(25deg,
-      var(--n-900) 0%,
-      #0a3040ec 60%,
-      #0d6b6c 100%);
+  background: linear-gradient(
+    25deg,
+    var(--n-900) 0%,
+    #0a3040ec 60%,
+    #0d6b6c 100%
+  );
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
 }
 
@@ -269,9 +201,36 @@ body {
   justify-content: space-between;
 }
 
+.landing-nav-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
 .landing-nav-brand img {
   height: 46px;
   border-radius: 6px;
+  margin-left: -14px;
+  filter: drop-shadow(0 2px 8px rgba(13, 165, 166, 0.4));
+  transition:
+    filter 0.25s ease,
+    transform 0.25s ease;
+}
+
+.landing-nav-brand:hover img {
+  filter: drop-shadow(0 4px 14px rgba(13, 165, 166, 0.65));
+  transform: scale(1.05);
+}
+
+.landing-brand-name {
+  font-family: "Lora", serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-style: italic;
+  color: white;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 10px rgba(13, 166, 166, 0.669);
+  margin-left: -6px;
 }
 
 .landing-nav-links {
@@ -287,7 +246,9 @@ body {
   font-weight: 500;
   padding: 6px 14px;
   border-radius: 6px;
-  transition: color 0.2s, background 0.2s;
+  transition:
+    color 0.2s,
+    background 0.2s;
 }
 
 .landing-nav-link:hover {
@@ -301,11 +262,14 @@ body {
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 600;
-  padding: 8px 24px;
+  padding: 8px 28px;
   border-radius: 8px;
   margin-left: 30px;
   text-align: center;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
 }
 
 .landing-nav-login:hover {
@@ -346,15 +310,41 @@ body {
   font-weight: 600;
 }
 
-/* ======================================
-   LANDING — HERO
-   ================================= */
+/* Stat Card */
+
+.stat-card {
+  border-left: 4px solid var(--brand-primary) !important;
+}
+
+/* Table */
+
+.table thead th {
+  background: var(--brand-secondary);
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge-units {
+  background: var(--info-bg);
+  color: var(--info);
+  border: 2px solid var(--info-border);
+  border-radius: 50px;
+  padding: 3px 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+/* Landing Page Hero  */
 
 .hero {
-  background: linear-gradient(110deg,
-      var(--n-900) 0%,
-      #0a3040 60%,
-      #0d6b6c 100%);
+  background: linear-gradient(
+    110deg,
+    var(--n-900) 0%,
+    #0a3040 60%,
+    #0d6b6c 100%
+  );
   text-align: center;
 }
 
@@ -364,19 +354,41 @@ body {
   margin: auto;
 }
 
+.hero-badge {
+  display: inline-block;
+  background: rgba(13, 165, 166, 0.15);
+  border: 1px solid rgba(13, 165, 166, 0.3);
+  color: var(--brand-tint);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 5px 16px;
+  border-radius: 50px;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
 .hero-title {
-  font-family: "Lora", serif;
+  font-family: "Lora";
   font-size: clamp(1.8rem, 5vw, 3rem);
   font-weight: 700;
-  color: white;
+  color: transparent;
   margin-bottom: 20px;
+  line-height: 1.27;
   text-shadow: 0 2px 16px rgba(13, 165, 166, 0.3);
+  background: linear-gradient(
+    140deg,
+    var(--brand-primary) 15%,
+    var(--brand-tint) 70%,
+    white 100%
+  );
+  background-clip: text;
 }
 
 .hero-subtitle {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.744);
   margin-bottom: 30px;
-  line-height: 1.7;
+  line-height: 1.4;
 }
 
 .hero-btn {
@@ -388,25 +400,57 @@ body {
   font-weight: 600;
   letter-spacing: 0.02em;
   box-shadow: 0 4px 18px rgba(13, 165, 166, 0.4);
-  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  transition:
+    background 0.2s,
+    box-shadow 0.2s,
+    transform 0.15s;
 }
 
 .hero-btn:hover {
   background: var(--brand-primary-hover);
   color: white;
   box-shadow: 0 6px 22px rgba(13, 165, 166, 0.55);
-  transform: translateY(-2px);
+  transform: scale(1.03);
 }
 
-/* ======================================
-   LANDING — FEATURES
-   ================================= */
+.hero-btn-outline {
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.hero-btn-outline:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.03);
+}
+
+/* Landing Page Features */
 
 .features-section {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: auto;
   padding: 60px 24px;
   text-align: center;
+}
+
+.section-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--brand-primary);
+  margin-bottom: 10px;
 }
 
 .features-section-title {
@@ -423,22 +467,38 @@ body {
 .feature-card {
   background: white;
   border: 1px solid #0da6a63c;
+  border-top: 3px solid var(--brand-primary);
   padding: 28px 20px;
   height: 100%;
   text-align: left;
   border-radius: 10px;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
 }
 
 .feature-card:hover {
-  box-shadow: 0 8px 24px rgba(13, 166, 166, 0.18);
-  transform: translateY(-4px);
+  box-shadow: 0 8px 15px rgba(13, 166, 166, 0.356);
+  transform: translateY(-6px);
 }
 
 .feature-icon {
-  font-size: 2rem;
+  width: 48px;
+  height: 48px;
+  background: rgba(13, 165, 166, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.5rem;
   color: var(--brand-primary);
   margin-bottom: 14px;
+  transition: background 0.2s ease;
+}
+
+.feature-card:hover .feature-icon {
+  background-color: rgba(21, 173, 173, 0.24);
 }
 
 .feature-title {
@@ -455,9 +515,114 @@ body {
   line-height: 1.5;
 }
 
-/* ======================================
-   LANDING — FOOTER
-   ================================= */
+/* Landing Page middle Section */
+
+.middle-section {
+  background: var(--brand-secondary);
+  padding: 72px 24px;
+  text-align: center;
+}
+
+.middle-section-title {
+  font-family: "Lora";
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 600;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.middle-section-sub {
+  color: rgba(184, 230, 240, 0.65);
+  font-size: 0.92rem;
+  margin-bottom: 48px;
+}
+
+.middle-card {
+  padding: 20px 12px;
+}
+
+.middle-number {
+  font-family: "Lora";
+  font-size: 2.6rem;
+  font-weight: 600;
+  color: var(--brand-primary);
+}
+
+.middle-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.middle-desc {
+  font-size: 0.84rem;
+  color: rgba(184, 230, 240, 0.6);
+  line-height: 1.6;
+}
+
+.middle-card:not(:first-child) {
+  border-left: 1px solid rgba(184, 230, 240, 0.1);
+}
+
+@media (max-width: 767px) {
+  .middle-card:not(:first-child) {
+    border-left: none;
+    border-top: 1px solid rgba(184, 230, 240, 0.1);
+    padding-top: 28px;
+    margin-top: 8px;
+  }
+}
+
+/* Landing Page bottom */
+
+.bottom-section {
+  background: radial-gradient(#0a2a35 30%, #0e6e87 200%);
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.bottom-title {
+  font-family: "Lora";
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 600;
+  color: white;
+  margin-bottom: 14px;
+}
+
+.bottom-sub {
+  color: rgba(184, 230, 240, 0.75);
+  font-size: 0.95rem;
+  margin-bottom: 32px;
+  max-width: 460px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.65;
+}
+
+.bottom-btn {
+  display: inline-block;
+  background: white;
+  color: var(--brand-secondary);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 13px 34px;
+  border-radius: 8px;
+  text-decoration: none;
+  border: none;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.18s ease;
+}
+
+.bottom-btn:hover {
+  background: var(--brand-tint);
+  color: var(--brand-secondary);
+  transform: scale(1.04);
+}
+
+/* Landing Footer  */
 
 .landing-footer {
   background: var(--brand-secondary);
@@ -468,15 +633,15 @@ body {
   letter-spacing: 0.02em;
 }
 
-/* ======================================
-   ABOUT
-   ================================= */
+/* ABOUT */
 
 .about-hero {
-  background: linear-gradient(110deg,
-      var(--n-900) 0%,
-      #0a3040 60%,
-      #0d6b6c 100%);
+  background: linear-gradient(
+    110deg,
+    var(--n-900) 0%,
+    #0a3040 60%,
+    #0d6b6c 100%
+  );
   text-align: center;
   position: relative;
 }
@@ -489,11 +654,18 @@ body {
 
 .about-hero-title {
   padding-top: 24px;
-  font-family: "Lora", serif;
+  font-family: "Lora";
   font-size: clamp(1.6rem, 5vw, 2.6rem);
   font-weight: 700;
-  color: white;
-  text-shadow: 0 2px 14px rgba(13, 165, 166, 0.3);
+  color: transparent;
+  text-shadow: 0 2px 16px rgba(13, 165, 166, 0.3);
+  background: linear-gradient(
+    140deg,
+    var(--brand-primary) 20%,
+    var(--brand-tint) 50%,
+    white 100%
+  );
+  background-clip: text;
 }
 
 .about-hero-sub {
@@ -504,7 +676,7 @@ body {
 }
 
 .about-body {
-  max-width: 1000px;
+  max-width: 1150px;
   margin: auto;
   padding: 56px 24px 60px;
 }
@@ -529,6 +701,10 @@ body {
   border-left: 4px solid var(--brand-primary);
   border-radius: 10px;
   padding: 32px 28px;
+  transition: box-shadow 0.22s ease;
+}
+.about-mission-card:hover {
+  box-shadow: 0 10px 15px rgba(13, 165, 166, 0.12);
 }
 
 .about-mission-icon {
@@ -557,6 +733,13 @@ body {
   border-radius: 10px;
   padding: 22px 18px;
   height: 100%;
+  transition:
+    box-shadow 0.22s ease,
+    transform 0.22s ease;
+}
+.about-value-card:hover {
+  box-shadow: 0 10px 15px rgba(13, 165, 166, 0.12);
+  transform: translateY(-3px);
 }
 
 .about-value-icon {
@@ -580,14 +763,12 @@ body {
   line-height: 1.5;
 }
 
-/* ======================================
-   CONTACT
-   ================================= */
+/* CONTACT */
 
-.contact-body {
-  max-width: 620px;
+.contact-section {
+  max-width: 1080px;
   margin: auto;
-  padding: 56px 24px 60px;
+  padding: 64px 24px;
 }
 
 .contact-success-alert {
@@ -606,10 +787,13 @@ body {
   border: 1px solid rgba(7, 88, 88, 0.352);
   border-radius: 10px;
   padding: 36px 32px;
+  transition: box-shadow 0.2s ease;
+}
+.contact-card:focus-within {
+  box-shadow: 0 8px 24px rgba(14, 157, 157, 0.322);
 }
 
 .contact-label {
-  display: block;
   font-size: 0.87rem;
   font-weight: 600;
   color: var(--brand-secondary);
@@ -645,7 +829,9 @@ body {
   border-radius: 8px;
   letter-spacing: 0.02em;
   box-shadow: 0 4px 14px rgba(13, 165, 166, 0.35);
-  transition: background 0.2s, box-shadow 0.2s;
+  transition:
+    background 0.2s,
+    box-shadow 0.2s;
   width: 100%;
 }
 
@@ -659,4 +845,134 @@ body {
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: auto;
+}
+
+.contact-info-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--brand-secondary);
+  margin-bottom: 12px;
+}
+
+.contact-info-text {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.contact-detail-item {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.contact-detail-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(13, 165, 166, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--brand-primary);
+  font-size: 1rem;
+}
+
+.contact-detail-text {
+  font-size: 0.87rem;
+  color: var(--brand-secondary);
+  font-weight: 500;
+  padding-top: 7px;
+}
+
+/* 404 PAGE */
+
+.not-found-page {
+  min-height: 100vh;
+  background: linear-gradient(
+    110deg,
+    var(--n-900) 0%,
+    #0a3040 60%,
+    #0d6b6c 100%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 24px;
+}
+
+.not-found-number {
+  font-family: "Lora";
+  font-size: clamp(5rem, 15vw, 10rem);
+  font-weight: 700;
+  line-height: 1;
+  color: transparent;
+  text-shadow: 0 2px 16px rgba(13, 165, 166, 0.3);
+  background: linear-gradient(
+    140deg,
+    var(--brand-primary) 20%,
+    var(--brand-tint) 50%,
+    white 100%
+  );
+  background-clip: text;
+  margin-bottom: 12px;
+}
+
+.not-found-title {
+  font-family: "Lora";
+  font-size: clamp(1.2rem, 3vw, 1.7rem);
+  font-weight: 600;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.not-found-sub {
+  color: rgba(184, 230, 240, 0.7);
+  font-size: 0.95rem;
+  max-width: 420px;
+  margin: 0 auto 36px;
+}
+
+.not-found-btn {
+  background: var(--brand-primary);
+  color: white;
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 12px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  border: none;
+  box-shadow: 0 4px 18px rgba(13, 165, 166, 0.4);
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.not-found-btn:hover {
+  background: var(--brand-primary-hover);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(13, 165, 166, 0.55);
+}
+
+/* SlideUp Animation */
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slideUp {
+  animation: slideUp 1s ease;
 }
