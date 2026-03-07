@@ -1,5 +1,6 @@
-app.directive("landingNav", function () {
+app.directive('appNav', function () {
   return {
-    templateUrl: "views/landingNav.html",
+    scope: false,
+    templateUrl: 'views/appNav.html',
   };
 });

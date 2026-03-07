@@ -1,0 +1,65 @@
+<nav class="navbar px-3">
+
+  <!-- Sidebar toggle (app pages only) -->
+  <button class="btn p-0 me-3 border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
+    ng-if="!islandingPage()">
+    <i class="bi bi-list fs-4 text-white"></i>
+  </button>
+
+  <!-- Brand (always) -->
+  <a href="#!/landing" class="navbar-brand-group text-decoration-none">
+    <img src="assets/Transparent-logo.png" alt="CureVia" class="navbar-logo" />
+    <span class="navbar-wordmark">Cure<span class="navbar-wordmark-via">Via</span></span>
+  </a>
+
+  <!-- Date — centered (app pages only) -->
+  <span class="navbar-date-center d-none d-md-flex align-items-center" ng-if="!islandingPage()">
+    <i class="bi bi-calendar3 me-2"></i>{{ currentDate | date:'EEEE, MMMM d, yyyy' }}
+  </span>
+
+  <!-- Right side -->
+  <div class="ms-auto d-flex align-items-center gap-2">
+
+    <!-- Landing: desktop links -->
+    <div class="d-none d-md-flex align-items-center gap-1" ng-if="islandingPage()">
+      <a href="#!/about" class="landing-nav-link">About Us</a>
+      <a href="#!/contact" class="landing-nav-link">Contact Us</a>
+      <a href="#!/login" class="landing-nav-login" ng-if="!currentUserName">
+        <i class="bi bi-box-arrow-in-right me-1"></i>Login
+      </a>
+      <a href="#!/dashboard" class="landing-nav-login" ng-if="currentUserName">
+        <i class="bi bi-speedometer2 me-1"></i>Dashboard
+      </a>
+      <a ng-click="logout()" class="landing-nav-link" style="cursor:pointer" ng-if="currentUserName">
+        <i class="bi bi-box-arrow-left me-1"></i>Logout
+      </a>
+    </div>
+
+    <!-- Landing: mobile toggle -->
+    <button class="landing-nav-toggle d-md-none" type="button" data-bs-toggle="collapse"
+      data-bs-target="#landingNavMenu" ng-if="islandingPage()">
+      <i class="bi bi-list fs-5"></i>
+    </button>
+
+    <!-- App: desktop links -->
+    <div class="d-none d-md-flex align-items-center gap-2" ng-if="!islandingPage()">
+      <a href="#!/about" class="landing-nav-link">About</a>
+      <a href="#!/contact" class="landing-nav-link">Contact</a>
+      <a ng-click="logout()" class="landing-nav-login" style="cursor:pointer">
+        <i class="bi bi-box-arrow-left me-1"></i>Logout
+      </a>
+    </div>
+
+  </div>
+</nav>
+
+<!-- Landing mobile menu -->
+<div class="collapse" id="landingNavMenu" ng-if="islandingPage()">
+  <div class="landing-nav-mobile">
+    <a href="#!/about" class="landing-nav-mobile-link">About Us</a>
+    <a href="#!/contact" class="landing-nav-mobile-link">Contact Us</a>
+    <a href="#!/login" class="landing-nav-mobile-link landing-nav-mobile-login" ng-if="!currentUserName">Login</a>
+    <a href="#!/dashboard" class="landing-nav-mobile-link landing-nav-mobile-login" ng-if="currentUserName">Dashboard</a>
+    <a ng-click="logout()" class="landing-nav-mobile-link" style="cursor:pointer" ng-if="currentUserName">Logout</a>
+  </div>
+</div>

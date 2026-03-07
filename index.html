@@ -19,32 +19,31 @@
   <script src="app.js"></script>
   <script src="service/authService.js"></script>
   <script src="service/dataService.js"></script>
-  <script src="controller/dashboardController.js"></script>
   <script src="controller/appController.js"></script>
+  <script src="controller/authController.js"></script>
+  <script src="controller/dashboardController.js"></script>
   <script src="controller/medicineController.js"></script>
   <script src="controller/customerController.js"></script>
+  <script src="controller/invoiceController.js"></script>
+  <script src="controller/userController.js"></script>
+  <script src="controller/adminPanelController.js"></script>
+  <script src="controller/contactController.js"></script>
   <script src="Directives/userTableDirective.js"></script>
   <script src="Directives/landingNavDirective.js"></script>
-  <script src="controller/userController.js"></script>
-  <script src="controller/authController.js"></script>
-  <script src="controller/invoiceController.js"></script>
-  <script src="controller/contactController.js"></script>
-  <script src="controller/adminPanelController.js"></script>
 
   <link href="style.css" rel="stylesheet" />
 </head>
 
 <body ng-controller="AppController">
-  <div ng-if="islandingPage()">
-    <ng-view></ng-view>
-  </div>
 
+  <!-- Sidebar (app pages only) -->
   <div ng-if="!islandingPage()">
     <div class="offcanvas offcanvas-start d-flex flex-column" id="sidebar" tabindex="-1">
+
       <div class="sidebar-header">
         <div class="sidebar-brand">
           <img src="assets/Transparent-logo.png" alt="CureVia" class="sidebar-brand-logo" />
-          <span class="navbar-wordmark">Cure<span class="navbar-wordmark-via">Via</span></span>
+          <span class="sidebar-brand-name">Cure<span class="sidebar-brand-via">Via</span></span>
         </div>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
       </div>
@@ -53,10 +52,6 @@
         <span class="sidebar-user-name">{{ currentUserName }}</span>
         <span class="sidebar-user-role">{{ currentRole }}</span>
       </div>
-      <div class="sidebar-user">
-        <span class="sidebar-user-name">{{ currentUserName }}</span>
-        <span class="sidebar-user-role">Admin</span>
-      </div>
 
       <nav class="flex-grow-1 py-2">
         <a href="#!/dashboard" class="sidebar-link"><i class="bi bi-speedometer2"></i> Dashboard</a>
@@ -64,8 +59,9 @@
         <a href="#!/customers" class="sidebar-link"><i class="bi bi-people"></i> Customers</a>
         <a href="#!/invoices" class="sidebar-link"><i class="bi bi-receipt"></i> Invoices</a>
         <a href="#!/users" class="sidebar-link" ng-if="currentRole === 'admin'"><i class="bi bi-gear"></i> Users</a>
-        <a href="#!/admin_panel" class="sidebar-link" ng-if="currentRole === 'admin'"><i class="bi bi-shield-lock"></i>
-          Admin Panel</a>
+        <a href="#!/admin_panel" class="sidebar-link" ng-if="currentRole === 'admin'">
+          <i class="bi bi-shield-lock"></i> Admin Panel
+        </a>
         <hr class="sidebar-divider" />
         <a href="#!/landing" class="sidebar-link"><i class="bi bi-house"></i> Home</a>
         <a href="#!/about" class="sidebar-link"><i class="bi bi-info-circle"></i> About</a>
@@ -77,146 +73,27 @@
           <i class="bi bi-box-arrow-left me-1"></i>Logout
         </a>
       </div>
+
     </div>
   </div>
-  <div class="p-3">
-    <a ng-click="logout()" class="btn-logout">
-      <i class="bi bi-box-arrow-left me-1"></i>Logout
-    </a>
+
+  <!-- Global Navbar -->
+  <app-nav></app-nav>
+
+  <!-- Page content -->
+  <div ng-if="islandingPage()">
+    <ng-view></ng-view>
   </div>
-  </div>
 
-  <nav class="navbar px-3">
-    <button class="btn p-0 me-3 border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
-      <i class="bi bi-list fs-4 text-white"></i>
-    </button>
-    <!-- Unified Navbar -->
-    <nav class="navbar px-3">
-      <!-- Sidebar toggle (app only) -->
-      <button class="btn p-0 me-3 border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
-        ng-if="!islandingPage()">
-        <i class="bi bi-list fs-4 text-white"></i>
-      </button>
-
-      <!-- Brand (always) -->
-      <a href="#!/landing" class="navbar-brand-group text-decoration-none">
-        <img src="assets/Transparent-logo.png" alt="CureVia" class="navbar-logo" />
-        <span class="navbar-wordmark">Cure<span class="navbar-wordmark-via">Via</span></span>
-      </a>
-
-      <!-- Date — absolutely centered in the navbar (app only) -->
-      <span class="navbar-date-center d-none d-md-flex align-items-center" ng-if="!islandingPage()">
-        <i class="bi bi-calendar3 me-2"></i><span id="navbar-date"></span>
-      </span>
-
-      <!-- Right side -->
-      <div class="ms-auto d-flex align-items-center gap-2">
-
-        <!-- Landing: desktop nav links -->
-        <div class="d-none d-md-flex align-items-center gap-1" ng-if="islandingPage()">
-          <a href="#!/about" class="landing-nav-link">About Us</a>
-          <a href="#!/contact" class="landing-nav-link">Contact Us</a>
-          <a href="#!/login" class="landing-nav-login" ng-if="!currentUserName">
-            <i class="bi bi-box-arrow-in-right me-1"></i>Login
-          </a>
-          <a href="#!/dashboard" class="landing-nav-login" ng-if="currentUserName">
-            <i class="bi bi-speedometer2 me-1"></i>Dashboard
-          </a>
-          <a ng-click="logout()" class="landing-nav-link" style="cursor:pointer" ng-if="currentUserName">
-            <i class="bi bi-box-arrow-left me-1"></i>Logout
-          </a>
-        </div>
-
-        <!-- Landing: mobile collapse toggle -->
-        <button class="landing-nav-toggle d-md-none" type="button" data-bs-toggle="collapse"
-          data-bs-target="#landingNavMenu" ng-if="islandingPage()">
-          <i class="bi bi-list fs-5"></i>
-        </button>
-
-        <!-- App: links + logout (desktop) -->
-        <div class="d-none d-md-flex align-items-center gap-2" ng-if="!islandingPage()">
-          <a href="#!/about" class="landing-nav-link">About</a>
-          <a href="#!/contact" class="landing-nav-link">Contact</a>
-          <a ng-click="logout()" class="landing-nav-login" style="cursor: pointer;">
-            <i class="bi bi-box-arrow-left me-1"></i>Logout
-          </a>
-        </div>
-
-      </div>
-    </nav>
-
-    <!-- Landing mobile menu -->
-    <div class="collapse" id="landingNavMenu" ng-if="islandingPage()">
-      <div class="landing-nav-mobile">
-        <a href="#!/about" class="landing-nav-mobile-link">About Us</a>
-        <a href="#!/contact" class="landing-nav-mobile-link">Contact Us</a>
-        <a href="#!/login" class="landing-nav-mobile-link landing-nav-mobile-login" ng-if="!currentUserName">Login</a>
-        <a href="#!/dashboard" class="landing-nav-mobile-link landing-nav-mobile-login"
-          ng-if="currentUserName">Dashboard</a>
-        <a ng-click="logout()" class="landing-nav-mobile-link" style="cursor:pointer" ng-if="currentUserName">Logout</a>
-      </div>
-    </div>
-
-    <!-- Landing / auth pages -->
-    <div ng-if="islandingPage()">
+  <div ng-if="!islandingPage()">
+    <div class="mt-3 p-3 p-lg-4 m-auto" style="max-width: 1200px">
       <ng-view></ng-view>
     </div>
+  </div>
 
-    <!-- App pages -->
-    <div ng-if="!islandingPage()">
-      <div class="mt-3 p-3 p-lg-4 m-auto" style="max-width: 1200px">
-        <ng-view></ng-view>
-      </div>
-    </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-      var d = new Date();
-      var days = [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-      ];
-      var months = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
-      ];
-      var dateEl = document.getElementById("navbar-date");
-      if (dateEl) {
-        dateEl.textContent =
-          days[d.getDay()] +
-          ", " +
-          months[d.getMonth()] +
-          " " +
-          d.getDate() +
-          ", " +
-          d.getFullYear();
-      }
-
-      window.addEventListener("hashchange", function () {
-        document.querySelectorAll(".sidebar-link").forEach(function (link) {
-          link.classList.remove("active");
-          if (link.getAttribute("href") === location.hash) {
-            link.classList.add("active");
-          }
-        });
-      });
-    </script>
 </body>
 
 </html>
