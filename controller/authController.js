@@ -3,9 +3,14 @@ app.controller('AuthController', function ($scope, $location, AuthService, Pharm
   // Redirect already-authenticated users away from login
   AuthService.getSession().then(function (session) {
     if (session) {
-      $location.path('/dashboard');
+      $location.path('/dashboard').replace();
     }
   });
+  $scope.logout = function () {
+    AuthService.logout().then(function () {
+      $location.path('/login').replace();
+    });
+  };
 
   $scope.login = function () {
     $scope.loginError = null;
@@ -20,7 +25,7 @@ app.controller('AuthController', function ($scope, $location, AuthService, Pharm
           if (loggedInUser) {
             AuthService.setRole(loggedInUser.role);
             AuthService.setName(loggedInUser.name);
-            $location.path('/dashboard');
+           $location.path('/dashboard').replace();
           } else {
             $scope.loginError = 'User not found in system.';
           }
@@ -51,4 +56,5 @@ app.controller('AuthController', function ($scope, $location, AuthService, Pharm
       }
     );
   };
+ 
 });

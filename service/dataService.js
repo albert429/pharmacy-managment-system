@@ -21,12 +21,34 @@ app.service('PharmacyService', function ($http) {
       headers: headers,
     });
   };
-
-  // medicines management
-  this.getMedicines = function () {
-    return $http.get(baseLink + '/medicines', { headers: headers });
+ 
+  this.deleteCustomer = function (customerId) {
+    return $http.delete(baseLink + '/customers?customer_id=eq.' + customerId, {
+      headers: headers,
+    });
+  };
+  
+  this.editCustomer = function (customerId, customerData) {
+    return $http.patch(
+      baseLink + '/customers?customer_id=eq.' + customerId,
+      customerData,
+      { headers: headers }
+    );
   };
 
+  var customerToEdit = null;
+
+  this.setCustomerToEdit = function (customer) {
+    customerToEdit = customer;
+  };
+
+  this.getCustomerToEdit = function () {
+    return customerToEdit;
+  };
+
+  this.getMedicines = function () {
+    return $http.get(baseLink + '/medicines', { headers: headers });
+  }
   this.addMedicine = function (medicineData) {
     return $http.post(baseLink + '/medicines', medicineData, {
       headers: headers,

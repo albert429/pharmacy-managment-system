@@ -16,7 +16,7 @@ app.controller('AppController', function ($scope, $location, $rootScope, AuthSer
 
   $scope.logout = function () {
     AuthService.logout().then(function () {
-      $location.path('/landing');
+      $location.path('/login').replace();
     });
   };
 });
