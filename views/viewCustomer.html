@@ -1,24 +1,47 @@
-<div class="container">
-  <div class="profile-card">
-    <img src="../assets/profile.png" alt="Profile Image">
-    <h2>{{customer.name}}</h2>
-    <p>{{customer.role || 'Customer'}}</p>
-  </div>
-
-  <div class="details-card">
-    <h3>Customer Details</h3>
-
-    <div class="details-row">
-      <div><span>Email:</span> {{customer.email}}</div>
-      <div><span>Phone:</span> {{customer.phone}}</div>
-    </div>
-
-    <div class="details-row" ng-if="customer.state || customer.date_registered">
-      <div ng-if="customer.state"><span>State:</span> {{customer.state}}</div>
-      <div ng-if="customer.date_registered"><span>Registered On:</span> {{customer.date_registered | date:'yyyy-MM-dd'}}</div>
-    </div>
-
- <button class="back-btn" ng-click="goToCustomers()">Back to Customer List</button>
-  </div>
+<!-- Page Header -->
+<div class="d-flex align-items-center justify-content-between mb-4">
+  <h4 class="fw-bold mb-0"><i class="bi bi-person-lines-fill me-2"></i>Customer Details</h4>
+  <button class="btn btn-sm btn-outline-secondary" ng-click="goToCustomers()">
+    <i class="bi bi-arrow-left me-1"></i>Back
+  </button>
 </div>
 
+<div class="card border-0 shadow-sm" style="max-width: 560px">
+  <div class="card-body p-4">
+
+    <div class="d-flex align-items-center gap-3 mb-4">
+      <div class="dash-stat-icon dash-stat-icon-primary" style="width: 56px; height: 56px; font-size: 1.5rem; flex-shrink: 0">
+        <i class="bi bi-person"></i>
+      </div>
+      <div>
+        <h5 class="fw-bold mb-0">{{ customer.name }}</h5>
+        <span class="text-muted small">Customer</span>
+      </div>
+    </div>
+
+    <hr class="my-3" />
+
+    <div class="row g-3">
+      <div class="col-sm-6">
+        <p class="text-muted small mb-1 fw-semibold text-uppercase" style="font-size: 0.72rem; letter-spacing: 0.05em">Email</p>
+        <p class="mb-0 fw-medium">{{ customer.email || '—' }}</p>
+      </div>
+      <div class="col-sm-6">
+        <p class="text-muted small mb-1 fw-semibold text-uppercase" style="font-size: 0.72rem; letter-spacing: 0.05em">Phone</p>
+        <p class="mb-0 fw-medium">{{ customer.phone || '—' }}</p>
+      </div>
+      <div class="col-sm-6" ng-if="customer.state">
+        <p class="text-muted small mb-1 fw-semibold text-uppercase" style="font-size: 0.72rem; letter-spacing: 0.05em">Payment State</p>
+        <span class="badge rounded-pill"
+          ng-class="{'bg-danger': customer.state === 'Unpaid', 'bg-success': customer.state === 'Paid', 'bg-secondary': customer.state === 'Partial'}">
+          {{ customer.state }}
+        </span>
+      </div>
+      <div class="col-sm-6" ng-if="customer.date_registered">
+        <p class="text-muted small mb-1 fw-semibold text-uppercase" style="font-size: 0.72rem; letter-spacing: 0.05em">Registered</p>
+        <p class="mb-0 fw-medium">{{ customer.date_registered | date:'mediumDate' }}</p>
+      </div>
+    </div>
+
+  </div>
+</div>

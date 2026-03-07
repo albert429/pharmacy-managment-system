@@ -1,4 +1,4 @@
-app.controller('MedicineController', function ($scope, $rootScope, PharmacyService) {
+app.controller('MedicineController', function ($scope, PharmacyService) {
   $scope.medicines = [];
   $scope.newMedicine = {};
   $scope.editingMedicine = {};
@@ -23,7 +23,6 @@ app.controller('MedicineController', function ($scope, $rootScope, PharmacyServi
       bootstrap.Modal.getInstance(
         document.getElementById('medicineModal')
       ).hide();
-      $rootScope.showToast('Medicine added successfully');
     });
   };
 
@@ -52,7 +51,6 @@ app.controller('MedicineController', function ($scope, $rootScope, PharmacyServi
       bootstrap.Modal.getInstance(
         document.getElementById('medicineModal')
       ).hide();
-      $rootScope.showToast('Medicine updated');
     });
   };
 

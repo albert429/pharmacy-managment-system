@@ -40,7 +40,7 @@ app.directive('userTable',function ($location, PharmacyService) {
   </div>
 
   <div class="col-md-4 text-end">
-    <button class="btn btn-sm text-white" style="background: var(--teal)" ng-click="addPage()">
+    <button class="btn btn-sm text-white" style="background: var(--brand-primary)" ng-click="addPage()">
       <i class="bi bi-plus-lg me-1"></i> Add {{customer===true ? 'Customer' : 'User'}}
     </button>
   </div>

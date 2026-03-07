@@ -38,6 +38,10 @@
           <button type="submit" class="btn btn-custom w-100 mt-2" ng-disabled="loginForm.$invalid">
             Login
           </button>
+
+          <div class="alert alert-danger mt-3 small mb-0" ng-if="loginError">
+            <i class="bi bi-exclamation-circle me-1"></i>{{ loginError }}
+          </div>
         </form>
       </div>
     </div>

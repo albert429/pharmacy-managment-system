@@ -74,20 +74,20 @@ app.config(function ($routeProvider) {
       controller: 'AuthController',
       resolve: { auth: function (AdminGuard) { return AdminGuard(); } },
     })
-      .when('/edit-customer/:id', {
+    .when('/edit-customer/:id', {
       templateUrl: 'views/editCustomer.html',
       controller: 'CustomerController',
-         resolve: { auth: function (AdminGuard) { return AdminGuard(); } },
+      resolve: { auth: function (AuthGuard) { return AuthGuard(); } },
     })
-      .when('/view-customer/:id', {
+    .when('/view-customer/:id', {
       templateUrl: 'views/viewCustomer.html',
       controller: 'CustomerController',
-         resolve: { auth: function (AdminGuard) { return AdminGuard(); } },
-  })
-     .when('/add-customer', {
+      resolve: { auth: function (AuthGuard) { return AuthGuard(); } },
+    })
+    .when('/add-customer', {
       templateUrl: 'views/addCustomer.html',
       controller: 'CustomerController',
-      resolve: { auth: function (AdminGuard) { return AdminGuard(); } },
+      resolve: { auth: function (AuthGuard) { return AuthGuard(); } },
     })
     .when('/admin_panel', {
       templateUrl: 'views/admin_panel.html',

@@ -133,7 +133,7 @@ $scope.deleteCustomer = function(customerId) {
     $scope.editCustomer = function() {
         if ($scope.editCustomerForm.$invalid) return;
 
-        const customerData = {
+        var customerData = {
             name: $scope.customer.name,
             email: $scope.customer.email,
             phone: $scope.customer.phone
@@ -141,27 +141,16 @@ $scope.deleteCustomer = function(customerId) {
 
         PharmacyService.editCustomer($scope.customer.customer_id, customerData).then(
             function() {
-                alert('Customer updated successfully!');
                 $location.path('/customers');
             },
             function(error) {
                 console.error('Error updating customer:', error);
-                alert('Failed to update customer!');
+                $scope.editError = 'Failed to update customer. Please try again.';
             }
         );
     };
 
-     $scope.goToCustomers = function() {
+  $scope.goToCustomers = function() {
     $location.path('/customers');
   };
-// $scope.deleteCustomer = function(user, index) {
-//         if (confirm("Are you sure you want to delete this customer?")) {
-//           PharmacyService.deleteCustomer(user.customer_id).then(function(resp) {
-//             $scope.data.splice(index, 1); // remove from local array
-//             alert("Customer deleted successfully!");
-//           }, function(err) {
-//             alert("Failed to delete customer.");
-//           });
-//         }
-//       };
 });

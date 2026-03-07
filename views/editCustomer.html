@@ -1,55 +1,60 @@
-<div class="container">
-  <div class="card signup-card p-4">
+<!-- Page Header -->
+<div class="d-flex align-items-center justify-content-between mb-4">
+  <h4 class="fw-bold mb-0"><i class="bi bi-pencil-square me-2"></i>Edit Customer</h4>
+  <button class="btn btn-sm btn-outline-secondary" ng-click="goToCustomers()">
+    <i class="bi bi-arrow-left me-1"></i>Back
+  </button>
+</div>
 
-    <div class="text-center mb-4">
-      <div class="logo">Edit Customer</div>
-      <p class="text-muted">Update customer information</p>
-    </div>
-
+<div class="card border-0 shadow-sm" style="max-width: 560px">
+  <div class="card-body p-4">
     <form name="editCustomerForm" ng-submit="editCustomer()" novalidate>
 
       <div class="mb-3">
-        <label class="form-label">Full Name</label>
+        <label class="form-label fw-semibold">Full Name</label>
         <div class="input-group">
           <span class="input-group-text"><i class="bi bi-person"></i></span>
           <input type="text" name="name" class="form-control" placeholder="Enter full name"
                  ng-model="customer.name" required>
         </div>
-        <div class="text-danger" ng-show="editCustomerForm.name.$touched && editCustomerForm.name.$invalid">
+        <div class="text-danger small mt-1" ng-show="editCustomerForm.name.$touched && editCustomerForm.name.$invalid">
           Full name is required.
         </div>
       </div>
-     
+
       <div class="mb-3">
-        <label class="form-label">Email Address</label>
+        <label class="form-label fw-semibold">Email Address</label>
         <div class="input-group">
           <span class="input-group-text"><i class="bi bi-envelope"></i></span>
           <input type="email" name="email" class="form-control" placeholder="Enter email"
                  ng-model="customer.email" required>
         </div>
-        <div class="text-danger" ng-show="editCustomerForm.email.$touched && editCustomerForm.email.$invalid">
+        <div class="text-danger small mt-1" ng-show="editCustomerForm.email.$touched && editCustomerForm.email.$invalid">
           Valid email is required.
         </div>
       </div>
 
       <div class="mb-3">
-        <label class="form-label">Phone Number</label>
+        <label class="form-label fw-semibold">Phone Number</label>
         <div class="input-group">
           <span class="input-group-text"><i class="bi bi-telephone"></i></span>
           <input type="tel" name="phone" class="form-control" placeholder="Enter phone number"
                  ng-model="customer.phone" required>
         </div>
-        <div class="text-danger" ng-show="editCustomerForm.phone.$touched && editCustomerForm.phone.$invalid">
+        <div class="text-danger small mt-1" ng-show="editCustomerForm.phone.$touched && editCustomerForm.phone.$invalid">
           Phone number is required.
         </div>
       </div>
 
-      <button type="submit" class="btn btn-custom w-100 mt-2"
+      <div class="alert alert-danger small mb-3" ng-if="editError">
+        <i class="bi bi-exclamation-circle me-1"></i>{{ editError }}
+      </div>
+
+      <button type="submit" class="btn w-100 text-white" style="background: var(--brand-primary)"
               ng-disabled="editCustomerForm.$invalid">
         Update Customer
       </button>
 
     </form>
   </div>
-
 </div>

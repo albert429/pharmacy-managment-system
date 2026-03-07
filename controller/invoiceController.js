@@ -1,6 +1,6 @@
 app.controller(
   'InvoiceController',
-  function ($scope, $q, $rootScope, PharmacyService, AuthService) {
+  function ($scope, $q, PharmacyService, AuthService) {
     $scope.invoices = [];
     $scope.customers = [];
     $scope.medicines = [];
@@ -185,7 +185,6 @@ app.controller(
             document.getElementById('invoiceModal')
           ).hide();
           $scope.loadInvoices();
-          $rootScope.showToast('Invoice created successfully');
         })
         .catch(function (err) {
           $scope.submitting = false;
@@ -200,7 +199,6 @@ app.controller(
         payment_status: 'paid',
       }).then(function () {
         inv.payment_status = 'paid';
-        $rootScope.showToast('Marked as paid');
       });
     };
 

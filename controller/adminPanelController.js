@@ -1,4 +1,4 @@
-app.controller('AdminPanelController', function ($scope, $q, $rootScope, PharmacyService) {
+app.controller('AdminPanelController', function ($scope, $q, PharmacyService) {
   var LOW_STOCK    = 10;
   var today        = new Date();
   var expiryLimit  = new Date(today.getTime() + 30 * 24 * 60 * 60 * 1000);
@@ -79,7 +79,6 @@ app.controller('AdminPanelController', function ($scope, $q, $rootScope, Pharmac
       });
       $scope.stats.unpaid = Math.max(0, $scope.stats.unpaid - 1);
       $scope.stats.paid  += 1;
-      $rootScope.showToast('Marked as paid');
     });
   };
 });

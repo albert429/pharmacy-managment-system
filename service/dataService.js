@@ -12,6 +12,10 @@ app.service('PharmacyService', function ($http) {
     return $http.get(baseLink + '/users_metadata', { headers: headers });
   };
 
+  this.deleteUser = function (userId) {
+    return $http.delete(baseLink + '/users_metadata?id=eq.' + userId, { headers: headers });
+  };
+
   // customers management
   this.getCustomers = function () {
     return $http.get(baseLink + '/customers', { headers: headers });

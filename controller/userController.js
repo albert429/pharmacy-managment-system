@@ -1,4 +1,4 @@
-app.controller('UserController', function ($scope, PharmacyService, AuthService) {
+app.controller('UserController', function ($scope, PharmacyService) {
     $scope.users = [];
     $scope.loading=true;
 
@@ -23,7 +23,7 @@ app.controller('UserController', function ($scope, PharmacyService, AuthService)
     $scope.deleteUser = function (userId) {
     if (!confirm('Are you sure you want to delete this user?')) return;
 
-    AuthService.deleteUser(userId).then(
+    PharmacyService.deleteUser(userId).then(
       function (response) {
         console.log('User deleted successfully:', response.data);
 
