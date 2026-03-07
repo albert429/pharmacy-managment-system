@@ -32,7 +32,7 @@ app.controller('AppController', function ($scope, $location, $rootScope, $timeou
 
   $scope.logout = function () {
     AuthService.logout().then(function () {
-      $location.path('/landing');
+      $location.path('/login').replace();
     });
   };
 });

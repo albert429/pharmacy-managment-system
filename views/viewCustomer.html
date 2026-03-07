@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="profile-card">
+    <img src="../assets/profile.png" alt="Profile Image">
+    <h2>{{customer.name}}</h2>
+    <p>{{customer.role || 'Customer'}}</p>
+  </div>
+
+  <div class="details-card">
+    <h3>Customer Details</h3>
+
+    <div class="details-row">
+      <div><span>Email:</span> {{customer.email}}</div>
+      <div><span>Phone:</span> {{customer.phone}}</div>
+    </div>
+
+    <div class="details-row" ng-if="customer.state || customer.date_registered">
+      <div ng-if="customer.state"><span>State:</span> {{customer.state}}</div>
+      <div ng-if="customer.date_registered"><span>Registered On:</span> {{customer.date_registered | date:'yyyy-MM-dd'}}</div>
+    </div>
+
+ <button class="back-btn" ng-click="goToCustomers()">Back to Customer List</button>
+  </div>
+</div>
+

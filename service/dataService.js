@@ -18,18 +18,43 @@ app.service('PharmacyService', function ($http) {
   };
 
   this.addCustomer = function (customerData) {
-    return $http.post(baseLink + '/customers', customerData, { headers: headers });
+    return $http.post(baseLink + '/customers', customerData, {
+      headers: headers,
+    });
   };
 
-  // medicines management
+  this.deleteCustomer = function (customerId) {
+    return $http.delete(baseLink + '/customers?customer_id=eq.' + customerId, {
+      headers: headers,
+    });
+  };
+
+  this.editCustomer = function (customerId, customerData) {
+    return $http.patch(
+      baseLink + '/customers?customer_id=eq.' + customerId,
+      customerData,
+      { headers: headers }
+    );
+  };
+
+  var customerToEdit = null;
+
+  this.setCustomerToEdit = function (customer) {
+    customerToEdit = customer;
+  };
+
+  this.getCustomerToEdit = function () {
+    return customerToEdit;
+  };
+
   this.getMedicines = function () {
     return $http.get(baseLink + '/medicines', { headers: headers });
   };
-
   this.addMedicine = function (medicineData) {
-    return $http.post(baseLink + '/medicines', medicineData, { headers: headers });
+    return $http.post(baseLink + '/medicines', medicineData, {
+      headers: headers,
+    });
   };
-
   this.editMedicine = function (medicineId, medicineData) {
     return $http.patch(
       baseLink + '/medicines?medicine_id=eq.' + medicineId,
@@ -45,7 +70,7 @@ app.service('PharmacyService', function ($http) {
 
   // POST invoice and return the created row (needed to get invoice_id)
   this.addInvoice = function (invoiceData) {
-    var h = Object.assign({}, headers, { 'Prefer': 'return=representation' });
+    var h = Object.assign({}, headers, { Prefer: 'return=representation' });
     return $http.post(baseLink + '/invoices', invoiceData, { headers: h });
   };
 
@@ -63,26 +88,28 @@ app.service('PharmacyService', function ($http) {
   };
 
   this.addInvoiceItems = function (itemsData) {
-    return $http.post(baseLink + '/invoice_items', itemsData, { headers: headers });
+    return $http.post(baseLink + '/invoice_items', itemsData, {
+      headers: headers,
+    });
   };
 
   this.editInvoiceItem = function (itemId, itemData) {
-    return $http.patch(
-      baseLink + '/invoice_items?id=eq.' + itemId,
-      itemData,
-      { headers: headers }
-    );
+    return $http.patch(baseLink + '/invoice_items?id=eq.' + itemId, itemData, {
+      headers: headers,
+    });
   };
 
   // get invoices with items and medicines for a specific customer
   this.getCustomerInvoicesItems = function (customerId) {
-    var query = '?select=*,invoice_items(*,medicines(*))&customer_id=eq.' + customerId;
+    var query =
+      '?select=*,invoice_items(*,medicines(*))&customer_id=eq.' + customerId;
     return $http.get(baseLink + '/invoices' + query, { headers: headers });
   };
 
   // get invoices created by specific user
   this.getUserInvoices = function (userId) {
-    var query = '?select=*,invoice_items(*,medicines(*))&created_by=eq.' + userId;
+    var query =
+      '?select=*,invoice_items(*,medicines(*))&created_by=eq.' + userId;
     return $http.get(baseLink + '/invoices' + query, { headers: headers });
   };
 });

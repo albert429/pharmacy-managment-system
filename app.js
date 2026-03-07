@@ -37,7 +37,9 @@ app.config(function ($routeProvider) {
     .when('/landing', { templateUrl: 'views/landing.html' })
     .when('/about',   { templateUrl: 'views/about.html' })
     .when('/contact', { templateUrl: 'views/contact.html', controller: 'ContactController' })
-    .when('/login',   { templateUrl: 'views/login.html',   controller: 'AuthController' })
+    .when('/login',   { templateUrl: 'views/login.html',   controller: 'AuthController', 
+    })
+
 
     // Protected routes (any authenticated user)
     .when('/dashboard', {
@@ -70,6 +72,21 @@ app.config(function ($routeProvider) {
     .when('/add-user', {
       templateUrl: 'views/addUser.html',
       controller: 'AuthController',
+      resolve: { auth: function (AdminGuard) { return AdminGuard(); } },
+    })
+      .when('/edit-customer/:id', {
+      templateUrl: 'views/editCustomer.html',
+      controller: 'CustomerController',
+         resolve: { auth: function (AdminGuard) { return AdminGuard(); } },
+    })
+      .when('/view-customer/:id', {
+      templateUrl: 'views/viewCustomer.html',
+      controller: 'CustomerController',
+         resolve: { auth: function (AdminGuard) { return AdminGuard(); } },
+  })
+     .when('/add-customer', {
+      templateUrl: 'views/addCustomer.html',
+      controller: 'CustomerController',
       resolve: { auth: function (AdminGuard) { return AdminGuard(); } },
     })
     .when('/admin_panel', {

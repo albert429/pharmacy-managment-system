@@ -75,4 +75,27 @@ app.service('AuthService', function ($http) {
   this.setName = function (name) {
     localStorage.setItem('name', name);
   };
+
+// this.deleteUser = function (userId) {
+//   return client.auth.admin.deleteUser(userId).then(function (result) {
+
+//     if (result.error) {
+//       return Promise.reject(result.error);
+//     }
+
+//     return $http.delete(restBase + '/users_metadata?id=eq.' + userId, {
+//       headers: headers
+//     });
+
+//   });
+// };
+
+this.deleteUser = function (userId) {
+  return $http.delete(
+    restBase + '/users_metadata?id=eq.' + userId,
+    { headers: headers }
+  );
+};
+
+
 });

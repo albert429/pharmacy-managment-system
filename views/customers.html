@@ -11,11 +11,11 @@
   </div>
 
 
-    <div class="col-6 col-xl-4">
+  <div class="col-6 col-xl-4">
     <div class="card border-0 shadow stat-card h-100" style="border-left-color: var(--success) !important">
       <div class="card-body py-3">
         <p class="text-muted mb-2" style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">
-            New Customers This Month
+          New Customers This Month
         </p>
         <h3 class="fw-bold mb-0 fs-2" style="color: var(--success)">{{newCustomersThisMonth}}</h3>
       </div>
@@ -27,7 +27,7 @@
     <div class="card border-0 shadow stat-card h-100" style="border-left-color: var(--error) !important">
       <div class="card-body py-3">
         <p class="text-muted mb-2" style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">
-              Unpaid Customers
+          Unpaid Customers
         </p>
         <h3 class="fw-bold mb-0 fs-2" style="color: var(--error)">{{unpaidCustomers}}</h3>
       </div>
@@ -37,12 +37,5 @@
 
 </div>
 
-<div class="text-center py-4" ng-if="loading">
-  <div class="spinner-border text-secondary" role="status">
-    <span class="visually-hidden">Loading…</span>
-  </div>
-</div>
-
-<user-table data="customers" title="Customers" customer="true" ng-if="!loading"></user-table>
-
-
+<user-table data="customers" title="Customers" customer="true" loading="loading"
+  on-click="deleteCustomer(user.customer_id)" "></user-table>
