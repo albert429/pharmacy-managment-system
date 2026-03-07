@@ -31,31 +31,48 @@ app.service('AuthService', function ($http) {
   this.login = function (email, password) {
     return client.auth.signInWithPassword({ email: email, password: password }).then(function (result) {
       if (result.error) return Promise.reject(result.error);
-
-      var user = result.data.user;
-      var session = result.data.session;
-
-      // store user info so other parts of the app can access it
-      localStorage.setItem('user', JSON.stringify(user));
-      localStorage.setItem('session', JSON.stringify(session));
-
       return result.data;
     });
   };
 
   this.logout = function () {
     return client.auth.signOut().then(function () {
-      localStorage.removeItem('user');
-      localStorage.removeItem('session');
+      localStorage.removeItem('role');
+      localStorage.removeItem('name');
+    });
+  };
+
+  this.getSession = function () {
+    return client.auth.getSession().then(function (result) {
+      return result.data.session || null;
     });
   };
 
   this.getCurrentUser = function () {
-    var stored = localStorage.getItem('user');
-    return stored ? JSON.parse(stored) : null;
+    return client.auth.getUser().then(function (result) {
+      return result.data.user || null;
+    });
   };
 
   this.isLoggedIn = function () {
-    return localStorage.getItem('session') !== null;
+    return client.auth.getSession().then(function (result) {
+      return result.data.session !== null;
+    });
+  };
+
+  this.getRole = function () {
+    return localStorage.getItem('role');
+  };
+
+  this.setRole = function (role) {
+    localStorage.setItem('role', role);
+  };
+
+  this.getName = function () {
+    return localStorage.getItem('name');
+  };
+
+  this.setName = function (name) {
+    localStorage.setItem('name', name);
   };
 });

@@ -1,54 +1,54 @@
-app.controller(
-  'AuthController',
-  function ($scope, AuthService, PharmacyService) {
-    $scope.login = function () {
-      AuthService.login($scope.user.email, $scope.user.password).then(
-        function (result) {
-          console.log('Logged in user:', result.user.id);
-          // Redirect to dashboard hereee.
-          PharmacyService.getUsers().then(function (response) {
-            const users = response.data;
-            $scope.users = users;
-            const loggedInUser = users.find(
-              (user) => user.id === result.user.id
-            );
-            if (loggedInUser) {
-              if (loggedInUser.role === 'admin') {
-                console.log(loggedInUser.role);
-                window.location.href = '#!/dashboard';
-              } else if (loggedInUser.role === 'cashier') {
-                console.log(loggedInUser.role);
-                window.location.href = '#!/dashboard';
-              }
-            } else {
-              console.error('Logged in user not found in database');
-            }
+app.controller('AuthController', function ($scope, $location, AuthService, PharmacyService) {
+
+  // Redirect already-authenticated users away from login
+  AuthService.getSession().then(function (session) {
+    if (session) {
+      $location.path('/dashboard');
+    }
+  });
+
+  $scope.login = function () {
+    $scope.loginError = null;
+
+    AuthService.login($scope.user.email, $scope.user.password).then(
+      function (result) {
+        PharmacyService.getUsers().then(function (response) {
+          var loggedInUser = response.data.find(function (u) {
+            return u.id === result.user.id;
           });
-        },
-        function (error) {
-          alert('Login failed! ' + error.message);
-          console.log('Login error:', error);
-        }
-      );
+
+          if (loggedInUser) {
+            AuthService.setRole(loggedInUser.role);
+            AuthService.setName(loggedInUser.name);
+            $location.path('/dashboard');
+          } else {
+            $scope.loginError = 'User not found in system.';
+          }
+        });
+      },
+      function (error) {
+        $scope.loginError = error.message;
+      }
+    );
+  };
+
+  $scope.addUser = function () {
+    $scope.addUserError = null;
+
+    var meta = {
+      role: $scope.user.role,
+      name: $scope.user.fullName,
+      phone: $scope.user.phone,
     };
 
-    $scope.addUser = function () {
-      var meta = {
-        role: $scope.user.role,
-        name: $scope.user.fullName,
-        phone: $scope.user.phone,
-      };
-      console.log('Signup data:', $scope.user, meta);
-      AuthService.signup($scope.user.email, $scope.user.password, meta).then(
-        function (result) {
-          alert('User created successfully!');
-          console.log('User Added:', result.user);
-        },
-        function (error) {
-          alert('Failed!' + error.message);
-          console.log('Error:', error);
-        }
-      );
-    };
-  }
-);
+    AuthService.signup($scope.user.email, $scope.user.password, meta).then(
+      function (result) {
+        alert('User created successfully!');
+        console.log('User Added:', result.user);
+      },
+      function (error) {
+        $scope.addUserError = error.message;
+      }
+    );
+  };
+});

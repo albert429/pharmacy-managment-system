@@ -53,14 +53,105 @@ body {
   background: var(--bg);
 }
 
+/* ======================================
+   NAVBAR
+   ================================= */
+
 .navbar {
   background-color: var(--brand-secondary);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
 }
 
-/* Sidebar */
+/* Logo + wordmark group in the top navbar */
+.navbar-brand-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-logo {
+  height: 42px;
+  filter: drop-shadow(0 2px 8px rgba(13, 165, 166, 0.45));
+}
+
+/* "CureVia" text in the top navbar */
+.navbar-wordmark {
+  font-family: "Lora", serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-style: italic;
+  color: white;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 10px rgba(13, 165, 166, 0.5);
+}
+
+.navbar-wordmark-via {
+  color: var(--brand-tint);
+}
+
+/* ======================================
+   SIDEBAR
+   ================================= */
+
 .offcanvas {
   width: 240px !important;
   background: var(--brand-secondary);
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Sidebar header: logo + wordmark + close button */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 16px 12px;
+  border-bottom: 1px solid rgba(184, 230, 240, 0.08);
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar-brand-logo {
+  height: 44px;
+  filter: drop-shadow(0 2px 10px rgba(13, 165, 166, 0.5));
+}
+
+.sidebar-brand-name {
+  font-family: "Lora", serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-style: italic;
+  color: white;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 8px rgba(13, 165, 166, 0.4);
+}
+
+.sidebar-brand-via {
+  color: var(--brand-tint);
+}
+
+/* Sidebar user info */
+.sidebar-user {
+  padding: 14px 20px 10px;
+}
+
+.sidebar-user-name {
+  display: block;
+  color: white;
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+.sidebar-user-role {
+  display: block;
+  color: var(--n-400);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 2px;
 }
 
 .sidebar-link {
@@ -106,12 +197,32 @@ body {
   color: white;
 }
 
-/* Stat Cards */
+/* ======================================
+   LANDING NAV LOGO
+   ================================= */
+
+.landing-nav-brand img {
+  filter: drop-shadow(0 2px 8px rgba(13, 165, 166, 0.4));
+  transition: filter 0.25s, transform 0.25s;
+}
+
+.landing-nav-brand:hover img {
+  filter: drop-shadow(0 4px 14px rgba(13, 165, 166, 0.65));
+  transform: scale(1.05);
+}
+
+/* ======================================
+   STAT CARDS
+   ================================= */
+
 .stat-card {
   border-left: 4px solid var(--brand-primary) !important;
 }
 
-/* Table Header */
+/* ======================================
+   TABLE
+   ================================= */
+
 .table thead th {
   background: var(--brand-secondary);
   color: white;
@@ -120,7 +231,10 @@ body {
   text-transform: uppercase;
 }
 
-/* Units Badge */
+/* ======================================
+   BADGES
+   ================================= */
+
 .badge-units {
   background: var(--info-bg);
   color: var(--info);
@@ -131,6 +245,10 @@ body {
   font-weight: 600;
 }
 
+/* ======================================
+   LANDING — NAV
+   ================================= */
+
 .landing-nav {
   position: sticky;
   top: 0;
@@ -139,6 +257,7 @@ body {
       var(--n-900) 0%,
       #0a3040ec 60%,
       #0d6b6c 100%);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
 }
 
 .landing-nav-content {
@@ -151,7 +270,7 @@ body {
 }
 
 .landing-nav-brand img {
-  height: 36px;
+  height: 46px;
   border-radius: 6px;
 }
 
@@ -168,9 +287,7 @@ body {
   font-weight: 500;
   padding: 6px 14px;
   border-radius: 6px;
-  transition:
-    color 0.2s,
-    background 0.2s;
+  transition: color 0.2s, background 0.2s;
 }
 
 .landing-nav-link:hover {
@@ -188,10 +305,7 @@ body {
   border-radius: 8px;
   margin-left: 30px;
   text-align: center;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .landing-nav-login:hover {
@@ -232,6 +346,10 @@ body {
   font-weight: 600;
 }
 
+/* ======================================
+   LANDING — HERO
+   ================================= */
+
 .hero {
   background: linear-gradient(110deg,
       var(--n-900) 0%,
@@ -252,6 +370,7 @@ body {
   font-weight: 700;
   color: white;
   margin-bottom: 20px;
+  text-shadow: 0 2px 16px rgba(13, 165, 166, 0.3);
 }
 
 .hero-subtitle {
@@ -264,16 +383,24 @@ body {
   background: var(--brand-primary);
   color: white;
   border: none;
-  padding: 12.5px 25px;
+  padding: 12.5px 28px;
   border-radius: 8px;
   font-weight: 600;
-  transition: background 0.2s;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 18px rgba(13, 165, 166, 0.4);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
 }
 
 .hero-btn:hover {
   background: var(--brand-primary-hover);
   color: white;
+  box-shadow: 0 6px 22px rgba(13, 165, 166, 0.55);
+  transform: translateY(-2px);
 }
+
+/* ======================================
+   LANDING — FEATURES
+   ================================= */
 
 .features-section {
   max-width: 1100px;
@@ -299,13 +426,12 @@ body {
   padding: 28px 20px;
   height: 100%;
   text-align: left;
-  transition:
-    box-shadow 0.2s,
-    transform 0.2s;
+  border-radius: 10px;
+  transition: box-shadow 0.2s, transform 0.2s;
 }
 
 .feature-card:hover {
-  box-shadow: 0 8px 16px rgba(13, 166, 166, 0.253);
+  box-shadow: 0 8px 24px rgba(13, 166, 166, 0.18);
   transform: translateY(-4px);
 }
 
@@ -329,13 +455,22 @@ body {
   line-height: 1.5;
 }
 
+/* ======================================
+   LANDING — FOOTER
+   ================================= */
+
 .landing-footer {
   background: var(--brand-secondary);
   color: rgba(184, 230, 240, 0.72);
   text-align: center;
-  padding: 24px 20px;
+  padding: 28px 20px;
   font-size: 0.8rem;
+  letter-spacing: 0.02em;
 }
+
+/* ======================================
+   ABOUT
+   ================================= */
 
 .about-hero {
   background: linear-gradient(110deg,
@@ -358,6 +493,7 @@ body {
   font-size: clamp(1.6rem, 5vw, 2.6rem);
   font-weight: 700;
   color: white;
+  text-shadow: 0 2px 14px rgba(13, 165, 166, 0.3);
 }
 
 .about-hero-sub {
@@ -444,6 +580,10 @@ body {
   line-height: 1.5;
 }
 
+/* ======================================
+   CONTACT
+   ================================= */
+
 .contact-body {
   max-width: 620px;
   margin: auto;
@@ -503,13 +643,16 @@ body {
   font-size: 0.9rem;
   padding: 11px 28px;
   border-radius: 8px;
-  transition: background 0.2s;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 14px rgba(13, 165, 166, 0.35);
+  transition: background 0.2s, box-shadow 0.2s;
   width: 100%;
 }
 
 .contact-submit-btn:hover:not(:disabled) {
   background: var(--brand-primary-hover);
   color: white;
+  box-shadow: 0 6px 18px rgba(13, 165, 166, 0.5);
 }
 
 .contact-submit-btn:disabled {

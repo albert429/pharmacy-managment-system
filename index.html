@@ -14,7 +14,7 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/supabase.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script src="app.js"></script>
   <script src="Service/authService.js"></script>
@@ -37,15 +37,20 @@
   </div>
 
   <div ng-if="!islandingPage()">
+    <!-- Sidebar -->
     <div class="offcanvas offcanvas-start d-flex flex-column" id="sidebar" tabindex="-1">
-      <div class="p-3 d-flex align-items-center justify-content-between">
-        <img src="assets/logo.png" alt="CureVia" height="34" />
+
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <img src="assets/Transparent-logo.png" alt="CureVia" class="sidebar-brand-logo" />
+          <span class="sidebar-brand-name">Cure<span class="sidebar-brand-via">Via</span></span>
+        </div>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
       </div>
 
-      <div class="p-3">
-        <span class="d-block text-white fw-semibold" style="font-size: 0.88rem">Ziyad Al-Awadhi</span>
-        <span class="d-block text-secondary" style="font-size: 0.7rem">Admin</span>
+      <div class="sidebar-user">
+        <span class="sidebar-user-name">{{ currentUserName }}</span>
+        <span class="sidebar-user-role">Admin</span>
       </div>
 
       <nav class="flex-grow-1 py-2">
@@ -53,22 +58,28 @@
         <a href="#!/medicines" class="sidebar-link"><i class="bi bi-capsule"></i> Medicines</a>
         <a href="#!/customers" class="sidebar-link"><i class="bi bi-people"></i> Customers</a>
         <a href="#!/invoices" class="sidebar-link"><i class="bi bi-receipt"></i> Invoices</a>
-        <a href="#!/users" class="sidebar-link"><i class="bi bi-gear"></i> Users</a>
+        <a href="#!/users" class="sidebar-link" ng-if="currentRole === 'admin'"><i class="bi bi-gear"></i> Users</a>
+        <a href="#!/admin_panel" class="sidebar-link" ng-if="currentRole === 'admin'"><i class="bi bi-shield-lock"></i> Admin Panel</a>
       </nav>
 
       <div class="p-3">
-        <a href="#!/landing" class="btn-logout">
+        <a ng-click="logout()" class="btn-logout" style="cursor: pointer;">
           <i class="bi bi-box-arrow-left me-1"></i>Logout
         </a>
       </div>
     </div>
 
+    <!-- Top Navbar -->
     <nav class="navbar px-3">
       <button class="btn p-0 me-3 border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
         <i class="bi bi-list fs-4 text-white"></i>
       </button>
-      <span class="fw-bold" style="color: white; font-size: 1.2rem"><em style="color: var(--bg)">Cure<span
-            style="color: var(--brand-tint)">Via</span></em></span>
+
+      <div class="navbar-brand-group">
+        <img src="assets/Transparent-logo.png" alt="CureVia" class="navbar-logo" />
+        <span class="navbar-wordmark">Cure<span class="navbar-wordmark-via">Via</span></span>
+      </div>
+
       <span class="ms-auto text-white small">
         <i class="bi bi-calendar3 me-2"></i><span id="navbar-date"></span>
       </span>
@@ -82,7 +93,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-    // Show today's date
     var d = new Date();
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -92,7 +102,6 @@
         days[d.getDay()] + ', ' + months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
     }
 
-    // Highlight active sidebar link
     window.addEventListener('hashchange', function () {
       document.querySelectorAll('.sidebar-link').forEach(function (link) {
         link.classList.remove('active');
