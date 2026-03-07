@@ -1,17 +1,22 @@
 <div>
   <div class="about-hero">
-    <div class="about-hero-content">
+    <landing-nav></landing-nav>
+
+    <div class="about-hero-content slideUp">
+      <div class="hero-badge">About the Platform</div>
       <h1 class="about-hero-title">About CureVia</h1>
       <p class="about-hero-sub">
-        CureVia is a pharmacy management system built to support daily pharmacy
-        operations with clarity and efficiency.
+        CureVia is a pharmacy management system built to streamline daily
+        pharmacy operations with clarity and efficiency
       </p>
     </div>
   </div>
+
   <div class="about-body">
     <div class="row g-5 align-items-start mb-5">
       <div class="col-lg-6">
-        <h2 class="about-heading">What is CureVia?</h2>
+        <p class="section-label">The Platform</p>
+        <h2 class="about-heading">What is CureVia</h2>
         <p class="about-text">
           CureVia is an internal platform designed to help pharmacy teams manage
           their core day-to-day operations with ease. It allows staff to track
@@ -24,29 +29,33 @@
           issuing an invoice or an administrator is reviewing stock levels, the
           interface stays clear, responsive, and easy to navigate.
         </p>
+        <a href="#!/login" class="btn hero-btn" style="font-size: 0.88rem; padding: 12px 22px">
+          <i class="bi bi-box-arrow-in-right me-2"></i>Login to System
+        </a>
       </div>
 
       <div class="col-lg-6">
-        <div class="card shadow about-mission-card">
+        <div class="about-mission-card">
           <div class="about-mission-icon">
             <i class="bi bi-heart-pulse"></i>
           </div>
-          <h4 class="about-mission-title">Our Mission</h4>
+          <p class="section-label">Our Mission</p>
+          <h4 class="about-mission-title">Why we built CureVia</h4>
           <p class="about-mission-text">
-            Our goal is to provide pharmacy teams with a dependable internal
-            system that simplifies routine operations.<br />
-            By reducing manual work and improving visibility over inventory and
-            transactions, CureVia helps pharmacies maintain organized workflows
-            and reliable records.
+            Our goal is to empower pharmacy teams with a reliable system that
+            simplifies routine operations. By reducing manual work and improving
+            visibility over inventory and transactions, CureVia ensures
+            organized workflows and accurate records.
           </p>
         </div>
       </div>
     </div>
 
+    <p class="section-label">What we stand for</p>
     <h3 class="about-heading mb-4">Core Values</h3>
     <div class="row g-3">
       <div class="col-lg-4 col-sm-6">
-        <div class="card shadow about-value-card">
+        <div class="about-value-card">
           <i class="bi bi-check2-circle about-value-icon"></i>
           <h6 class="about-value-title">Accuracy</h6>
           <p class="about-value-desc">
@@ -57,7 +66,7 @@
         </div>
       </div>
       <div class="col-lg-4 col-sm-6">
-        <div class="card shadow about-value-card">
+        <div class="about-value-card">
           <i class="bi bi-lightning-charge about-value-icon"></i>
           <h6 class="about-value-title">Speed</h6>
           <p class="about-value-desc">
@@ -68,7 +77,7 @@
         </div>
       </div>
       <div class="col-lg-4 col-sm-6">
-        <div class="card shadow about-value-card">
+        <div class="about-value-card">
           <i class="bi bi-shield-check about-value-icon"></i>
           <h6 class="about-value-title">Security</h6>
           <p class="about-value-desc">

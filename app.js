@@ -35,8 +35,11 @@ app.config(function ($routeProvider) {
     // Public routes
     .when('/', { redirectTo: '/landing' })
     .when('/landing', { templateUrl: 'views/landing.html' })
-    .when('/about',   { templateUrl: 'views/about.html' })
-    .when('/contact', { templateUrl: 'views/contact.html', controller: 'ContactController' })
+    .when('/about', { templateUrl: 'views/about.html' })
+    .when('/contact', {
+      templateUrl: 'views/contact.html',
+      controller: 'ContactController',
+    })
     .when('/login', {
       templateUrl: 'views/login.html',
       controller: 'AuthController',
@@ -52,60 +55,102 @@ app.config(function ($routeProvider) {
       },
     })
 
-
     // Protected routes (any authenticated user)
     .when('/dashboard', {
       templateUrl: 'views/dashboard.html',
       controller: 'DashboardController',
-      resolve: { auth: function (AuthGuard) { return AuthGuard(); } },
+      resolve: {
+        auth: function (AuthGuard) {
+          return AuthGuard();
+        },
+      },
     })
     .when('/medicines', {
       templateUrl: 'views/medicine.html',
       controller: 'MedicineController',
-      resolve: { auth: function (AuthGuard) { return AuthGuard(); } },
+      resolve: {
+        auth: function (AuthGuard) {
+          return AuthGuard();
+        },
+      },
     })
     .when('/customers', {
       templateUrl: 'views/customers.html',
       controller: 'CustomerController',
-      resolve: { auth: function (AuthGuard) { return AuthGuard(); } },
+      resolve: {
+        auth: function (AuthGuard) {
+          return AuthGuard();
+        },
+      },
     })
     .when('/invoices', {
       templateUrl: 'views/invoices.html',
       controller: 'InvoiceController',
-      resolve: { auth: function (AuthGuard) { return AuthGuard(); } },
+      resolve: {
+        auth: function (AuthGuard) {
+          return AuthGuard();
+        },
+      },
     })
 
     // Admin-only routes
     .when('/users', {
       templateUrl: 'views/users.html',
       controller: 'UserController',
-      resolve: { auth: function (AdminGuard) { return AdminGuard(); } },
+      resolve: {
+        auth: function (AdminGuard) {
+          return AdminGuard();
+        },
+      },
     })
     .when('/add-user', {
       templateUrl: 'views/addUser.html',
       controller: 'AuthController',
-      resolve: { auth: function (AdminGuard) { return AdminGuard(); } },
+      resolve: {
+        auth: function (AdminGuard) {
+          return AdminGuard();
+        },
+      },
     })
     .when('/edit-customer/:id', {
       templateUrl: 'views/editCustomer.html',
       controller: 'CustomerController',
-      resolve: { auth: function (AuthGuard) { return AuthGuard(); } },
+      resolve: {
+        auth: function (AuthGuard) {
+          return AuthGuard();
+        },
+      },
     })
     .when('/view-customer/:id', {
       templateUrl: 'views/viewCustomer.html',
       controller: 'CustomerController',
-      resolve: { auth: function (AuthGuard) { return AuthGuard(); } },
+      resolve: {
+        auth: function (AuthGuard) {
+          return AuthGuard();
+        },
+      },
     })
     .when('/add-customer', {
       templateUrl: 'views/addCustomer.html',
       controller: 'CustomerController',
-      resolve: { auth: function (AuthGuard) { return AuthGuard(); } },
+      resolve: {
+        auth: function (AuthGuard) {
+          return AuthGuard();
+        },
+      },
     })
     .when('/admin_panel', {
       templateUrl: 'views/admin_panel.html',
       controller: 'AdminPanelController',
-      resolve: { auth: function (AdminGuard) { return AdminGuard(); } },
+      resolve: {
+        auth: function (AdminGuard) {
+          return AdminGuard();
+        },
+      },
+    })
+    .when('/404', {
+      templateUrl: 'views/404.html',
     })
 
-    .otherwise({ redirectTo: '/landing' });
+    .otherwise({ redirectTo: '/404' });
 });

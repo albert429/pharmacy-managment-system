@@ -1,95 +1,155 @@
 <div>
   <div class="hero">
-    <div class="hero-content">
-      <h1 class="hero-title">
-        Pharmacy Management,<br /><em style="color: var(--brand-tint)">done right.</em>
-      </h1>
+    <landing-nav></landing-nav>
+
+    <div class="hero-content slideUp">
+      <div class="hero-badge">Pharmacy Management platform</div>
+      <h1 class="hero-title">Pharmacy Management,<br /><em>done right.</em></h1>
       <p class="hero-subtitle">
-        CureVia is an internal system built for pharmacy staff to manage
-        medicines, customers, and sales — all in one place.
+        Run your pharmacy smarter — not harder. <br />CureVia gives your team
+        one place to manage medicines, serve customers, and track every sale
+        with confidence.
       </p>
       <a href="#!/dashboard" class="btn hero-btn" ng-if="currentUserName">
         <i class="bi bi-speedometer2 me-2"></i>Go to Dashboard
       </a>
-      <a href="#!/login" class="btn hero-btn" ng-if="!currentUserName">
-        <i class="bi bi-box-arrow-in-right me-2"></i>Login to System
-      </a>
+      <div class="d-flex gap-3 justify-content-center flex-wrap">
+        <a href="#!/login" class="btn hero-btn" ng-if="!currentUserName">
+          <i class="bi bi-box-arrow-in-right me-2"></i>Login to System
+        </a>
+        <a href="#!/about" class="hero-btn-outline">Learn More</a>
+      </div>
     </div>
   </div>
 
   <div class="features-section">
+    <p class="section-label">What's included</p>
     <h2 class="features-section-title">Everything you need</h2>
     <p class="features-section-sub">
-      Built for pharmacists and staff to handle daily operations with ease.
+      From the front counter to the back office, CureVia keeps your entire team
+      organized and in sync.
     </p>
 
     <div class="row g-3 mt-2">
       <div class="col-sm-6 col-lg-4">
-        <div class="card feature-card">
+        <div class="card feature-card h-100">
           <div class="feature-icon"><i class="bi bi-capsule"></i></div>
           <h5 class="feature-title">Medicine Inventory</h5>
           <p class="feature-desc">
-            Easily add, update, and track medicines with automatic expiry date
-            alerts and low-stock warnings.
+            Easily add, update, and track every medicine in stock — quantities,
+            pricing, expiry dates, and low-stock alerts, all in one view.
           </p>
         </div>
       </div>
 
       <div class="col-sm-6 col-lg-4">
-        <div class="card feature-card">
+        <div class="card feature-card h-100">
           <div class="feature-icon"><i class="bi bi-people"></i></div>
           <h5 class="feature-title">Customer Management</h5>
           <p class="feature-desc">
-            Manage customer profiles and view full purchase history linked to
-            their invoices.
+            Manage customer profiles and keep complete customer records with
+            full purchase history linked directly to every invoice.
           </p>
         </div>
       </div>
 
       <div class="col-sm-6 col-lg-4">
-        <div class="card feature-card">
+        <div class="card feature-card h-100">
           <div class="feature-icon"><i class="bi bi-receipt"></i></div>
           <h5 class="feature-title">Sales & Invoices</h5>
           <p class="feature-desc">
-            Issue invoices with automatic stock updates, apply discounts, and
-            track payments seamlessly.
+            Issue invoices in seconds, apply discounts, auto-update stock, and
+            track payment status without any paperwork.
           </p>
         </div>
       </div>
 
       <div class="col-sm-6 col-lg-4">
-        <div class="card feature-card">
+        <div class="card feature-card h-100">
           <div class="feature-icon"><i class="bi bi-speedometer2"></i></div>
           <h5 class="feature-title">Dashboard Overview</h5>
           <p class="feature-desc">
-            Get a quick snapshot of inventory levels, expiring stock, and
-            top-selling medicines.
+            See what matters most at a glance — stock levels, expiring items,
+            and your top-selling medicines.
           </p>
         </div>
       </div>
 
       <div class="col-sm-6 col-lg-4">
-        <div class="card feature-card">
+        <div class="card feature-card h-100">
           <div class="feature-icon"><i class="bi bi-search"></i></div>
           <h5 class="feature-title">Search & Filter</h5>
           <p class="feature-desc">
-            Find medicines, customers, and invoices instantly with real-time
-            search and filtering.
+            Instantly find any medicine, customer, or invoice with live search
+            and column-level filtering.
           </p>
         </div>
       </div>
 
       <div class="col-sm-6 col-lg-4">
-        <div class="card feature-card">
+        <div class="card feature-card h-100">
           <div class="feature-icon"><i class="bi bi-shield-check"></i></div>
           <h5 class="feature-title">Role-Based Access</h5>
           <p class="feature-desc">
-            Separate role-based permissions for admins and cashiers ensure
-            secure and controlled system access.
+            Admins and cashiers each see exactly what they need — nothing more,
+            nothing less. Secure by design..
           </p>
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="middle-section">
+    <div style="max-width: 870px; margin: 0 auto">
+      <p class="section-label">Why it matters</p>
+      <h2 class="middle-section-title">Built for real pharmacy workflows</h2>
+      <p class="middle-section-sub">
+        Designed to replace manual processes and give your team one reliable
+        tool.
+      </p>
+      <div class="row mt-2">
+        <div class="col-12 col-md-4 middle-card">
+          <div class="middle-number">100%</div>
+          <div class="middle-title">Digital Records</div>
+          <p class="middle-desc">
+            Every medicine, customer, and transaction stored cleanly. No
+            paperwork, no lost data, no duplicates.
+          </p>
+        </div>
+        <div class="col-12 col-md-4 middle-card">
+          <div class="middle-number">Live</div>
+          <div class="middle-title">Real-Time Stock</div>
+          <p class="middle-desc">
+            Every sale updates inventory in real time, giving your team clear
+            stock visibility. <br />Low-stock alerts ensure your pharmacy stays
+            prepared.
+          </p>
+        </div>
+        <div class="col-12 col-md-4 middle-card">
+          <div class="middle-number">Fast</div>
+          <div class="middle-title">Quick Daily Operations</div>
+          <p class="middle-desc">
+            Create invoices, search medicines, and manage customers with ease.
+            <br />Simple workflows let your staff focus on patients, not
+            processes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-section">
+    <p class="section-label">Get started</p>
+    <h2 class="bottom-title">
+      Start managing your pharmacy<br />with clarity and control.
+    </h2>
+    <p class="bottom-sub">
+      Everything your team needs is already set up. Log in and start managing
+      your operations today.
+    </p>
+    <a href="#!/login" class="bottom-btn">
+      <i class="bi bi-box-arrow-in-right me-2"></i>Login to System
+    </a>
   </div>
 
   <div class="landing-footer">
