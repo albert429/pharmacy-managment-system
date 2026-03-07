@@ -8,7 +8,10 @@
         CureVia is an internal system built for pharmacy staff to manage
         medicines, customers, and sales — all in one place.
       </p>
-      <a href="#!/login" class="btn hero-btn">
+      <a href="#!/dashboard" class="btn hero-btn" ng-if="currentUserName">
+        <i class="bi bi-speedometer2 me-2"></i>Go to Dashboard
+      </a>
+      <a href="#!/login" class="btn hero-btn" ng-if="!currentUserName">
         <i class="bi bi-box-arrow-in-right me-2"></i>Login to System
       </a>
     </div>

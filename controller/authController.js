@@ -1,15 +1,6 @@
 app.controller(
   'AuthController',
   function ($scope, $location, $q, AuthService, PharmacyService) {
-    // Redirect already-authenticated users away from login (not from /add-user)
-    if ($location.path() === '/login') {
-      AuthService.getSession().then(function (session) {
-        if (session) {
-          $location.path('/dashboard');
-        }
-      });
-    }
-
     $scope.login = function () {
       $scope.loginError = null;
 

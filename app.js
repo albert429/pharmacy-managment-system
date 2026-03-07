@@ -37,7 +37,19 @@ app.config(function ($routeProvider) {
     .when('/landing', { templateUrl: 'views/landing.html' })
     .when('/about',   { templateUrl: 'views/about.html' })
     .when('/contact', { templateUrl: 'views/contact.html', controller: 'ContactController' })
-    .when('/login',   { templateUrl: 'views/login.html',   controller: 'AuthController', 
+    .when('/login', {
+      templateUrl: 'views/login.html',
+      controller: 'AuthController',
+      resolve: {
+        redirect: function (AuthService, $location, $q) {
+          return AuthService.getSession().then(function (session) {
+            if (session) {
+              $location.path('/dashboard').replace();
+              return $q.reject('already-authenticated');
+            }
+          });
+        },
+      },
     })
 
 
