@@ -74,6 +74,7 @@ app.config(function ($routeProvider) {
     })
     .when('/admin_panel', {
       templateUrl: 'views/admin_panel.html',
+      controller: 'AdminPanelController',
       resolve: { auth: function (AdminGuard) { return AdminGuard(); } },
     })
 
