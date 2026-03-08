@@ -1,99 +1,133 @@
 <!doctype html>
 <html lang="en" ng-app="pharmacyApp">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CureVia — Pharmacy Management System</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CureVia — Pharmacy Management System</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Lora:ital,wght@0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Lora:ital,wght@0,600;1,400&display=swap"
-    rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+    <script src="service/authService.js"></script>
+    <script src="service/dataService.js"></script>
+    <script src="controller/appController.js"></script>
+    <script src="controller/authController.js"></script>
+    <script src="controller/dashboardController.js"></script>
+    <script src="controller/medicineController.js"></script>
+    <script src="controller/customerController.js"></script>
+    <script src="controller/invoiceController.js"></script>
+    <script src="controller/userController.js"></script>
+    <script src="controller/adminPanelController.js"></script>
+    <script src="controller/contactController.js"></script>
+    <script src="Directives/userTableDirective.js"></script>
+    <script src="Directives/appNavDirective.js"></script>
 
-  <script src="app.js"></script>
-  <script src="service/authService.js"></script>
-  <script src="service/dataService.js"></script>
-  <script src="controller/appController.js"></script>
-  <script src="controller/authController.js"></script>
-  <script src="controller/dashboardController.js"></script>
-  <script src="controller/medicineController.js"></script>
-  <script src="controller/customerController.js"></script>
-  <script src="controller/invoiceController.js"></script>
-  <script src="controller/userController.js"></script>
-  <script src="controller/adminPanelController.js"></script>
-  <script src="controller/contactController.js"></script>
-  <script src="Directives/userTableDirective.js"></script>
-  <script src="Directives/landingNavDirective.js"></script>
+    <link href="style.css" rel="stylesheet" />
+  </head>
 
-  <link href="style.css" rel="stylesheet" />
-</head>
-
-<body ng-controller="AppController">
-
-  <!-- Sidebar (app pages only) -->
-  <div ng-if="!islandingPage()">
-    <div class="offcanvas offcanvas-start d-flex flex-column" id="sidebar" tabindex="-1">
-
-      <div class="sidebar-header">
-        <div class="sidebar-brand">
-          <img src="assets/Transparent-logo.png" alt="CureVia" class="sidebar-brand-logo" />
-          <span class="sidebar-brand-name">Cure<span class="sidebar-brand-via">Via</span></span>
+  <body ng-controller="AppController">
+    <div ng-if="!islandingPage()">
+      <div
+        class="offcanvas offcanvas-start d-flex flex-column"
+        id="sidebar"
+        tabindex="-1"
+      >
+        <div class="sidebar-header">
+          <div class="sidebar-brand">
+            <img
+              src="assets/Transparent-logo.png"
+              alt="CureVia"
+              class="sidebar-brand-logo"
+            />
+            <span class="sidebar-brand-name"
+              >Cure<span class="sidebar-brand-via">Via</span></span
+            >
+          </div>
+          <button
+            type="button"
+            class="btn-close btn-close-white"
+            data-bs-dismiss="offcanvas"
+          ></button>
         </div>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+
+        <div class="sidebar-user">
+          <span class="sidebar-user-name">{{ currentUserName }}</span>
+          <span class="sidebar-user-role">{{ currentRole }}</span>
+        </div>
+
+        <nav class="flex-grow-1 py-2">
+          <a href="#!/dashboard" class="sidebar-link"
+            ><i class="bi bi-speedometer2"></i> Dashboard</a
+          >
+          <a href="#!/medicines" class="sidebar-link"
+            ><i class="bi bi-capsule"></i> Medicines</a
+          >
+          <a href="#!/customers" class="sidebar-link"
+            ><i class="bi bi-people"></i> Customers</a
+          >
+          <a href="#!/invoices" class="sidebar-link"
+            ><i class="bi bi-receipt"></i> Invoices</a
+          >
+          <a
+            href="#!/users"
+            class="sidebar-link"
+            ng-if="currentRole === 'admin'"
+            ><i class="bi bi-gear"></i> Users</a
+          >
+          <a
+            href="#!/admin_panel"
+            class="sidebar-link"
+            ng-if="currentRole === 'admin'"
+          >
+            <i class="bi bi-shield-lock"></i> Admin Panel
+          </a>
+          <hr class="sidebar-divider" />
+          <a href="#!/landing" class="sidebar-link"
+            ><i class="bi bi-house"></i> Home</a
+          >
+          <a href="#!/about" class="sidebar-link"
+            ><i class="bi bi-info-circle"></i> About</a
+          >
+          <a href="#!/contact" class="sidebar-link"
+            ><i class="bi bi-envelope"></i> Contact</a
+          >
+        </nav>
+
+        <div class="p-3">
+          <a ng-click="logout()" class="btn-logout" style="cursor: pointer">
+            <i class="bi bi-box-arrow-left me-1"></i>Logout
+          </a>
+        </div>
       </div>
-
-      <div class="sidebar-user">
-        <span class="sidebar-user-name">{{ currentUserName }}</span>
-        <span class="sidebar-user-role">{{ currentRole }}</span>
-      </div>
-
-      <nav class="flex-grow-1 py-2">
-        <a href="#!/dashboard" class="sidebar-link"><i class="bi bi-speedometer2"></i> Dashboard</a>
-        <a href="#!/medicines" class="sidebar-link"><i class="bi bi-capsule"></i> Medicines</a>
-        <a href="#!/customers" class="sidebar-link"><i class="bi bi-people"></i> Customers</a>
-        <a href="#!/invoices" class="sidebar-link"><i class="bi bi-receipt"></i> Invoices</a>
-        <a href="#!/users" class="sidebar-link" ng-if="currentRole === 'admin'"><i class="bi bi-gear"></i> Users</a>
-        <a href="#!/admin_panel" class="sidebar-link" ng-if="currentRole === 'admin'">
-          <i class="bi bi-shield-lock"></i> Admin Panel
-        </a>
-        <hr class="sidebar-divider" />
-        <a href="#!/landing" class="sidebar-link"><i class="bi bi-house"></i> Home</a>
-        <a href="#!/about" class="sidebar-link"><i class="bi bi-info-circle"></i> About</a>
-        <a href="#!/contact" class="sidebar-link"><i class="bi bi-envelope"></i> Contact</a>
-      </nav>
-
-      <div class="p-3">
-        <a ng-click="logout()" class="btn-logout" style="cursor:pointer;">
-          <i class="bi bi-box-arrow-left me-1"></i>Logout
-        </a>
-      </div>
-
     </div>
-  </div>
 
-  <!-- Global Navbar -->
-  <app-nav></app-nav>
+    <app-nav></app-nav>
 
-  <!-- Page content -->
-  <div ng-if="islandingPage()">
-    <ng-view></ng-view>
-  </div>
-
-  <div ng-if="!islandingPage()">
-    <div class="mt-3 p-3 p-lg-4 m-auto" style="max-width: 1200px">
+    <div ng-if="islandingPage()">
       <ng-view></ng-view>
     </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <div ng-if="!islandingPage()">
+      <div class="mt-3 p-3 p-lg-4 m-auto" style="max-width: 1200px">
+        <ng-view></ng-view>
+      </div>
+    </div>
 
-
-</body>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

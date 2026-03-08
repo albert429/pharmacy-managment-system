@@ -1,24 +1,28 @@
-<!-- Loading -->
 <div ng-if="loading" class="text-center py-5 text-muted">
-  <div class="spinner-border spinner-border-sm me-2"></div> Loading admin panel...
+  <div class="spinner-border spinner-border-sm me-2"></div>
+  Loading admin panel...
 </div>
 
 <div ng-if="!loading">
-
-  <!-- Header -->
   <div class="d-flex align-items-center justify-content-between mb-4">
     <div>
-      <h4 class="fw-bold mb-0"><i class="bi bi-shield-lock me-2" style="color: var(--brand-primary)"></i>Admin Panel</h4>
-      <p class="text-muted small mb-0 mt-1">System overview — visible to admins only</p>
+      <h4 class="fw-bold mb-0">
+        <i
+          class="bi bi-shield-lock me-2"
+          style="color: var(--brand-primary)"
+        ></i
+        >Admin Panel
+      </h4>
+      <p class="text-muted small mb-0 mt-1">
+        System overview — visible to admins only
+      </p>
     </div>
     <a href="#!/add-user" class="dash-action-btn">
       <i class="bi bi-person-plus me-1"></i>Add User
     </a>
   </div>
 
-  <!-- Stats Row -->
   <div class="row g-3 mb-4 row-cols-2 row-cols-md-3 row-cols-xl-6">
-
     <div class="col">
       <div class="card border-0 shadow-sm dash-stat-card h-100">
         <div class="card-body d-flex align-items-center gap-3">
@@ -27,7 +31,9 @@
           </div>
           <div>
             <p class="stat-label mb-1">Total Staff</p>
-            <h3 class="stat-value mb-0" style="color: var(--brand-primary)">{{ stats.users }}</h3>
+            <h3 class="stat-value mb-0" style="color: var(--brand-primary)">
+              {{ stats.users }}
+            </h3>
           </div>
         </div>
       </div>
@@ -36,12 +42,20 @@
     <div class="col">
       <div class="card border-0 shadow-sm dash-stat-card h-100">
         <div class="card-body d-flex align-items-center gap-3">
-          <div class="dash-stat-icon" style="background: rgba(28,43,51,0.1); color: var(--brand-secondary)">
+          <div
+            class="dash-stat-icon"
+            style="
+              background: rgba(28, 43, 51, 0.1);
+              color: var(--brand-secondary);
+            "
+          >
             <i class="bi bi-shield-check"></i>
           </div>
           <div>
             <p class="stat-label mb-1">Admins</p>
-            <h3 class="stat-value mb-0" style="color: var(--brand-secondary)">{{ stats.admins }}</h3>
+            <h3 class="stat-value mb-0" style="color: var(--brand-secondary)">
+              {{ stats.admins }}
+            </h3>
           </div>
         </div>
       </div>
@@ -55,7 +69,9 @@
           </div>
           <div>
             <p class="stat-label mb-1">Cashiers</p>
-            <h3 class="stat-value mb-0" style="color: var(--brand-accent)">{{ stats.cashiers }}</h3>
+            <h3 class="stat-value mb-0" style="color: var(--brand-accent)">
+              {{ stats.cashiers }}
+            </h3>
           </div>
         </div>
       </div>
@@ -69,7 +85,11 @@
           </div>
           <div>
             <p class="stat-label mb-1">Revenue</p>
-            <h3 class="stat-value mb-0" style="color: var(--success)">{{ stats.revenue | number:0 }}<small class="stat-sublabel ms-1">EGP</small></h3>
+            <h3 class="stat-value mb-0" style="color: var(--success)">
+              {{ stats.revenue | number:0 }}<small class="stat-sublabel ms-1"
+                >EGP</small
+              >
+            </h3>
           </div>
         </div>
       </div>
@@ -83,7 +103,9 @@
           </div>
           <div>
             <p class="stat-label mb-1">Paid</p>
-            <h3 class="stat-value mb-0" style="color: var(--success)">{{ stats.paid }}</h3>
+            <h3 class="stat-value mb-0" style="color: var(--success)">
+              {{ stats.paid }}
+            </h3>
           </div>
         </div>
       </div>
@@ -97,22 +119,28 @@
           </div>
           <div>
             <p class="stat-label mb-1">Unpaid</p>
-            <h3 class="stat-value mb-0" style="color: var(--error)">{{ stats.unpaid }}</h3>
+            <h3 class="stat-value mb-0" style="color: var(--error)">
+              {{ stats.unpaid }}
+            </h3>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 
-  <!-- Staff Performance -->
   <div class="card border-0 shadow-sm mb-4">
     <div class="card-body">
       <div class="d-flex align-items-center justify-content-between mb-3">
         <h5 class="dash-card-title mb-0">
-          <i class="bi bi-bar-chart-line me-2" style="color: var(--brand-primary)"></i>Staff Performance
+          <i
+            class="bi bi-bar-chart-line me-2"
+            style="color: var(--brand-primary)"
+          ></i
+          >Staff Performance
         </h5>
-        <a href="#!/users" class="dash-view-all">Manage users <i class="bi bi-arrow-right"></i></a>
+        <a href="#!/users" class="dash-view-all"
+          >Manage users <i class="bi bi-arrow-right"></i
+        ></a>
       </div>
 
       <div class="table-responsive">
@@ -131,19 +159,29 @@
             <tr ng-repeat="member in staff">
               <td class="text-muted fw-semibold">{{ $index + 1 }}</td>
               <td class="fw-medium">{{ member.name }}</td>
-              <td class="text-muted d-none d-md-table-cell" style="font-size: 0.85rem">{{ member.email }}</td>
+              <td
+                class="text-muted d-none d-md-table-cell"
+                style="font-size: 0.85rem"
+              >
+                {{ member.email }}
+              </td>
               <td>
-                <span class="ap-role-badge ap-role-{{ member.role }}">{{ member.role }}</span>
+                <span class="ap-role-badge ap-role-{{ member.role }}"
+                  >{{ member.role }}</span
+                >
               </td>
               <td>
                 <span class="badge-units">{{ member.invoiceCount }}</span>
               </td>
               <td class="fw-semibold" style="color: var(--brand-primary)">
-                {{ member.revenue | number:2 }} <small class="text-muted fw-normal">EGP</small>
+                {{ member.revenue | number:2 }}
+                <small class="text-muted fw-normal">EGP</small>
               </td>
             </tr>
             <tr ng-if="staff.length === 0">
-              <td colspan="6" class="text-center text-muted py-4">No staff found.</td>
+              <td colspan="6" class="text-center text-muted py-4">
+                No staff found.
+              </td>
             </tr>
           </tbody>
         </table>
@@ -151,23 +189,35 @@
     </div>
   </div>
 
-  <!-- System Alerts -->
   <h5 class="dash-card-title mb-3">
     <i class="bi bi-bell me-2" style="color: var(--warning)"></i>System Alerts
   </h5>
 
-  <!-- All clear -->
-  <div class="card border-0 shadow-sm" ng-if="lowStock.length === 0 && expiring.length === 0 && unpaidInvoices.length === 0">
+  <div
+    class="card border-0 shadow-sm"
+    ng-if="lowStock.length === 0 && expiring.length === 0 && unpaidInvoices.length === 0"
+  >
     <div class="card-body text-center py-5">
-      <i class="bi bi-shield-check" style="font-size: 2.5rem; color: var(--success); display: block; margin-bottom: 12px;"></i>
+      <i
+        class="bi bi-shield-check"
+        style="
+          font-size: 2.5rem;
+          color: var(--success);
+          display: block;
+          margin-bottom: 12px;
+        "
+      ></i>
       <p class="fw-semibold mb-1" style="color: var(--success)">All clear</p>
-      <p class="text-muted small mb-0">No low stock, expiring, or unpaid issues.</p>
+      <p class="text-muted small mb-0">
+        No low stock, expiring, or unpaid issues.
+      </p>
     </div>
   </div>
 
-  <div class="row g-4" ng-if="lowStock.length > 0 || expiring.length > 0 || unpaidInvoices.length > 0">
-
-    <!-- Low Stock -->
+  <div
+    class="row g-4"
+    ng-if="lowStock.length > 0 || expiring.length > 0 || unpaidInvoices.length > 0"
+  >
     <div class="col-lg-4" ng-if="lowStock.length > 0">
       <div class="ap-alert-card ap-alert-error">
         <div class="ap-alert-header">
@@ -178,20 +228,25 @@
           <div class="ap-alert-row" ng-repeat="med in lowStock">
             <div class="flex-grow-1">
               <span class="fw-medium">{{ med.name }}</span>
-              <span class="text-muted ms-1" style="font-size: 0.78rem">· {{ med.type }}</span>
+              <span class="text-muted ms-1" style="font-size: 0.78rem"
+                >· {{ med.type }}</span
+              >
             </div>
-            <span class="ap-qty-badge ap-qty-{{ med.quantity === 0 ? 'zero' : 'low' }}">
+            <span
+              class="ap-qty-badge ap-qty-{{ med.quantity === 0 ? 'zero' : 'low' }}"
+            >
               {{ med.quantity }} left
             </span>
           </div>
         </div>
         <div class="ap-alert-footer">
-          <a href="#!/medicines" class="dash-view-all">Go to medicines <i class="bi bi-arrow-right"></i></a>
+          <a href="#!/medicines" class="dash-view-all"
+            >Go to medicines <i class="bi bi-arrow-right"></i
+          ></a>
         </div>
       </div>
     </div>
 
-    <!-- Expiring Soon -->
     <div class="col-lg-4" ng-if="expiring.length > 0">
       <div class="ap-alert-card ap-alert-warning">
         <div class="ap-alert-header">
@@ -203,16 +258,19 @@
             <div class="flex-grow-1">
               <span class="fw-medium">{{ med.name }}</span>
             </div>
-            <span class="text-muted" style="font-size: 0.78rem">{{ med.expiry_date | date:'mediumDate' }}</span>
+            <span class="text-muted" style="font-size: 0.78rem"
+              >{{ med.expiry_date | date:'mediumDate' }}</span
+            >
           </div>
         </div>
         <div class="ap-alert-footer">
-          <a href="#!/medicines" class="dash-view-all">Go to medicines <i class="bi bi-arrow-right"></i></a>
+          <a href="#!/medicines" class="dash-view-all"
+            >Go to medicines <i class="bi bi-arrow-right"></i
+          ></a>
         </div>
       </div>
     </div>
 
-    <!-- Unpaid Invoices -->
     <div class="col-lg-4" ng-if="unpaidInvoices.length > 0">
       <div class="ap-alert-card ap-alert-info">
         <div class="ap-alert-header">
@@ -220,13 +278,24 @@
           <span class="ap-alert-count">{{ unpaidInvoices.length }}</span>
         </div>
         <div class="ap-alert-body">
-          <div class="ap-alert-row" ng-repeat="inv in unpaidInvoices | limitTo:6">
+          <div
+            class="ap-alert-row"
+            ng-repeat="inv in unpaidInvoices | limitTo:6"
+          >
             <div class="flex-grow-1">
-              <span class="fw-medium">{{ customersMap[inv.customer_id].name || '—' }}</span>
-              <span class="text-muted d-block" style="font-size: 0.75rem">{{ inv.invoice_date | date:'mediumDate' }}</span>
+              <span class="fw-medium"
+                >{{ customersMap[inv.customer_id].name || '—' }}</span
+              >
+              <span class="text-muted d-block" style="font-size: 0.75rem"
+                >{{ inv.invoice_date | date:'mediumDate' }}</span
+              >
             </div>
             <div class="d-flex flex-column align-items-end gap-1">
-              <span class="fw-semibold" style="font-size: 0.85rem; color: var(--brand-primary)">{{ inv.total_amount | number:2 }} EGP</span>
+              <span
+                class="fw-semibold"
+                style="font-size: 0.85rem; color: var(--brand-primary)"
+                >{{ inv.total_amount | number:2 }} EGP</span
+              >
               <button class="btn btn-sm ap-pay-btn" ng-click="markPaid(inv)">
                 <i class="bi bi-check-lg me-1"></i>Pay
               </button>
@@ -234,11 +303,11 @@
           </div>
         </div>
         <div class="ap-alert-footer">
-          <a href="#!/invoices" class="dash-view-all">Go to invoices <i class="bi bi-arrow-right"></i></a>
+          <a href="#!/invoices" class="dash-view-all"
+            >Go to invoices <i class="bi bi-arrow-right"></i
+          ></a>
         </div>
       </div>
     </div>
-
   </div>
-
 </div>

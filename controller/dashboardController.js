@@ -1,4 +1,4 @@
-app.controller('DashboardController', function ($scope, $q, PharmacyService) {
+app.controller("DashboardController", function ($scope, $q, PharmacyService) {
   var LOW_STOCK_THRESHOLD = 10;
   var today = new Date();
   var expiryLimit = new Date(today.getTime() + 30 * 24 * 60 * 60 * 1000);
@@ -27,7 +27,6 @@ app.controller('DashboardController', function ($scope, $q, PharmacyService) {
       var customers = results[2].data || [];
       var invoices = results[3].data || [];
 
-      // --- Stats ---
       $scope.stats.totalMedicines = medicines.length;
       $scope.stats.totalCustomers = customers.length;
 
@@ -45,12 +44,10 @@ app.controller('DashboardController', function ($scope, $q, PharmacyService) {
         return sum + (parseFloat(inv.total_amount) || 0);
       }, 0);
 
-      // --- Customer map (for recent invoices display) ---
       customers.forEach(function (c) {
         $scope.customersMap[c.customer_id] = c;
       });
 
-      // --- Recent invoices (latest 5) ---
       $scope.recentInvoices = invoices
         .slice()
         .sort(function (a, b) {
@@ -58,7 +55,6 @@ app.controller('DashboardController', function ($scope, $q, PharmacyService) {
         })
         .slice(0, 5);
 
-      // --- Top selling medicines ---
       var medMap = {};
       medicines.forEach(function (m) {
         medMap[m.medicine_id] = m;
@@ -73,7 +69,7 @@ app.controller('DashboardController', function ($scope, $q, PharmacyService) {
       $scope.topMedicines = Object.keys(sold)
         .map(function (id) {
           return {
-            medicine: medMap[id] || { name: 'Unknown', type: '—' },
+            medicine: medMap[id] || { name: "Unknown", type: "—" },
             unitsSold: sold[id],
           };
         })
