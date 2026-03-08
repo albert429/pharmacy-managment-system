@@ -1,4 +1,4 @@
-app.controller('AuthController', function ($scope, $location, AuthService, PharmacyService, $timeout) {
+app.controller('AuthController', function ($scope, $location, AuthService, PharmacyService, $timeout,$q) {
 
   $scope.login = function () {
 
@@ -53,6 +53,7 @@ app.controller('AuthController', function ($scope, $location, AuthService, Pharm
           $scope.addUserSuccess = true;
           $scope.user = {};
           console.log('User Added:', result.user);
+           $location.path('/users').replace();
         },
         function (error) {
           $scope.addUserError = error.message;
