@@ -18,7 +18,7 @@ app.controller("DashboardController", function ($scope, $q, PharmacyService) {
   $q.all([
     PharmacyService.getMedicines(),
     PharmacyService.getInvoiceItems(),
-    PharmacyService.getCustomers(),
+    PharmacyService.getAllCustomers(),
     PharmacyService.getInvoices(),
   ])
     .then(function (results) {

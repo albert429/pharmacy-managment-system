@@ -19,10 +19,10 @@ app.controller("AdminPanelController", function ($scope, $q, PharmacyService) {
   $scope.customersMap = {};
 
   $q.all([
-    PharmacyService.getUsers(),
+    PharmacyService.getAllUsers(),
     PharmacyService.getMedicines(),
     PharmacyService.getInvoices(),
-    PharmacyService.getCustomers(),
+    PharmacyService.getAllCustomers(),
   ])
     .then(function (results) {
       var users = results[0].data || [];

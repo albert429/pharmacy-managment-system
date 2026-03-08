@@ -35,7 +35,7 @@ app.controller(
     };
 
     $q.all([
-      PharmacyService.getCustomers(),
+      PharmacyService.getAllCustomers(),
       PharmacyService.getMedicines(),
     ]).then(function (results) {
       $scope.customers = results[0].data || [];
