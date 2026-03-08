@@ -1,6 +1,16 @@
-<user-table data="users" title="Users" customer="false" loading="loading" on-click="deleteUser(user.id)"></user-table>
 
-
-
+<user-table 
+    data="users" 
+    title="Users"
+    customer="false" 
+    loading="loading" 
+    search-text="searchText"
+    current-page="currentPage" 
+    total-pages="totalPages" 
+    next-page="nextPage()" 
+    prev-page="prevPage()" 
+    change-sort="changeSort(sortBy)" 
+    on-click="deleteUser(user.id)">
+</user-table>
 
 

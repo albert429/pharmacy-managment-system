@@ -6,29 +6,25 @@ app.controller('CustomerController', function ($scope, PharmacyService,$routePar
    $scope.newCustomersThisMonth = 0;
    $scope.unpaidCustomers = 0;
    $scope.loading = true;
+    // Pagination & sorting state
+  $scope.currentPage = 1;
+  $scope.pageSize = 10;
+  $scope.sortBy = 'name';
+  $scope.sortOrder = 'asc';
+  $scope.searchText = '';
+  $scope.totalPages = 1;
 
-   // Fetch customers and calculate statistics for all customers, new customers this month and unpaid customers.
-    PharmacyService.getCustomers().then(
-        function (response) {
+   //get customers and calculate statistics for all customers, new customers this month and unpaid customers.
+$scope.fetchCustomers = function() {
+  $scope.loading = true;
+  PharmacyService.getCustomers($scope.currentPage, $scope.pageSize, $scope.sortBy, $scope.sortOrder, $scope.searchText).then(
+       function (response) {
             $scope.customers = response.data;
             $scope.loading = false;
-            $scope.allCustomers = $scope.customers.length;
-            let currentMonth = new Date().getMonth();
-            let currentYear = new Date().getFullYear();
-            $scope.newCustomersThisMonth = $scope.customers.filter(customer => {
-                let createdAt = new Date(customer.date_registered);
-                return createdAt.getMonth() === currentMonth && createdAt.getFullYear() === currentYear;
-            }).length;
 
                // handle state
                   PharmacyService.getInvoices().then(function (response) {
                 let invoices = response.data;
-
-           // unpaid + partial customers count
-$scope.unpaidCustomers =
-  invoices.filter(invoice => invoice.payment_status === 'unpaid').length +
-  invoices.filter(invoice => invoice.payment_status === 'partial').length;
-
 
 // set state property
 $scope.customers.forEach(customer => {
@@ -53,9 +49,36 @@ $scope.customers.forEach(customer => {
        }).catch(function(error) {
     console.error('Error fetching customers:', error);
 }).finally(function() {
-    $scope.loading = false; // hide spinner after everything is done
+    $scope.loading = false; // hide spinner
 });
+}
 
+  // navigation
+  $scope.nextPage = function () { $scope.currentPage++; $scope.fetchCustomers(); };
+  $scope.prevPage = function () { if ($scope.currentPage > 1) { $scope.currentPage--; $scope.fetchCustomers(); } };
+
+  // for sorting
+  $scope.changeSort = function (sortBy) {
+    if ($scope.sortBy === sortBy) {
+      $scope.sortOrder = $scope.sortOrder === 'asc' ? 'desc' : 'asc';
+    } else {
+      $scope.sortBy = sortBy;
+      $scope.sortOrder = 'asc';
+    }
+    $scope.fetchCustomers();
+  };
+  //for search
+  $scope.$watch('searchText', function () { $scope.currentPage = 1; $scope.fetchCustomers(); });
+
+
+  $scope.fetchCustomers();
+
+  // Delete customer
+  $scope.deleteCustomer = function (customerId) {
+    if (confirm('Are you sure you want to delete this customer?')) {
+      PharmacyService.deleteCustomer(customerId).then($scope.fetchCustomers);
+    }
+  };
  $scope.render=function(){
 
             PharmacyService.getCustomers().then(

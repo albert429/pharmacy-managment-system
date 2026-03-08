@@ -90,4 +90,44 @@ app.controller('DashboardController', function ($scope, $q, PharmacyService) {
     .catch(function () {
       $scope.loading = false;
     });
+
+
+    // Fetch customers and calculate statistics for all customers, new customers this month and unpaid customers.
+
+   $scope.allCustomers = 0;
+   $scope.newCustomersThisMonth = 0;
+   $scope.unpaidCustomers = 0;
+   
+    PharmacyService.getAllCustomers().then(
+        function (response) {
+            $scope.customers = response.data;
+            $scope.allCustomers = $scope.customers.length;
+            let currentMonth = new Date().getMonth();
+            let currentYear = new Date().getFullYear();
+            $scope.newCustomersThisMonth = $scope.customers.filter(customer => {
+                let createdAt = new Date(customer.date_registered);
+                return createdAt.getMonth() === currentMonth && createdAt.getFullYear() === currentYear;
+            }).length;
+
+               // handle state
+                  PharmacyService.getInvoices().then(function (response) {
+                let invoices = response.data;
+
+           // unpaid + partial customers count
+  $scope.unpaidCustomers =
+  invoices.filter(invoice => invoice.payment_status === 'unpaid').length +
+  invoices.filter(invoice => invoice.payment_status === 'partial').length;
+
+
+
+
+            }, function (error) {
+                console.error('Error fetching invoices:', error);
+            });
+       }).catch(function(error) {
+    console.error('Error fetching customers:', error);
+}).finally(function() {
+    $scope.loading = false;
+});
+
 });

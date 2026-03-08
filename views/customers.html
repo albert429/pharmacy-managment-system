@@ -1,4 +1,4 @@
-<div class="row g-3 mb-4">
+<div class="row g-3 mb-4" ng-controller="DashboardController">
   <div class="col-6 col-xl-4">
     <div class="card border-0 shadow stat-card h-100">
       <div class="card-body py-3">
@@ -37,5 +37,17 @@
 
 </div>
 
-<user-table data="customers" title="Customers" customer="true" loading="loading"
-  on-click="deleteCustomer(user.customer_id)"></user-table>
+
+<user-table 
+    data="customers" 
+    title="Customers" 
+    customer="true" 
+    loading="loading" 
+    search-text="searchText"
+    current-page="currentPage" 
+    total-pages="totalPages" 
+    next-page="nextPage()" 
+    prev-page="prevPage()" 
+    change-sort="changeSort(sortBy)" 
+    on-click="deleteCustomer(user.customer_id)">
+</user-table>

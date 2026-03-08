@@ -7,19 +7,36 @@ app.service('PharmacyService', function ($http) {
     'Content-Type': 'application/json',
   };
 
-  // users management
-  this.getUsers = function () {
-    return $http.get(baseLink + '/users_metadata', { headers: headers });
+
+  // Pagination
+ 
+  this.getUsers = function (page = 1, pageSize = 10, sortBy = 'name', sortOrder = 'asc', searchText = '') {
+    const offset = (page - 1) * pageSize;
+    let query = `?limit=${pageSize}&offset=${offset}&order=${sortBy}.${sortOrder}`;
+    if (searchText) query += `&name=ilike.%25${encodeURIComponent(searchText)}%25`;
+    return $http.get(`${baseLink}/users_metadata${query}`, { headers });
   };
 
+   this.getCustomers = function (page = 1, pageSize = 10, sortBy = 'name', sortOrder = 'asc', searchText = '') {
+    const offset = (page - 1) * pageSize;
+    let query = `?limit=${pageSize}&offset=${offset}&order=${sortBy}.${sortOrder}`;
+    if (searchText) query += `&name=ilike.%25${encodeURIComponent(searchText)}%25`;
+    return $http.get(`${baseLink}/customers${query}`, { headers });
+  };
+
+ // users management
+  this.getAllUsers = function () {
+    return $http.get(baseLink + '/users_metadata', { headers: headers });
+  };
   this.deleteUser = function (userId) {
     return $http.delete(baseLink + '/users_metadata?id=eq.' + userId, { headers: headers });
   };
 
   // customers management
-  this.getCustomers = function () {
+  this.getAllCustomers = function () {
     return $http.get(baseLink + '/customers', { headers: headers });
   };
+
 
   this.addCustomer = function (customerData) {
     return $http.post(baseLink + '/customers', customerData, {

@@ -5,39 +5,28 @@ app.directive('userTable',function ($location, PharmacyService) {
       title: '@',
       customer: '=',
       onClick: '&',
-      loading:'='
+      loading:'=',
+      currentPage: '=',
+      totalPages: '=',
+      nextPage: '&',
+      prevPage: '&',
+      changeSort: '&',
+      searchText: '='
 
     },
-    template: `
- <div class="row align-items-center mb-3 mt-4">
 
-  <div class="col-md-4">
-    <div class="input-group">
-      <span class="input-group-text">
-        <i class="bi bi-search"></i>
-      </span>
-      <input type="text"
-             class="form-control"
-             placeholder="Search by name..."
-             ng-model="searchText">
-    </div>
-  </div>
-
-  <div class="col-md-4">
-<select class="form-select"  ng-model="sortBy">
-
-  <option  value="name">Sort by Name</option>
-
-  <option ng-if="customer===true" value="state">
-    Sort by State
-  </option>
-
-  <option ng-if="customer!==true" value="role">
-    Sort by Role
-  </option>
-
-</select>
-  </div>
+    template:
+    ` <div class="row align-items-center mb-3 mt-4">
+        <div class="col-md-4">
+          <input type="text" class="form-control" placeholder="Search by name..." ng-model="searchText">
+        </div>
+        <div class="col-md-4">
+          <select class="form-select" ng-model="sortBy" ng-change="changeSort({sortBy: sortBy})">
+            <option value="name">Name</option>
+            <option ng-if="customer" value="state">State</option>
+            <option ng-if="!customer" value="role">Role</option>
+          </select>
+        </div>
 
   <div class="col-md-4 text-end">
     <button class="btn btn-sm text-white" style="background: var(--brand-primary)" ng-click="addPage()">
@@ -84,7 +73,7 @@ app.directive('userTable',function ($location, PharmacyService) {
             <td >{{user.name}}</td>
             <td >{{user.email}}</td>
             <td>{{user.phone}}</td>
-            <td ng-class="{'text-danger': user.state === 'Unpaid', 'text-success': user.state === 'Paid','text-secondary': user.state === 'Partial'}" ng-if="customer===true">{{user.state}}</td>
+            <td ng-class="{'text-danger': user.state === 'Unpaid', 'text-success': user.state === 'Paid','text-secondary': user.state === 'Partial'}" ng-if="customer===true" && user.state>{{user.state}}</td>
             <td ng-if="customer===false">{{user.role}}</td>
             <td>{{user.date_registered | date:'yyyy-MM-dd'}}</td>
          <td ng-if="customer === true">
@@ -116,6 +105,11 @@ app.directive('userTable',function ($location, PharmacyService) {
         </tbody>
       </table>
     </div>
+           <div class="d-flex justify-content-between mt-2">
+        <button class="btn btn-sm btn-secondary" ng-click="prevPage()" ng-disabled="currentPage==1">Prev</button>
+        <span>Page {{currentPage}}</span>
+        <button class="btn btn-sm btn-secondary" ng-click="nextPage()" ng-disabled="filteredusers.length === 1" >Next</button>
+      </div>
   </div>
 </div>
         `,
