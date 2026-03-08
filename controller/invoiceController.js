@@ -1,22 +1,21 @@
 app.controller(
-  'InvoiceController',
+  "InvoiceController",
   function ($scope, $q, PharmacyService, AuthService) {
     $scope.invoices = [];
     $scope.customers = [];
     $scope.medicines = [];
     $scope.medicinesMap = {};
     $scope.customersMap = {};
-    $scope.search = '';
-    $scope.filterStatus = '';
+    $scope.search = "";
+    $scope.filterStatus = "";
     $scope.loading = true;
     $scope.submitting = false;
     $scope.submitError = null;
 
-    // ── Form state ─────────────────────────────────────────────────────────────
     $scope.newInvoice = {
       customer_id: null,
       discount: 0,
-      payment_status: 'unpaid',
+      payment_status: "unpaid",
       items: [],
     };
     $scope.newItem = {
@@ -26,7 +25,6 @@ app.controller(
       maxQty: 0,
     };
 
-    // ── Load data ───────────────────────────────────────────────────────────────
     $scope.loadInvoices = function () {
       PharmacyService.getInvoices().then(function (res) {
         $scope.invoices = (res.data || []).sort(function (a, b) {
@@ -53,12 +51,10 @@ app.controller(
 
     $scope.loadInvoices();
 
-    // Get current user id for created_by
     AuthService.getCurrentUser().then(function (user) {
       $scope.currentUserId = user ? user.id : null;
     });
 
-    // ── Item helpers ────────────────────────────────────────────────────────────
     $scope.onMedicineSelect = function () {
       var med = $scope.medicinesMap[$scope.newItem.medicine_id];
       if (med) {
@@ -73,12 +69,11 @@ app.controller(
         return;
       if ($scope.newItem.quantity > med.quantity) {
         $scope.itemError =
-          'Quantity exceeds available stock (' + med.quantity + ')';
+          "Quantity exceeds available stock (" + med.quantity + ")";
         return;
       }
       $scope.itemError = null;
 
-      // Merge if medicine already in list
       var existing = $scope.newInvoice.items.find(function (i) {
         return i.medicine_id === med.medicine_id;
       });
@@ -104,7 +99,6 @@ app.controller(
       $scope.newInvoice.items.splice(index, 1);
     };
 
-    // ── Totals ──────────────────────────────────────────────────────────────────
     $scope.lineTotal = function (item) {
       return (item.unit_price || 0) * (item.quantity || 0);
     };
@@ -118,11 +112,10 @@ app.controller(
     $scope.grandTotal = function () {
       return Math.max(
         0,
-        $scope.subtotal() - (parseFloat($scope.newInvoice.discount) || 0)
+        $scope.subtotal() - (parseFloat($scope.newInvoice.discount) || 0),
       );
     };
 
-    // ── Submit invoice ──────────────────────────────────────────────────────────
     $scope.submitInvoice = function () {
       if (
         !$scope.newInvoice.customer_id ||
@@ -159,7 +152,6 @@ app.controller(
           return PharmacyService.addInvoiceItems(itemsPayload);
         })
         .then(function () {
-          // Deduct stock
           var updates = savedItems.map(function (item) {
             var med = $scope.medicinesMap[item.medicine_id];
             var newQty = (med ? med.quantity : 0) - item.quantity;
@@ -170,7 +162,6 @@ app.controller(
           return $q.all(updates);
         })
         .then(function () {
-          // Refresh medicines map after stock deduction
           return PharmacyService.getMedicines();
         })
         .then(function (res) {
@@ -182,32 +173,30 @@ app.controller(
           $scope.submitting = false;
           $scope.resetForm();
           bootstrap.Modal.getInstance(
-            document.getElementById('invoiceModal')
+            document.getElementById("invoiceModal"),
           ).hide();
           $scope.loadInvoices();
         })
         .catch(function (err) {
           $scope.submitting = false;
-          $scope.submitError = 'Failed to create invoice. Please try again.';
+          $scope.submitError = "Failed to create invoice. Please try again.";
           console.error(err);
         });
     };
 
-    // ── Update payment status ───────────────────────────────────────────────────
     $scope.markPaid = function (inv) {
       PharmacyService.editInvoice(inv.invoice_id, {
-        payment_status: 'paid',
+        payment_status: "paid",
       }).then(function () {
-        inv.payment_status = 'paid';
+        inv.payment_status = "paid";
       });
     };
 
-    // ── Modal helpers ───────────────────────────────────────────────────────────
     $scope.resetForm = function () {
       $scope.newInvoice = {
         customer_id: null,
         discount: 0,
-        payment_status: 'unpaid',
+        payment_status: "unpaid",
         items: [],
       };
       $scope.newItem = {
@@ -222,7 +211,7 @@ app.controller(
 
     $scope.openCreate = function () {
       $scope.resetForm();
-      new bootstrap.Modal(document.getElementById('invoiceModal')).show();
+      new bootstrap.Modal(document.getElementById("invoiceModal")).show();
     };
-  }
+  },
 );

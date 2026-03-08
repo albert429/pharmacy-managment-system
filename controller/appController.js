@@ -1,6 +1,6 @@
 app.controller(
   'AppController',
-  function ($scope, $location, $timeout, AuthService) {
+  function ($scope, $location, $timeout, $route, AuthService) {
     var landingRoutes = ['/landing', '/about', '/contact', '/login', '/404'];
 
     $scope.islandingPage = function () {
@@ -27,7 +27,10 @@ app.controller(
 
     $scope.logout = function () {
       AuthService.logout().then(function () {
+        $scope.currentUserName = null;
+        $scope.currentRole = null;
         $location.path('/landing');
+        $route.reload();
       });
     };
   }

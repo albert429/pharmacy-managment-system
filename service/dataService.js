@@ -7,36 +7,50 @@ app.service('PharmacyService', function ($http) {
     'Content-Type': 'application/json',
   };
 
-
   // Pagination
- 
-  this.getUsers = function (page = 1, pageSize = 10, sortBy = 'name', sortOrder = 'asc', searchText = '') {
+
+  this.getUsers = function (
+    page = 1,
+    pageSize = 10,
+    sortBy = 'name',
+    sortOrder = 'asc',
+    searchText = ''
+  ) {
     const offset = (page - 1) * pageSize;
     let query = `?limit=${pageSize}&offset=${offset}&order=${sortBy}.${sortOrder}`;
-    if (searchText) query += `&name=ilike.%25${encodeURIComponent(searchText)}%25`;
+    if (searchText)
+      query += `&name=ilike.%25${encodeURIComponent(searchText)}%25`;
     return $http.get(`${baseLink}/users_metadata${query}`, { headers });
   };
 
-   this.getCustomers = function (page = 1, pageSize = 10, sortBy = 'name', sortOrder = 'asc', searchText = '') {
+  this.getCustomers = function (
+    page = 1,
+    pageSize = 10,
+    sortBy = 'name',
+    sortOrder = 'asc',
+    searchText = ''
+  ) {
     const offset = (page - 1) * pageSize;
     let query = `?limit=${pageSize}&offset=${offset}&order=${sortBy}.${sortOrder}`;
-    if (searchText) query += `&name=ilike.%25${encodeURIComponent(searchText)}%25`;
+    if (searchText)
+      query += `&name=ilike.%25${encodeURIComponent(searchText)}%25`;
     return $http.get(`${baseLink}/customers${query}`, { headers });
   };
 
- // users management
+  // users management
   this.getAllUsers = function () {
     return $http.get(baseLink + '/users_metadata', { headers: headers });
   };
   this.deleteUser = function (userId) {
-    return $http.delete(baseLink + '/users_metadata?id=eq.' + userId, { headers: headers });
+    return $http.delete(baseLink + '/users_metadata?id=eq.' + userId, {
+      headers: headers,
+    });
   };
 
   // customers management
   this.getAllCustomers = function () {
     return $http.get(baseLink + '/customers', { headers: headers });
   };
-
 
   this.addCustomer = function (customerData) {
     return $http.post(baseLink + '/customers', customerData, {
@@ -89,7 +103,6 @@ app.service('PharmacyService', function ($http) {
     return $http.get(baseLink + '/invoices', { headers: headers });
   };
 
-  // POST invoice and return the created row (needed to get invoice_id)
   this.addInvoice = function (invoiceData) {
     var h = Object.assign({}, headers, { Prefer: 'return=representation' });
     return $http.post(baseLink + '/invoices', invoiceData, { headers: h });
@@ -120,14 +133,12 @@ app.service('PharmacyService', function ($http) {
     });
   };
 
-  // get invoices with items and medicines for a specific customer
   this.getCustomerInvoicesItems = function (customerId) {
     var query =
       '?select=*,invoice_items(*,medicines(*))&customer_id=eq.' + customerId;
     return $http.get(baseLink + '/invoices' + query, { headers: headers });
   };
 
-  // get invoices created by specific user
   this.getUserInvoices = function (userId) {
     var query =
       '?select=*,invoice_items(*,medicines(*))&created_by=eq.' + userId;

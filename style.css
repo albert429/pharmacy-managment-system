@@ -1,33 +1,28 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Lora:ital,wght@0,600;1,400&display=swap");
 
 :root {
-  /* Brand */
   --brand-primary: #0da5a6;
   --brand-primary-hover: #0e6e87;
   --brand-secondary: #1c2b33;
   --brand-accent: #1a9bb8;
   --brand-tint: #b8e6f0;
 
-  /* Gradient stops — reused across navbar, hero, auth backgrounds */
   --grad-mid: #0a3040;
   --grad-end: #0d6b6c;
 
-  /* Brand opacity composites */
   --brand-border: rgba(13, 165, 166, 0.18);
-  --brand-glow-sm: rgba(13, 165, 166, 0.30);
-  --brand-glow: rgba(13, 165, 166, 0.40);
+  --brand-glow-sm: rgba(13, 165, 166, 0.3);
+  --brand-glow: rgba(13, 165, 166, 0.4);
   --brand-glow-lg: rgba(13, 165, 166, 0.55);
   --brand-tint-08: rgba(184, 230, 240, 0.08);
-  --brand-tint-10: rgba(184, 230, 240, 0.10);
+  --brand-tint-10: rgba(184, 230, 240, 0.1);
   --brand-tint-25: rgba(184, 230, 240, 0.25);
   --brand-tint-72: rgba(184, 230, 240, 0.72);
 
-  /* Neutrals */
   --n-0: #fafcfd;
   --n-400: #9fa8b4;
   --n-900: #1c2b33;
 
-  /* Text & Surfaces */
   --text: var(--n-900);
   --text-muted: var(--n-400);
   --text-secondary: #49636d;
@@ -36,7 +31,6 @@
   --surface: var(--n-0);
   --surface-border: #cdd8df;
 
-  /* Semantic */
   --success: #3d8b6e;
   --success-bg: rgba(61, 139, 110, 0.12);
   --success-border: rgba(61, 139, 110, 0.35);
@@ -65,12 +59,13 @@ body {
   background: var(--bg);
 }
 
-/* ======================================
-   NAVBAR
-   ================================= */
-
 .navbar {
-  background: linear-gradient(25deg, var(--n-900) 0%, var(--grad-mid) 60%, var(--grad-end) 100%);
+  background: linear-gradient(
+    25deg,
+    var(--n-900) 0%,
+    #0a3040f6 60%,
+    #0d6b6c 100%
+  );
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
   padding-top: 10px;
   padding-bottom: 10px;
@@ -92,12 +87,14 @@ body {
 .navbar-brand-group {
   display: flex;
   align-items: center;
-  margin-left: -14px;
 }
 
 .navbar-logo {
   height: 42px;
   filter: drop-shadow(0 2px 8px var(--brand-glow));
+  transition:
+    filter 0.25s,
+    transform 0.25s;
 }
 
 .navbar-wordmark {
@@ -115,10 +112,10 @@ body {
   color: var(--brand-tint);
 }
 
-/* ======================================
-   SIDEBAR
-   ================================= */
-
+.navbar-brand-group:hover .navbar-logo {
+  filter: drop-shadow(0 4px 14px rgba(13, 165, 166, 0.65));
+  transform: scale(1.1);
+}
 .offcanvas {
   width: 240px !important;
   background: var(--brand-secondary);
@@ -151,6 +148,7 @@ body {
   color: white;
   letter-spacing: 0.01em;
   text-shadow: 0 1px 8px rgba(13, 165, 166, 0.4);
+  margin-left: -6px;
 }
 
 .sidebar-brand-via {
@@ -231,10 +229,6 @@ body {
   color: var(--text-inverse);
 }
 
-/* ======================================
-   LANDING NAV LINKS (used in appNav.html)
-   ================================= */
-
 .landing-nav-link {
   color: var(--brand-tint);
   text-decoration: none;
@@ -287,7 +281,12 @@ body {
   padding: 10px 24px 16px;
   gap: 4px;
   border-top: 1px solid var(--brand-tint-10);
-  background: linear-gradient(25deg, var(--n-900) 0%, var(--grad-mid) 60%, var(--grad-end) 100%);
+  background: linear-gradient(
+    25deg,
+    var(--n-900) 0%,
+    var(--grad-mid) 60%,
+    var(--grad-end) 100%
+  );
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -307,10 +306,6 @@ body {
   color: var(--brand-primary);
   font-weight: 600;
 }
-
-/* ======================================
-   COMMON COMPONENTS
-   ================================= */
 
 .stat-card {
   border-left: 4px solid var(--brand-primary) !important;
@@ -334,10 +329,6 @@ body {
   font-weight: 600;
 }
 
-/* ======================================
-   GLOBAL FORM OVERRIDES
-   ================================= */
-
 .form-control:focus {
   border-color: var(--brand-primary);
   box-shadow: 0 0 0 0.15rem rgba(13, 165, 166, 0.25);
@@ -354,12 +345,13 @@ body {
   color: var(--brand-primary);
 }
 
-/* ======================================
-   LANDING — HERO
-   ================================= */
-
 .hero {
-  background: linear-gradient(110deg, var(--n-900) 0%, var(--grad-mid) 60%, var(--grad-end) 100%);
+  background: linear-gradient(
+    110deg,
+    var(--n-900) 0%,
+    var(--grad-mid) 60%,
+    var(--grad-end) 100%
+  );
   text-align: center;
 }
 
@@ -389,14 +381,20 @@ body {
   font-family: "Lora";
   font-size: clamp(2.2rem, 6vw, 3.6rem);
   font-weight: 700;
-  color: transparent;
+  color: white;
   margin-bottom: 24px;
   line-height: 1.2;
-  background: linear-gradient(135deg,
-      #ffffff 0%,
-      var(--brand-tint) 40%,
-      var(--brand-primary) 100%);
-  -webkit-background-clip: text;
+  text-shadow: 0 2px 16px rgba(162, 224, 224, 0.349);
+}
+.hero-title em {
+  color: transparent;
+  text-shadow: 0 2px 16px rgba(13, 166, 166, 0.443);
+  background: linear-gradient(
+    140deg,
+    white 0%,
+    var(--brand-tint) 40%,
+    var(--brand-primary) 100%
+  );
   background-clip: text;
 }
 
@@ -456,10 +454,6 @@ body {
   border-color: rgba(255, 255, 255, 0.45);
   transform: translateY(-2px);
 }
-
-/* ======================================
-   LANDING — FEATURES
-   ================================= */
 
 .features-section {
   max-width: 1200px;
@@ -539,10 +533,6 @@ body {
   line-height: 1.5;
 }
 
-/* ======================================
-   LANDING — MIDDLE SECTION
-   ================================= */
-
 .middle-section {
   background: var(--brand-secondary);
   padding: 72px 24px;
@@ -600,10 +590,6 @@ body {
   }
 }
 
-/* ======================================
-   LANDING — BOTTOM SECTION
-   ================================= */
-
 .bottom-section {
   background: radial-gradient(#0a2a35 30%, #0e6e87 200%);
   padding: 80px 24px;
@@ -650,10 +636,6 @@ body {
   transform: scale(1.04);
 }
 
-/* ======================================
-   LANDING — FOOTER
-   ================================= */
-
 .landing-footer {
   background: var(--brand-secondary);
   color: var(--brand-tint-72);
@@ -663,12 +645,13 @@ body {
   letter-spacing: 0.02em;
 }
 
-/* ======================================
-   ABOUT PAGE
-   ================================= */
-
 .about-hero {
-  background: linear-gradient(110deg, var(--n-900) 0%, var(--grad-mid) 60%, var(--grad-end) 100%);
+  background: linear-gradient(
+    110deg,
+    var(--n-900) 0%,
+    var(--grad-mid) 60%,
+    var(--grad-end) 100%
+  );
   text-align: center;
   position: relative;
 }
@@ -685,11 +668,13 @@ body {
   font-size: clamp(1.6rem, 5vw, 2.6rem);
   font-weight: 700;
   color: transparent;
-  text-shadow: 0 2px 16px rgba(13, 165, 166, 0.3);
-  background: linear-gradient(140deg,
-      var(--brand-primary) 20%,
-      var(--brand-tint) 50%,
-      white 100%);
+  text-shadow: 0 2px 16px rgba(13, 166, 166, 0.443);
+  background: linear-gradient(
+    140deg,
+    white 0%,
+    var(--brand-tint) 40%,
+    var(--brand-primary) 100%
+  );
   background-clip: text;
 }
 
@@ -789,10 +774,6 @@ body {
   margin: 0;
   line-height: 1.5;
 }
-
-/* ======================================
-   CONTACT PAGE
-   ================================= */
 
 .contact-section {
   max-width: 1080px;
@@ -917,16 +898,24 @@ body {
   padding-top: 7px;
 }
 
-/* ======================================
-   404 PAGE
-   ================================= */
+.login-bg {
+  max-width: 100%;
+  background: linear-gradient(
+    135deg,
+    var(--n-900) 0%,
+    var(--grad-mid) 55%,
+    var(--grad-end) 100%
+  );
+}
 
 .not-found-page {
   min-height: 100vh;
-  background: linear-gradient(110deg,
-      var(--n-900) 0%,
-      #0a3040 60%,
-      #0d6b6c 100%);
+  background: linear-gradient(
+    110deg,
+    var(--n-900) 0%,
+    #0a3040 60%,
+    #0d6b6c 100%
+  );
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -942,10 +931,12 @@ body {
   line-height: 1;
   color: transparent;
   text-shadow: 0 2px 16px rgba(13, 165, 166, 0.3);
-  background: linear-gradient(140deg,
-      var(--brand-primary) 20%,
-      var(--brand-tint) 50%,
-      white 100%);
+  background: linear-gradient(
+    140deg,
+    var(--brand-primary) 20%,
+    var(--brand-tint) 50%,
+    white 100%
+  );
   background-clip: text;
   margin-bottom: 12px;
 }
@@ -988,10 +979,6 @@ body {
   box-shadow: 0 6px 22px rgba(13, 165, 166, 0.55);
 }
 
-/* ======================================
-   ANIMATIONS
-   ================================= */
-
 @keyframes slideUp {
   from {
     opacity: 0;
@@ -1007,10 +994,6 @@ body {
 .slideUp {
   animation: slideUp 1s ease;
 }
-
-/* ======================================
-   DASHBOARD STAT LABELS
-   ================================= */
 
 .stat-label {
   font-size: 0.8rem;
@@ -1033,10 +1016,6 @@ body {
   text-transform: none;
   color: var(--text-muted);
 }
-
-/* ======================================
-   INVOICE STATUS BADGES
-   ================================= */
 
 .inv-status-badge {
   display: inline-block;
@@ -1065,10 +1044,6 @@ body {
   border: 1px solid var(--warning-border);
 }
 
-/* ======================================
-   INVOICE MODAL
-   ================================= */
-
 .inv-form-label {
   display: block;
   font-size: 0.83rem;
@@ -1086,13 +1061,14 @@ body {
   top: 0;
 }
 
-/* ======================================
-   AUTH PAGES (login / add-user)
-   ================================= */
-
 .auth-page {
   min-height: 100vh;
-  background: linear-gradient(110deg, var(--n-900) 0%, var(--grad-mid) 60%, var(--grad-end) 100%);
+  background: linear-gradient(
+    110deg,
+    var(--n-900) 0%,
+    var(--grad-mid) 60%,
+    var(--grad-end) 100%
+  );
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1128,7 +1104,9 @@ body {
   border-radius: 8px;
   font-weight: 600;
   box-shadow: 0 4px 16px var(--brand-glow-sm);
-  transition: background 0.2s, box-shadow 0.2s;
+  transition:
+    background 0.2s,
+    box-shadow 0.2s;
 }
 
 .auth-btn:hover:not(:disabled) {
@@ -1142,13 +1120,11 @@ body {
   cursor: not-allowed;
 }
 
-
-/* Login page layout (login.html) */
 .signup-card {
   max-width: 500px;
   margin: auto;
   border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 30px 40px rgba(0, 0, 0, 0.3);
 }
 
 .btn-custom {
@@ -1163,12 +1139,13 @@ body {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* ======================================
-   DASHBOARD
-   ================================= */
-
 .dash-welcome {
-  background: linear-gradient(110deg, var(--n-900) 0%, var(--grad-mid) 60%, var(--grad-end) 100%);
+  background: linear-gradient(
+    110deg,
+    var(--n-900) 0%,
+    var(--grad-mid) 60%,
+    var(--grad-end) 100%
+  );
   border-radius: 14px;
   padding: 24px 28px;
   display: flex;
@@ -1215,7 +1192,9 @@ body {
   padding: 8px 18px;
   border-radius: 8px;
   box-shadow: 0 3px 10px var(--brand-glow-sm);
-  transition: background 0.2s, box-shadow 0.2s;
+  transition:
+    background 0.2s,
+    box-shadow 0.2s;
   white-space: nowrap;
 }
 
@@ -1240,7 +1219,9 @@ body {
 
 .dash-stat-card {
   border-left: 3px solid transparent;
-  transition: transform 0.15s, box-shadow 0.15s;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
 }
 
 .dash-stat-card:hover {
@@ -1376,7 +1357,7 @@ body {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: rgba(13, 165, 166, 0.10);
+  background: rgba(13, 165, 166, 0.1);
   color: var(--brand-primary);
   display: flex;
   align-items: center;
@@ -1384,10 +1365,6 @@ body {
   font-size: 0.95rem;
   flex-shrink: 0;
 }
-
-/* ======================================
-   ADMIN PANEL
-   ================================= */
 
 .ap-role-badge {
   display: inline-block;
@@ -1514,17 +1491,15 @@ body {
   border: 1px solid var(--success-border);
   border-radius: 6px;
   white-space: nowrap;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
 }
 
 .ap-pay-btn:hover {
   background: var(--success);
   color: var(--text-inverse);
 }
-
-/* ======================================
-   EMPTY STATES
-   ================================= */
 
 .empty-state {
   text-align: center;
